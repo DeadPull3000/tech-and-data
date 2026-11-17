@@ -404,8 +404,40 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px;
+  padding: 8px 10px;
   border-bottom: 1px solid #232338;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.pounce-row.matched {
+  background: rgba(45, 106, 79, 0.15);
+  border-left: 4px solid var(--doom-green);
+}
+
+.pounce-row.unmatched {
+  background: rgba(196, 18, 48, 0.08);
+  border-left: 4px solid #552222;
+}
+
+.match-badge {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 6px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+.match-badge.match-yes {
+  background: var(--doom-green);
+  color: #fff;
+}
+
+.match-badge.match-no {
+  background: #3a2028;
+  color: #e57373;
 }
 
 /* ── Scoreboard Table ── */

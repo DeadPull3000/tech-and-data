@@ -42,6 +42,7 @@
   const pounceDuration = document.getElementById('pounce-duration');
   const btnOpenPounce = document.getElementById('btn-open-pounce');
   const btnClosePounce = document.getElementById('btn-close-pounce');
+  const btnAutoGradePounce = document.getElementById('btn-auto-grade-pounce');
   const pounceTimer = document.getElementById('pounce-timer');
   const pounceAnswers = document.getElementById('pounce-answers');
 
@@ -336,21 +337,114 @@
     });
   }
 
+  // ─── Smart / Fuzzy Answer Matching ──────────────────────────────
+  function cleanAnswer(str) {
+    return (str || '')
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/\[.*?\]/g, ' ')
+      .replace(/\(.*?\)/g, ' ')
+      .replace(/[^\w\s]/g, ' ')
+      .replace(/\bmr\b/g, 'mister')
+      .replace(/\bdr\b/g, 'doctor')
+      .replace(/\bprof\b/g, 'professor')
+      .replace(/\bcapt\b/g, 'captain')
+      .replace(/\b(the|a|an|is|of|and|or)\b/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function levDistance(a, b) {
+    const m = a.length, n = b.length;
+    const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+    for (let i = 0; i <= m; i++) dp[i][0] = i;
+    for (let j = 0; j <= n; j++) dp[0][j] = j;
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+      }
+    }
+    return dp[m][n];
+  }
+
+  function isAnswerMatch(userAnswer, officialAnswer, aliases = []) {
+    const u = cleanAnswer(userAnswer);
+    if (!u) return { matched: false };
+
+    const rawTargets = [...(aliases || [])];
+    if (officialAnswer) {
+      rawTargets.push(officialAnswer);
+      officialAnswer.split(/[\/,]|\bor\b/i).forEach(chunk => {
+        rawTargets.push(chunk);
+      });
+      const parens = officialAnswer.match(/\((.*?)\)/g);
+      if (parens) {
+        parens.forEach(p => rawTargets.push(p.replace(/[\(\)]/g, '')));
+      }
+    }
+
+    for (let raw of rawTargets) {
+      const c = cleanAnswer(raw);
+      if (!c) continue;
+
+      if (u === c) return { matched: true, reason: 'exact' };
+
+      if (u.includes(c) || (c.length >= 4 && c.includes(u))) {
+        return { matched: true, reason: 'contains' };
+      }
+
+      const cTokens = c.split(' ').filter(Boolean);
+      const uTokens = u.split(' ').filter(Boolean);
+      if (cTokens.length > 1 && cTokens.every(t => u.includes(t))) {
+        return { matched: true, reason: 'tokens' };
+      }
+      if (uTokens.length > 1 && uTokens.every(t => c.includes(t))) {
+        return { matched: true, reason: 'tokens' };
+      }
+
+      const dist = levDistance(u, c);
+      const maxLen = Math.max(u.length, c.length);
+      if (maxLen <= 5 && dist <= 1) return { matched: true, reason: 'typo' };
+      if (maxLen <= 8 && dist <= 2) return { matched: true, reason: 'typo' };
+      if (maxLen > 8 && dist <= 3) return { matched: true, reason: 'typo' };
+    }
+
+    return { matched: false };
+  }
+
+  let currentPounceList = [];
+
   function renderPounceAnswers(answers) {
     pounceAnswers.innerHTML = '';
+    currentPounceList = answers || [];
     if (!answers || answers.length === 0) {
       pounceAnswers.innerHTML = '<p class="empty-msg">No pounce answers received</p>';
       return;
     }
 
+    const q = state.questions[state.currentQuestionIndex];
+    const offAnswer = q ? q.answer : '';
+    const aliases = (q && q.aliases) || [];
+
     answers.forEach(item => {
       const team = state.teams[item.teamId];
       const tName = team ? team.teamName : item.teamId;
+      const matchResult = isAnswerMatch(item.answer, offAnswer, aliases);
+      item._matched = matchResult.matched;
+
       const row = document.createElement('div');
-      row.className = 'pounce-row';
+      row.className = `pounce-row ${matchResult.matched ? 'matched' : 'unmatched'}`;
+      row.dataset.team = item.teamId;
+
+      const badgeHtml = matchResult.matched
+        ? `<span class="match-badge match-yes">MATCH ✓</span>`
+        : `<span class="match-badge match-no">NO MATCH ✗</span>`;
+
       row.innerHTML = `
         <div>
           <strong>${tName}:</strong> <span>"${item.answer}"</span>
+          ${badgeHtml}
         </div>
         <div class="buzz-item-actions">
           <button class="btn btn-sm btn-green pounce-judge" data-team="${item.teamId}" data-delta="10">✓ (+10)</button>
@@ -365,7 +459,8 @@
         const teamId = btn.dataset.team;
         const delta = parseInt(btn.dataset.delta, 10);
         send('update_score', { teamId, delta });
-        btn.disabled = true;
+        const actions = btn.parentElement;
+        actions.innerHTML = `<span style="font-size:12px; font-weight:bold; color:${delta > 0 ? '#38b000' : '#c41230'}">${delta > 0 ? '✓ GRADED (+10)' : '✗ GRADED (-5)'}</span>`;
       };
     });
   }
@@ -584,6 +679,27 @@
   btnClosePounce.onclick = () => {
     send('close_pounce', {});
   };
+
+  if (btnAutoGradePounce) {
+    btnAutoGradePounce.onclick = () => {
+      if (!currentPounceList || currentPounceList.length === 0) {
+        alert('No pounce answers to grade!');
+        return;
+      }
+      currentPounceList.forEach(item => {
+        const delta = item._matched ? 10 : -5;
+        send('update_score', { teamId: item.teamId, delta });
+        const row = pounceAnswers.querySelector(`.pounce-row[data-team="${item.teamId}"]`);
+        if (row) {
+          const actions = row.querySelector('.buzz-item-actions');
+          if (actions) {
+            actions.innerHTML = `<span style="font-size:12px; font-weight:bold; color:${delta > 0 ? '#38b000' : '#c41230'}">${delta > 0 ? '✓ AUTO-ACCEPTED (+10)' : '✗ AUTO-REJECTED (-5)'}</span>`;
+          }
+        }
+      });
+      playConsoleBuzzChime();
+    };
+  }
 
   // Add Team Form
   btnAddTeam.onclick = () => {

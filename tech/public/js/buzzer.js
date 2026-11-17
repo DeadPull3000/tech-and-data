@@ -55,6 +55,7 @@
   let ws = null;
   let teamName = teamId.replace(/_/g, ' ').toUpperCase();
   let soundEnabled = true;
+  let lastScore = null;
 
   teamNameEl.textContent = teamName;
 
@@ -286,6 +287,26 @@
           if (payload && modePounce.classList.contains('active')) {
             const rem = Math.ceil(payload.remaining);
             pounceTimerCount.textContent = `${rem}s`;
+          }
+          break;
+        }
+
+        case 'score_updated': {
+          if (payload && payload.scores && payload.scores[teamId] !== undefined) {
+            const newScore = payload.scores[teamId];
+            if (lastScore !== null) {
+              const diff = newScore - lastScore;
+              if (diff > 0) {
+                statusText.textContent = `★ ANSWER ACCEPTED! (+${diff} PTS) ★`;
+                playBuzzerSound('first');
+                vibrate([100, 50, 100]);
+              } else if (diff < 0) {
+                statusText.textContent = `ANSWER INCORRECT (${diff} PTS)`;
+                playBuzzerSound('locked');
+                vibrate(120);
+              }
+            }
+            lastScore = newScore;
           }
           break;
         }
