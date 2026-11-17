@@ -37,9 +37,30 @@ function loadQuestions() {
         try {
           const data = JSON.parse(fs.readFileSync(full, 'utf-8'));
           if (Array.isArray(data)) {
-            questions.push(...data);
-          } else {
-            questions.push(data);
+            for (const item of data) {
+              if (item.questions && Array.isArray(item.questions)) {
+                // Prelims grouped format
+                for (const q of item.questions) {
+                  questions.push({
+                    ...q,
+                    category: item.category || 'Prelims',
+                    round: 'prelims',
+                    points: q.points || 1,
+                  });
+                }
+              } else {
+                let roundName = 'round1';
+                if (entry.name.includes('round2') || entry.name.includes('incursion')) roundName = 'round2';
+                else if (entry.name.includes('round3') || entry.name.includes('gauntlet')) roundName = 'round3';
+                else if (entry.name.includes('prelim')) roundName = 'prelims';
+
+                questions.push({
+                  ...item,
+                  round: item.round || roundName,
+                  points: item.points || 10,
+                });
+              }
+            }
           }
         } catch (e) {
           console.warn(`[questions] Failed to parse ${full}: ${e.message}`);
@@ -353,7 +374,7 @@ function handleMessage(ws, msg) {
     case 'next_question': {
       state.currentQuestionIndex++;
       const q = state.questions[state.currentQuestionIndex] || null;
-      broadcastToRole('display', 'question_changed', {
+      broadcast('question_changed', {
         question: q,
         index: state.currentQuestionIndex,
       });
@@ -366,7 +387,7 @@ function handleMessage(ws, msg) {
       if (typeof questionIndex === 'number') {
         state.currentQuestionIndex = questionIndex;
         const q = state.questions[questionIndex] || null;
-        broadcastToRole('display', 'question_changed', {
+        broadcast('question_changed', {
           question: q,
           index: questionIndex,
         });
@@ -615,6 +636,13 @@ app.get('/api/network', (_req, res) => {
     ip: getLocalIP(),
     allIPs: getAllIPs(),
     port: PORT
+  });
+});
+
+app.get('/api/questions', (_req, res) => {
+  res.json({
+    total: state.questions.length,
+    questions: state.questions
   });
 });
 

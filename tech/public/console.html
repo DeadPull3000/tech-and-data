@@ -67,12 +67,39 @@
         <button id="btn-show-q" class="btn btn-gold">SHOW ON DISPLAY</button>
         <button id="btn-reveal-hint" class="btn btn-sm btn-gold">💡 Reveal Hint</button>
         <button id="btn-next-q" class="btn btn-sm">Next ▶</button>
+        <button id="btn-toggle-ak" class="btn btn-sm btn-green" style="margin-left:auto">📖 View Answer Key (All Rounds)</button>
       </div>
       <details class="q-loader">
         <summary>Load Questions (JSON)</summary>
         <textarea id="q-json" rows="6" placeholder='[{ "text": "...", "answer": "...", "category": "...", "points": 10, "image": null }]'></textarea>
         <button id="btn-load-q" class="btn btn-sm">Load Questions</button>
       </details>
+    </section>
+
+    <!-- ── 3B. Answer Key Panel (All Rounds) ── -->
+    <section class="panel panel-wide hidden" id="panel-answer-key">
+      <div class="ak-header">
+        <div>
+          <h2>📖 ROUND ANSWER KEY & QUESTION REPOSITORY</h2>
+          <span class="ak-sub" id="ak-total-count">65 Questions loaded</span>
+        </div>
+        <button id="btn-close-ak" class="btn btn-sm btn-red">✕ Close Answer Key</button>
+      </div>
+
+      <div class="ak-toolbar">
+        <div class="ak-tabs">
+          <button class="ak-tab-btn active" data-round="all">All (65)</button>
+          <button class="ak-tab-btn" data-round="prelims">Prelims (25)</button>
+          <button class="ak-tab-btn" data-round="round1">R1 — Multiverse (10)</button>
+          <button class="ak-tab-btn" data-round="round2">R2 — Incursion Grid (10)</button>
+          <button class="ak-tab-btn" data-round="round3">R3 — Gauntlet (20)</button>
+        </div>
+        <input type="text" id="ak-search-input" placeholder="🔍 Search by character, answer, or keywords..." class="input-sm ak-search">
+      </div>
+
+      <div class="ak-grid" id="ak-cards-container">
+        <!-- Generated Question Cards -->
+      </div>
     </section>
 
     <!-- ── 4. Timer Control ── -->

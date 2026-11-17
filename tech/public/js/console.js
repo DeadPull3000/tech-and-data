@@ -26,6 +26,15 @@
   const qJson = document.getElementById('q-json');
   const btnLoadQ = document.getElementById('btn-load-q');
 
+  // Answer Key Elements
+  const btnToggleAk = document.getElementById('btn-toggle-ak');
+  const btnCloseAk = document.getElementById('btn-close-ak');
+  const panelAnswerKey = document.getElementById('panel-answer-key');
+  const akCardsContainer = document.getElementById('ak-cards-container');
+  const akTabs = document.querySelectorAll('.ak-tab-btn');
+  const akSearchInput = document.getElementById('ak-search-input');
+  const akTotalCount = document.getElementById('ak-total-count');
+
   // Timer Controls
   const timerDisplay = document.getElementById('timer-display');
   const timerDuration = document.getElementById('timer-duration');
@@ -230,6 +239,16 @@
             highlightScene(payload.scene);
           }
           break;
+
+        case 'question_changed':
+          if (payload) {
+            state.currentQuestionIndex = payload.index;
+            renderQuestionUI();
+            if (panelAnswerKey && !panelAnswerKey.classList.contains('hidden')) {
+              renderAnswerKey();
+            }
+          }
+          break;
       }
     };
 
@@ -251,6 +270,7 @@
     updateBuzzerUI();
     updateDoomUI();
     updateTimerDisplay(state.timer.remaining);
+    renderAnswerKey();
   }
 
   function highlightScene(scene) {
@@ -581,6 +601,134 @@
     doomBar.style.width = `${pct}%`;
   }
 
+  // ─── Answer Key Controller ─────────────────────────────────────────
+  let currentAkRoundFilter = 'all';
+  let currentAkSearchQuery = '';
+
+  function renderAnswerKey() {
+    if (!akCardsContainer) return;
+    const allQuestions = (state.questions && state.questions.length > 0)
+      ? state.questions
+      : [];
+
+    if (akTotalCount) {
+      akTotalCount.textContent = `${allQuestions.length} Questions Loaded across All Rounds`;
+    }
+
+    // Update tab labels with live counts
+    if (akTabs) {
+      akTabs.forEach(btn => {
+        const r = btn.dataset.round;
+        let count = 0;
+        if (r === 'all') count = allQuestions.length;
+        else if (r === 'prelims') count = allQuestions.filter(q => q.round === 'prelims' || !q.round).length;
+        else if (r === 'round1') count = allQuestions.filter(q => q.round === 'round1').length;
+        else if (r === 'round2') count = allQuestions.filter(q => q.round === 'round2').length;
+        else if (r === 'round3') count = allQuestions.filter(q => q.round === 'round3').length;
+
+        const baseLabel = r === 'all' ? 'All' :
+                          r === 'prelims' ? 'Prelims' :
+                          r === 'round1' ? 'R1 — Multiverse' :
+                          r === 'round2' ? 'R2 — Incursion Grid' : 'R3 — Gauntlet';
+        btn.textContent = `${baseLabel} (${count})`;
+      });
+    }
+
+    // Filter questions
+    const filtered = allQuestions.map((q, origIdx) => ({ ...q, _originalIndex: origIdx }))
+      .filter(q => {
+        // Round filter
+        if (currentAkRoundFilter !== 'all') {
+          const qRound = q.round || 'prelims';
+          if (qRound !== currentAkRoundFilter) return false;
+        }
+
+        // Search query filter
+        if (currentAkSearchQuery) {
+          const text = (q.text || '').toLowerCase();
+          const ans = (q.answer || '').toLowerCase();
+          const hint = (q.hint || '').toLowerCase();
+          const cat = (q.category || '').toLowerCase();
+          const alts = (q.acceptableAnswers || []).join(' ').toLowerCase();
+          const qNum = `q${q._originalIndex + 1}`;
+          if (!text.includes(currentAkSearchQuery) &&
+              !ans.includes(currentAkSearchQuery) &&
+              !hint.includes(currentAkSearchQuery) &&
+              !cat.includes(currentAkSearchQuery) &&
+              !alts.includes(currentAkSearchQuery) &&
+              !qNum.includes(currentAkSearchQuery)) {
+            return false;
+          }
+        }
+        return true;
+      });
+
+    akCardsContainer.innerHTML = '';
+
+    if (filtered.length === 0) {
+      akCardsContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 10px; font-size: 14px;">No questions found matching your filter or search query.</div>';
+      return;
+    }
+
+    filtered.forEach(q => {
+      const card = document.createElement('div');
+      card.className = 'ak-card';
+      const isCurrent = state.currentQuestionIndex === q._originalIndex;
+      if (isCurrent) {
+        card.style.border = '2px solid var(--gold)';
+        card.style.background = '#1b1b32';
+      }
+
+      const roundClass = `ak-round-${q.round || 'prelims'}`;
+      const roundLabel = q.round === 'prelims' ? 'Prelims' :
+                         q.round === 'round1' ? 'R1: Multiverse' :
+                         q.round === 'round2' ? 'R2: Incursion' :
+                         q.round === 'round3' ? 'R3: Gauntlet' : (q.round || 'Quiz');
+
+      const altAnswersHtml = (q.acceptableAnswers && q.acceptableAnswers.length > 0)
+        ? `<div style="font-size: 11px; color: #8bb; margin-top: 5px;"><strong>Accepted Variations:</strong> ${q.acceptableAnswers.map(a => `<span style="background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: 3px; margin-right: 4px; display:inline-block;">${a}</span>`).join('')}</div>`
+        : '';
+
+      card.innerHTML = `
+        <div class="ak-card-meta">
+          <span class="ak-round-badge ${roundClass}">${roundLabel}</span>
+          <span style="font-weight:bold; color:var(--text-muted);">#${q._originalIndex + 1}</span>
+          <span class="q-tag" style="margin: 0 4px;">${q.category || 'General'}</span>
+          <span class="q-tag q-tag-gold">${q.points || 10} pts</span>
+        </div>
+        <div class="ak-qtext"><strong>Q${q._originalIndex + 1}:</strong> ${q.text || '—'}</div>
+        <div class="ak-answer-box">
+          <strong>ANSWER:</strong> ${q.answer || '—'}
+          ${altAnswersHtml}
+        </div>
+        <div class="ak-hint-box">
+          💡 <strong>Hint:</strong> ${q.hint || 'No hint provided'}
+        </div>
+        <div class="ak-card-actions">
+          <button class="btn btn-sm ${isCurrent ? 'btn-green' : 'btn-gold'} ak-jump-btn" data-qindex="${q._originalIndex}">
+            ${isCurrent ? '★ Active on Display' : '▶ Jump on Display'}
+          </button>
+        </div>
+      `;
+
+      akCardsContainer.appendChild(card);
+    });
+
+    akCardsContainer.querySelectorAll('.ak-jump-btn').forEach(btn => {
+      btn.onclick = () => {
+        const qIdx = parseInt(btn.dataset.qindex, 10);
+        if (!isNaN(qIdx)) {
+          send('show_question', { questionIndex: qIdx });
+          send('set_scene', { scene: 'question' });
+          highlightScene('question');
+          state.currentQuestionIndex = qIdx;
+          renderQuestionUI();
+          renderAnswerKey();
+        }
+      };
+    });
+  }
+
   // ─── Event Listeners ─────────────────────────────────────────────
 
   // Scene Buttons
@@ -752,6 +900,73 @@
       }
     };
   }
+
+  // ─── Answer Key Event Listeners ──────────────────────────────────
+  if (btnToggleAk && panelAnswerKey) {
+    btnToggleAk.onclick = () => {
+      const isHidden = panelAnswerKey.classList.toggle('hidden');
+      if (!isHidden) {
+        renderAnswerKey();
+        if (akSearchInput) akSearchInput.focus();
+        panelAnswerKey.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+  }
+
+  if (btnCloseAk && panelAnswerKey) {
+    btnCloseAk.onclick = () => {
+      panelAnswerKey.classList.add('hidden');
+    };
+  }
+
+  if (akTabs) {
+    akTabs.forEach(tab => {
+      tab.onclick = () => {
+        akTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentAkRoundFilter = tab.dataset.round || 'all';
+        renderAnswerKey();
+      };
+    });
+  }
+
+  if (akSearchInput) {
+    akSearchInput.oninput = (e) => {
+      currentAkSearchQuery = e.target.value.trim().toLowerCase();
+      renderAnswerKey();
+    };
+  }
+
+  // Hotkey: 'A' toggles Answer Key (when not focused on text input), 'Escape' closes it
+  window.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+      if (e.key === 'Escape' && panelAnswerKey && !panelAnswerKey.classList.contains('hidden')) {
+        panelAnswerKey.classList.add('hidden');
+      }
+      return;
+    }
+    if (e.key === 'a' || e.key === 'A') {
+      if (btnToggleAk) btnToggleAk.click();
+    } else if (e.key === 'Escape') {
+      if (panelAnswerKey && !panelAnswerKey.classList.contains('hidden')) {
+        panelAnswerKey.classList.add('hidden');
+      }
+    }
+  });
+
+  // Fetch Questions Repository on boot
+  fetch('/api/questions')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.questions) {
+        if (!state.questions || state.questions.length === 0) {
+          state.questions = data.questions;
+          renderQuestionUI();
+        }
+        renderAnswerKey();
+      }
+    })
+    .catch(() => {});
 
   // Start WebSocket
   connect();
