@@ -299,14 +299,14 @@
       qText.textContent = q.text || 'No question text';
       qAnswer.textContent = `Answer: ${q.answer || 'Not specified'}`;
       if (qHint) {
-        qHint.textContent = `💡 Hint: ${q.hint || 'No hint provided'}`;
+        qHint.innerHTML = `<img src="images/lightbulb.svg" class="custom-lightbulb-icon" alt="" aria-hidden="true"> <span><strong>Hint:</strong> ${q.hint || 'No hint provided'}</span>`;
       }
     } else {
       qCategory.textContent = '—';
       qPoints.textContent = '— pts';
       qText.textContent = list.length === 0 ? 'No questions loaded' : 'No active question selected';
       qAnswer.textContent = 'Answer: —';
-      if (qHint) qHint.textContent = '💡 Hint: —';
+      if (qHint) qHint.innerHTML = `<img src="images/lightbulb.svg" class="custom-lightbulb-icon" alt="" aria-hidden="true"> <span>Hint: —</span>`;
     }
   }
 
@@ -702,7 +702,8 @@
           ${altAnswersHtml}
         </div>
         <div class="ak-hint-box">
-          💡 <strong>Hint:</strong> ${q.hint || 'No hint provided'}
+          <img src="images/lightbulb.svg" class="custom-lightbulb-icon" alt="" aria-hidden="true">
+          <span><strong>Hint:</strong> ${q.hint || 'No hint provided'}</span>
         </div>
         <div class="ak-card-actions">
           <button class="btn btn-sm ${isCurrent ? 'btn-green' : 'btn-gold'} ak-jump-btn" data-qindex="${q._originalIndex}">

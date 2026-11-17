@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="custom-lightbulb-svg" role="img" aria-label="Lightbulb">
+  <defs>
+    <radialGradient id="comicBulbGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFDF0"/>
+      <stop offset="35%" stop-color="#FFE600"/>
+      <stop offset="75%" stop-color="#FFAA00"/>
+      <stop offset="100%" stop-color="#FF7A00"/>
+    </radialGradient>
+    <filter id="bulbGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Action Glow (Retro Comic Halo) -->
+  <circle cx="18" cy="14" r="12" fill="#FFE600" opacity="0.3" class="bulb-halo"/>
+
+  <!-- Energy Action Rays (Jack Kirby Comic Style) -->
+  <g class="bulb-rays" stroke-linecap="round">
+    <!-- Outer Ink Rays -->
+    <line x1="18" y1="1" x2="18" y2="4.5" stroke="#000000" stroke-width="3"/>
+    <line x1="7.2" y1="5.2" x2="9.8" y2="7.8" stroke="#000000" stroke-width="3"/>
+    <line x1="28.8" y1="5.2" x2="26.2" y2="7.8" stroke="#000000" stroke-width="3"/>
+    <line x1="2.5" y1="14" x2="6" y2="14" stroke="#000000" stroke-width="3"/>
+    <line x1="33.5" y1="14" x2="30" y2="14" stroke="#000000" stroke-width="3"/>
+
+    <!-- Inner Vivid Yellow Core -->
+    <line x1="18" y1="1.6" x2="18" y2="4.2" stroke="#FFE600" stroke-width="1.6"/>
+    <line x1="7.6" y1="5.6" x2="9.5" y2="7.5" stroke="#FFE600" stroke-width="1.6"/>
+    <line x1="28.4" y1="5.6" x2="26.5" y2="7.5" stroke="#FFE600" stroke-width="1.6"/>
+    <line x1="3" y1="14" x2="5.5" y2="14" stroke="#FFE600" stroke-width="1.6"/>
+    <line x1="33" y1="14" x2="30.5" y2="14" stroke="#FFE600" stroke-width="1.6"/>
+  </g>
+
+  <!-- Kirby Krackle Energy Sparkles -->
+  <circle cx="6" cy="9" r="1.1" fill="#000000"/>
+  <circle cx="30" cy="9" r="1.1" fill="#000000"/>
+  <circle cx="4.5" cy="19" r="0.9" fill="#000000"/>
+  <circle cx="31.5" cy="19" r="0.9" fill="#000000"/>
+  <circle cx="10" cy="2" r="0.8" fill="#FFE600"/>
+  <circle cx="26" cy="2" r="0.8" fill="#FFE600"/>
+
+  <!-- Glass Bulb Outer Silhouette (Heavy Black Inks) -->
+  <path d="M 13.8 23.5 C 12.8 20.8 9.5 18 9.5 13.8 C 9.5 9.1 13.3 5.3 18 5.3 C 22.7 5.3 26.5 9.1 26.5 13.8 C 26.5 18 23.2 20.8 22.2 23.5 Z"
+        fill="url(#comicBulbGrad)"
+        stroke="#000000"
+        stroke-width="2.6"
+        stroke-linejoin="round"/>
+
+  <!-- Incandescent Filament (Glowing Core) -->
+  <g class="bulb-filament">
+    <path d="M 15 23.5 L 15.8 17.5" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M 21 23.5 L 20.2 17.5" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M 15.8 17.5 Q 16.9 14.2 18 16 Q 19.1 14.2 20.2 17.5"
+          fill="none"
+          stroke="#D32F2F"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <path d="M 16.5 16.6 Q 18 15 19.5 16.6"
+          fill="none"
+          stroke="#FFE600"
+          stroke-width="1.1"
+          stroke-linecap="round"/>
+    <circle cx="18" cy="15.8" r="1.4" fill="#FFE600" stroke="#D32F2F" stroke-width="0.8"/>
+  </g>
+
+  <!-- Specular Comic Highlights / Glare -->
+  <path d="M 12.5 13.8 C 12.5 10.5 14.5 8 17.2 7.5"
+        fill="none"
+        stroke="#FFFFFF"
+        stroke-width="2.2"
+        stroke-linecap="round"/>
+  <circle cx="13" cy="16.5" r="1" fill="#FFFFFF"/>
+
+  <!-- Screw Metal Base (Silver Console Hardware) -->
+  <rect x="13.5" y="23.5" width="9" height="5" rx="1.2" fill="#B0BEC5" stroke="#000000" stroke-width="2.2"/>
+  <line x1="14" y1="25.2" x2="22" y2="25.2" stroke="#37474F" stroke-width="1.3"/>
+  <line x1="14" y1="26.8" x2="22" y2="26.8" stroke="#37474F" stroke-width="1.3"/>
+
+  <!-- Contact Base Bead -->
+  <path d="M 15.5 28.5 C 15.5 31 20.5 31 20.5 28.5 Z" fill="#263238" stroke="#000000" stroke-width="2"/>
+</svg>
