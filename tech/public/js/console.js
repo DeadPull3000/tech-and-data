@@ -62,6 +62,29 @@
   const sfxBtns = document.querySelectorAll('.sfx-btn');
   const revealList = document.getElementById('reveal-list');
 
+  // ─── Console Audio Alert ─────────────────────────────────────────
+  let consoleAudioCtx = null;
+  function playConsoleBuzzChime() {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!consoleAudioCtx && AudioContext) consoleAudioCtx = new AudioContext();
+      if (consoleAudioCtx && consoleAudioCtx.state === 'suspended') consoleAudioCtx.resume();
+      if (!consoleAudioCtx) return;
+      const now = consoleAudioCtx.currentTime;
+      const osc = consoleAudioCtx.createOscillator();
+      const gain = consoleAudioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(659.25, now);
+      osc.frequency.setValueAtTime(880, now + 0.08);
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.28);
+      osc.connect(gain);
+      gain.connect(consoleAudioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.3);
+    } catch (e) {}
+  }
+
   // ─── Local State ─────────────────────────────────────────────────
   let state = {
     teams: {},
@@ -145,6 +168,7 @@
           if (payload) {
             state.buzzer.buzzOrder.push(payload);
             updateBuzzOrderUI();
+            playConsoleBuzzChime();
           }
           break;
 

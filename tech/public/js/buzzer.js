@@ -29,6 +29,7 @@
   const teamNameEl = document.getElementById('team-name');
   const connDot = document.getElementById('conn-dot');
   const statusText = document.getElementById('status-text');
+  const soundToggleBtn = document.getElementById('sound-toggle-btn');
 
   // Mode Panels
   const modeBuzzer = document.getElementById('mode-buzzer');
@@ -53,8 +54,127 @@
   let cooldown = false;
   let ws = null;
   let teamName = teamId.replace(/_/g, ' ').toUpperCase();
+  let soundEnabled = true;
 
   teamNameEl.textContent = teamName;
+
+  // ─── Web Audio API Buzzer Synthesizer ────────────────────────────
+  let audioCtx = null;
+  function initAudio() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) audioCtx = new AudioContext();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playBuzzerSound(type) {
+    if (!soundEnabled) return;
+    try {
+      const ctx = initAudio();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      switch (type) {
+        case 'press': {
+          // Sharp, satisfying arcade buzz
+          const osc1 = ctx.createOscillator();
+          const osc2 = ctx.createOscillator();
+          const gain = ctx.createGain();
+
+          osc1.type = 'sawtooth';
+          osc1.frequency.setValueAtTime(320, now);
+          osc1.frequency.exponentialRampToValueAtTime(540, now + 0.12);
+
+          osc2.type = 'square';
+          osc2.frequency.setValueAtTime(480, now);
+          osc2.frequency.exponentialRampToValueAtTime(720, now + 0.12);
+
+          gain.gain.setValueAtTime(0.4, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.22);
+
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc1.start(now);
+          osc2.start(now);
+          osc1.stop(now + 0.24);
+          osc2.stop(now + 0.24);
+          break;
+        }
+
+        case 'first': {
+          // Triumphant victory double-ping for #1 buzz
+          [783.99, 1046.50].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + i * 0.1);
+            gain.gain.setValueAtTime(0.35, now + i * 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.25);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + i * 0.1);
+            osc.stop(now + i * 0.1 + 0.3);
+          });
+          break;
+        }
+
+        case 'locked': {
+          // Locked-out low thud
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(160, now);
+          osc.frequency.exponentialRampToValueAtTime(70, now + 0.18);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.22);
+          break;
+        }
+
+        case 'armed': {
+          // Sharp arming chirp
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(880, now);
+          osc.frequency.exponentialRampToValueAtTime(1320, now + 0.08);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.14);
+          break;
+        }
+      }
+    } catch (e) {
+      console.warn('[audio] Error playing sound:', e);
+    }
+  }
+
+  if (soundToggleBtn) {
+    soundToggleBtn.onclick = () => {
+      initAudio();
+      soundEnabled = !soundEnabled;
+      if (soundEnabled) {
+        soundToggleBtn.textContent = '🔊 SFX ON';
+        soundToggleBtn.classList.remove('muted');
+        playBuzzerSound('armed');
+      } else {
+        soundToggleBtn.textContent = '🔇 MUTED';
+        soundToggleBtn.classList.add('muted');
+      }
+    };
+  }
 
   // ─── Haptics ─────────────────────────────────────────────────────
   function vibrate(pattern) {
@@ -121,6 +241,7 @@
         case 'buzzer_armed': {
           setArmedState(true);
           vibrate(50);
+          playBuzzerSound('armed');
           break;
         }
 
@@ -210,6 +331,7 @@
     buzzMaintext.textContent = '#1 BUZZ!';
     statusText.textContent = '★ YOU ARE FIRST! ANSWER THE QUESTION! ★';
     vibrate([150, 50, 150]);
+    playBuzzerSound('first');
   }
 
   function setBuzzedLocked(order) {
@@ -220,6 +342,7 @@
     buzzMaintext.textContent = `#${order}`;
     statusText.textContent = `You buzzed in position #${order}`;
     vibrate(100);
+    playBuzzerSound('locked');
   }
 
   // ─── Pounce UI States ────────────────────────────────────────────
@@ -252,6 +375,7 @@
     setTimeout(() => { cooldown = false; }, 500);
 
     vibrate(100);
+    playBuzzerSound('press');
 
     if (ws && ws.readyState === WebSocket.OPEN) {
       ws.send(JSON.stringify({

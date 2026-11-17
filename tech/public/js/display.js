@@ -119,18 +119,38 @@
         }
 
         case 'buzz': {
-          // Arcade Player Select Chime
-          const osc = ctx.createOscillator();
+          // Punchy Game-Show Hall Buzzer Sound
+          const osc1 = ctx.createOscillator();
+          const osc2 = ctx.createOscillator();
+          const osc3 = ctx.createOscillator();
           const gain = ctx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(880, now);
-          osc.frequency.setValueAtTime(1320, now + 0.07);
-          gain.gain.setValueAtTime(0.25, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-          osc.connect(gain);
+
+          osc1.type = 'sawtooth';
+          osc1.frequency.setValueAtTime(260, now);
+          osc1.frequency.setValueAtTime(320, now + 0.08);
+
+          osc2.type = 'square';
+          osc2.frequency.setValueAtTime(390, now);
+          osc2.frequency.setValueAtTime(480, now + 0.08);
+
+          osc3.type = 'triangle';
+          osc3.frequency.setValueAtTime(780, now);
+          osc3.frequency.setValueAtTime(960, now + 0.08);
+
+          gain.gain.setValueAtTime(0.5, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+
+          osc1.connect(gain);
+          osc2.connect(gain);
+          osc3.connect(gain);
           gain.connect(ctx.destination);
-          osc.start(now);
-          osc.stop(now + 0.35);
+
+          osc1.start(now);
+          osc2.start(now);
+          osc3.start(now);
+          osc1.stop(now + 0.5);
+          osc2.stop(now + 0.5);
+          osc3.stop(now + 0.5);
           break;
         }
 
