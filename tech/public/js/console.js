@@ -7,6 +7,8 @@
 
   // ─── DOM Elements ────────────────────────────────────────────────
   const connStatus = document.getElementById('conn-status');
+  const phoneConnectUrl = document.getElementById('phone-connect-url');
+  const btnCopyUrl = document.getElementById('btn-copy-url');
   const sceneBtns = document.querySelectorAll('.scene-btn');
   const roundBtns = document.querySelectorAll('.round-btn');
 
@@ -612,6 +614,28 @@
       send('play_sfx', { sfx: btn.dataset.sfx });
     };
   });
+
+  // Fetch Network Info
+  fetch('/api/network')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.ip && phoneConnectUrl) {
+        phoneConnectUrl.textContent = `http://${data.ip}:${data.port || 3000}/buzzer/<team>`;
+      }
+    })
+    .catch(() => {});
+
+  if (btnCopyUrl) {
+    btnCopyUrl.onclick = () => {
+      const url = phoneConnectUrl ? phoneConnectUrl.textContent : '';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          btnCopyUrl.textContent = 'Copied!';
+          setTimeout(() => { btnCopyUrl.textContent = 'Copy'; }, 1500);
+        });
+      }
+    };
+  }
 
   // Start WebSocket
   connect();

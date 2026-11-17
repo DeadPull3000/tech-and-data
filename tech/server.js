@@ -581,26 +581,59 @@ setInterval(() => {
 // ─── Get local IP for display ────────────────────────────────────
 function getLocalIP() {
   const interfaces = os.networkInterfaces();
+  const candidates = [];
   for (const name of Object.keys(interfaces)) {
+    const isVirtual = /vethernet|wsl|virtual|hyper-v|vmware|docker/i.test(name);
     for (const iface of interfaces[name]) {
       if (iface.family === 'IPv4' && !iface.internal) {
-        return iface.address;
+        if (!isVirtual) {
+          return iface.address;
+        }
+        candidates.push(iface.address);
       }
     }
   }
-  return 'localhost';
+  return candidates[0] || 'localhost';
 }
+
+function getAllIPs() {
+  const interfaces = os.networkInterfaces();
+  const list = [];
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        list.push({ name, address: iface.address });
+      }
+    }
+  }
+  return list;
+}
+
+// ─── API Routes ──────────────────────────────────────────────────
+app.get('/api/network', (_req, res) => {
+  res.json({
+    ip: getLocalIP(),
+    allIPs: getAllIPs(),
+    port: PORT
+  });
+});
 
 // ─── Start server ────────────────────────────────────────────────
 server.listen(PORT, () => {
   const ip = getLocalIP();
+  const all = getAllIPs();
   console.log('');
   console.log('  ╔═══════════════════════════════════════════════════╗');
   console.log('  ║         ROAD TO DOOMSDAY — Server Online         ║');
   console.log('  ╠═══════════════════════════════════════════════════╣');
+  console.log(`  ║  Wi-Fi IP: http://${ip}:${PORT}/                  `);
   console.log(`  ║  Display:  http://${ip}:${PORT}/                  `);
   console.log(`  ║  Console:  http://${ip}:${PORT}/console           `);
   console.log(`  ║  Buzzer:   http://${ip}:${PORT}/buzzer/<teamId>   `);
+  console.log('  ╠═══════════════════════════════════════════════════╣');
+  all.forEach(item => {
+    console.log(`  ║  Adapter: [${item.name}] -> http://${item.address}:${PORT}`);
+  });
   console.log('  ╠═══════════════════════════════════════════════════╣');
   console.log(`  ║  Local:    http://localhost:${PORT}/              `);
   console.log(`  ║  Teams:    ${Object.keys(state.teams).length} loaded  |  Questions: ${state.questions.length}`);

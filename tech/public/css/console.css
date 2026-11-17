@@ -36,13 +36,21 @@ body {
 }
 
 /* ── Status Banner ── */
+.top-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
 #conn-status {
   padding: 4px 12px;
   font-size: 12px;
   font-weight: bold;
   border-radius: 4px;
   display: inline-block;
-  margin-bottom: 12px;
 }
 .conn-connected {
   background-color: var(--doom-green);
@@ -51,6 +59,23 @@ body {
 .conn-disconnected {
   background-color: var(--crimson);
   color: #fff;
+}
+
+.buzzer-url-pill {
+  background: #1c1c30;
+  border: 1px solid var(--panel-border);
+  padding: 4px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.buzzer-url-pill code {
+  color: var(--gold);
+  font-weight: bold;
+  user-select: all;
 }
 
 /* ── Scene Top Bar ── */

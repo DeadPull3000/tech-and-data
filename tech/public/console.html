@@ -10,8 +10,15 @@
   <link rel="stylesheet" href="css/console.css">
 </head>
 <body>
-  <!-- ═══════════════ CONNECTION STATUS ═══════════════ -->
-  <div id="conn-status" class="conn-disconnected">⬤ DISCONNECTED</div>
+  <!-- ═══════════════ CONNECTION STATUS & PHONE URL ═══════════════ -->
+  <div class="top-status-bar">
+    <div id="conn-status" class="conn-disconnected">⬤ DISCONNECTED</div>
+    <div class="buzzer-url-pill">
+      <span>📱 Phone Buzzer:</span>
+      <code id="phone-connect-url">Loading IP...</code>
+      <button id="btn-copy-url" class="btn btn-sm btn-gold">Copy</button>
+    </div>
+  </div>
 
   <!-- ═══════════════ 1. SCENE CONTROL (top bar) ═══════════════ -->
   <header id="scene-bar">

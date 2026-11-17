@@ -642,6 +642,16 @@
   window.addEventListener('keydown', () => { getAudioCtx(); }, { once: true });
 
   // Boot
+  const joinUrlText = document.getElementById('join-url-text');
+  fetch('/api/network')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.ip && joinUrlText) {
+        joinUrlText.textContent = `http://${data.ip}:${data.port || 3000}/buzzer/<your_team>`;
+      }
+    })
+    .catch(() => {});
+
   connect();
   renderGrid();
   renderDoomClock();
