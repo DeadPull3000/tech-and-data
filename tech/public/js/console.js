@@ -16,8 +16,10 @@
   const qPoints = document.getElementById('q-points');
   const qText = document.getElementById('q-text');
   const qAnswer = document.getElementById('q-answer');
+  const qHint = document.getElementById('q-hint');
   const btnPrevQ = document.getElementById('btn-prev-q');
   const btnShowQ = document.getElementById('btn-show-q');
+  const btnRevealHint = document.getElementById('btn-reveal-hint');
   const btnNextQ = document.getElementById('btn-next-q');
   const qJson = document.getElementById('q-json');
   const btnLoadQ = document.getElementById('btn-load-q');
@@ -249,11 +251,15 @@
       qPoints.textContent = `${q.points || 10} pts`;
       qText.textContent = q.text || 'No question text';
       qAnswer.textContent = `Answer: ${q.answer || 'Not specified'}`;
+      if (qHint) {
+        qHint.textContent = `💡 Hint: ${q.hint || 'No hint provided'}`;
+      }
     } else {
       qCategory.textContent = '—';
       qPoints.textContent = '— pts';
       qText.textContent = list.length === 0 ? 'No questions loaded' : 'No active question selected';
       qAnswer.textContent = 'Answer: —';
+      if (qHint) qHint.textContent = '💡 Hint: —';
     }
   }
 
@@ -486,6 +492,17 @@
   btnShowQ.onclick = () => {
     send('show_question', { questionIndex: state.currentQuestionIndex });
   };
+
+  if (btnRevealHint) {
+    btnRevealHint.onclick = () => {
+      const q = state.questions[state.currentQuestionIndex];
+      if (q && q.hint) {
+        send('reveal_hint', { hint: q.hint });
+      } else {
+        send('reveal_hint', { hint: "Here's a hint: Use your brain before Doom steals it!" });
+      }
+    };
+  }
 
   btnLoadQ.onclick = () => {
     try {

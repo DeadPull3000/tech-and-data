@@ -56,11 +56,16 @@
 
   <!-- 4. QUESTION -->
   <section id="scene-question" class="scene">
-    <div class="question-panel comic-panel">
+    <div class="comic-sfx-word" id="comic-sfx-word">POW!</div>
+    <div class="question-panel comic-panel" id="question-panel">
       <div class="q-badge q-category" id="q-category">CATEGORY</div>
       <div class="q-badge q-points" id="q-points">10</div>
       <div class="speech-bubble" id="q-text">
         Question text goes here...
+      </div>
+      <div class="q-hint-card hidden" id="q-hint-card">
+        <span class="hint-sticker">💡 CHEEKY HINT</span>
+        <p class="hint-text" id="q-hint-text">A hint will appear here...</p>
       </div>
       <div class="q-image-area" id="q-image"></div>
       <div class="timer-bar-track">

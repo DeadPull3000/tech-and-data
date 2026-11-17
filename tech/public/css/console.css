@@ -249,6 +249,14 @@ body {
   padding-top: 6px;
 }
 
+.q-hint {
+  font-size: 12px;
+  color: #ff9f1c;
+  border-top: 1px dotted #2d2d48;
+  padding-top: 6px;
+  margin-top: 4px;
+}
+
 .q-nav {
   display: flex;
   justify-content: space-between;

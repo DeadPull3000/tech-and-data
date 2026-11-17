@@ -375,6 +375,14 @@ function handleMessage(ws, msg) {
       break;
     }
 
+    case 'reveal_hint': {
+      const q = state.questions[state.currentQuestionIndex];
+      const hint = (payload && payload.hint) || (q && q.hint) || null;
+      broadcastToRole('display', 'hint_revealed', { hint });
+      console.log(`[hint] Revealed for question #${state.currentQuestionIndex}: ${hint}`);
+      break;
+    }
+
     // ── Judging & Scores ──
     case 'judge': {
       const { teamId, correct, points } = payload || {};

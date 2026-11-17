@@ -29,6 +29,13 @@
   const qText = document.getElementById('q-text');
   const qImage = document.getElementById('q-image');
   const qTimerBar = document.getElementById('q-timer-bar');
+  const questionPanel = document.getElementById('question-panel');
+  const comicSfxWord = document.getElementById('comic-sfx-word');
+  const qHintCard = document.getElementById('q-hint-card');
+  const qHintText = document.getElementById('q-hint-text');
+
+  const COMIC_ACTION_WORDS = ['POW!', 'BAM!', 'SNIKT!', 'THWIP!', 'KRAK!', 'ZAP!', 'WHAM!', 'BOOM!'];
+  let actionWordIdx = 0;
 
   const gridBody = document.getElementById('grid-body');
   const scoreboardList = document.getElementById('scoreboard-list');
@@ -210,12 +217,35 @@
 
   // 1. Question Display
   function renderQuestion(q, index) {
+    // Hide hint card on new question
+    if (qHintCard) {
+      qHintCard.classList.add('hidden');
+    }
+
     if (!q) {
       qCategory.textContent = 'ROAD TO DOOMSDAY';
       qPoints.textContent = '10 PTS';
       qText.innerHTML = 'Stand by for next mission...';
       qImage.innerHTML = '';
       return;
+    }
+
+    // Trigger Deck Transition Animation
+    if (questionPanel) {
+      questionPanel.classList.remove('deck-enter');
+      void questionPanel.offsetWidth; // Reflow
+      questionPanel.classList.add('deck-enter');
+    }
+
+    // Trigger Comic SFX Pop Word
+    if (comicSfxWord) {
+      const word = COMIC_ACTION_WORDS[actionWordIdx % COMIC_ACTION_WORDS.length];
+      actionWordIdx++;
+      comicSfxWord.textContent = word;
+      comicSfxWord.classList.remove('pop');
+      void comicSfxWord.offsetWidth;
+      comicSfxWord.classList.add('pop');
+      playSynthSFX('thwam');
     }
 
     qCategory.textContent = (q.category || 'GENERAL').toUpperCase();
@@ -561,6 +591,15 @@
         case 'play_sfx': {
           if (payload && payload.sfx) {
             playSynthSFX(payload.sfx);
+          }
+          break;
+        }
+
+        case 'hint_revealed': {
+          if (payload && payload.hint && qHintCard && qHintText) {
+            qHintText.textContent = payload.hint;
+            qHintCard.classList.remove('hidden');
+            playSynthSFX('buzz');
           }
           break;
         }
