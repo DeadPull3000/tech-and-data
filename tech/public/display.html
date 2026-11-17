@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080, initial-scale=1">
+  <title>ROAD TO DOOMSDAY — Display</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/display.css">
+</head>
+<body>
+  <!-- CRT / halftone overlays -->
+  <div class="overlay scanlines"></div>
+  <div class="overlay halftone"></div>
+
+  <!-- ============ SCENES ============ -->
+
+  <!-- 1. ATTRACT -->
+  <section id="scene-attract" class="scene active">
+    <div class="attract-bg"></div>
+    <div class="attract-content">
+      <div class="masthead kirby-border">
+        <div class="masthead-inner">
+          <span class="masthead-sub">MARVEL PRESENTS</span>
+          <h1 class="masthead-title">ROAD TO<br>DOOMSDAY</h1>
+          <span class="masthead-tag">A QUIZZING EVENT</span>
+        </div>
+      </div>
+      <p class="insert-coin">INSERT COIN TO BEGIN</p>
+    </div>
+  </section>
+
+  <!-- 2. PRELIMS TIMER -->
+  <section id="scene-prelims_timer" class="scene">
+    <h2 class="scene-header comic-badge">PRELIMS</h2>
+    <div class="doom-timer-wrap">
+      <div class="doom-timer kirby-border">
+        <svg class="doom-timer-ring" viewBox="0 0 200 200">
+          <circle class="doom-ring-bg" cx="100" cy="100" r="90"/>
+          <circle class="doom-ring-fg" cx="100" cy="100" r="90"/>
+        </svg>
+        <span class="doom-timer-text" id="prelims-timer-text">60</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. TEAM REVEAL -->
+  <section id="scene-team_reveal" class="scene">
+    <h2 class="scene-header comic-badge">TEAM ROSTER</h2>
+    <div class="impact-frame" id="reveal-impact">
+      <span class="impact-text" id="reveal-name">THWAM!</span>
+    </div>
+    <div class="team-list-reveal" id="revealed-teams"></div>
+  </section>
+
+  <!-- 4. QUESTION -->
+  <section id="scene-question" class="scene">
+    <div class="question-panel comic-panel">
+      <div class="q-badge q-category" id="q-category">CATEGORY</div>
+      <div class="q-badge q-points" id="q-points">10</div>
+      <div class="speech-bubble" id="q-text">
+        Question text goes here...
+      </div>
+      <div class="q-image-area" id="q-image"></div>
+      <div class="timer-bar-track">
+        <div class="timer-bar-fill kirby-border-flat" id="q-timer-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. GRID (Incursion Protocol) -->
+  <section id="scene-grid" class="scene">
+    <h2 class="scene-header comic-badge">INCURSION PROTOCOL</h2>
+    <table class="grid-table" id="grid-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="grid-col-head">EARTH-616<br><span>10 PTS</span></th>
+          <th class="grid-col-head">EARTH-838<br><span>20 PTS</span></th>
+        </tr>
+      </thead>
+      <tbody id="grid-body"></tbody>
+    </table>
+  </section>
+
+  <!-- 6. SCOREBOARD -->
+  <section id="scene-scoreboard" class="scene">
+    <h2 class="scene-header comic-badge">SCOREBOARD</h2>
+    <div class="scoreboard-list" id="scoreboard-list"></div>
+  </section>
+
+  <!-- 7. DOOMSDAY CLOCK -->
+  <section id="scene-doomsday_clock" class="scene">
+    <h2 class="scene-header comic-badge">DOOMSDAY CLOCK</h2>
+    <div class="doomsday-clock-wrap">
+      <svg class="doomsday-clock" viewBox="0 0 400 400" id="doomsday-svg"></svg>
+    </div>
+  </section>
+
+  <!-- 8. VICTORY -->
+  <section id="scene-victory" class="scene">
+    <div class="victory-bg kirby-explosion"></div>
+    <div class="victory-content">
+      <span class="victory-issue">CHAMPIONS #1</span>
+      <h1 class="victory-name" id="victory-name">TEAM NAME</h1>
+      <span class="victory-subtitle">★ CHAMPIONS ★</span>
+    </div>
+  </section>
+
+  <!-- Audio element -->
+  <audio id="sfx-player" preload="auto"></audio>
+
+  <script src="js/display.js"></script>
+</body>
+</html>
