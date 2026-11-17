@@ -1,0 +1,22 @@
+[
+  { "id": "r3_q1", "category": "Rapid Fire", "points": 10, "text": "What metal comprises Wolverine's laced skeleton and claws?", "answer": "Adamantium" },
+  { "id": "r3_q2", "category": "Rapid Fire", "points": 10, "text": "Which superhero team operates out of the Baxter Building?", "answer": "The Fantastic Four" },
+  { "id": "r3_q3", "category": "Rapid Fire", "points": 10, "text": "What is the real name of Magneto in Marvel Comics canon?", "answer": "Max Eisenhardt / Erik Lehnsherr" },
+  { "id": "r3_q4", "category": "Rapid Fire", "points": 10, "text": "Who created the synthetic android known as the Vision?", "answer": "Ultron (using Phineas Horton's original Human Torch body)" },
+  { "id": "r3_q5", "category": "Rapid Fire", "points": 10, "text": "What fictional African nation is the world's primary source of Vibranium?", "answer": "Wakanda" },
+  { "id": "r3_q6", "category": "Rapid Fire", "points": 10, "text": "What cosmic artifact contains six distinct singularities controlling aspects of reality?", "answer": "The Infinity Stones / Infinity Gems" },
+  { "id": "r3_q7", "category": "Rapid Fire", "points": 10, "text": "What is the alias of the sorcerer who serves as the Ancient One's predecessor and Kamar-Taj librarian?", "answer": "Wong" },
+  { "id": "r3_q8", "category": "Rapid Fire", "points": 10, "text": "Which character famously uttered the phrase: 'I can do this all day'?", "answer": "Steve Rogers / Captain America" },
+  { "id": "r3_q9", "category": "Rapid Fire", "points": 10, "text": "What is the name of Thor's mystical goat-drawn chariot or either of his goats in myth/Marvel lore?", "answer": "Toothgnasher (Tanngrisnir) or Toothgrinder (Tanngnjóstr)" },
+  { "id": "r3_q10", "category": "Rapid Fire", "points": 10, "text": "What newspaper employs Peter Parker as a freelance photographer?", "answer": "The Daily Bugle" },
+  { "id": "r3_q11", "category": "Escalation", "points": 15, "text": "In the comics, what is the designation of the primary mainstream Marvel comic universe?", "answer": "Earth-616" },
+  { "id": "r3_q12", "category": "Escalation", "points": 15, "text": "Which demon lord rules over the Splinter Realm of Hell and traded Peter Parker's marriage in 'One More Day'?", "answer": "Mephisto" },
+  { "id": "r3_q13", "category": "Escalation", "points": 15, "text": "What alien empire is perpetually at war with the shape-shifting Skrulls in cosmic Marvel?", "answer": "The Kree Empire" },
+  { "id": "r3_q14", "category": "Escalation", "points": 15, "text": "What is the name of Doctor Doom's mother, whose soul he repeatedly attempts to rescue from Mephisto?", "answer": "Cynthia von Doom" },
+  { "id": "r3_q15", "category": "Escalation", "points": 15, "text": "What mutant classification level represents the pinnacle of genetic mutant power, such as Storm or Magneto?", "answer": "Omega-level Mutant" },
+  { "id": "r3_q16", "category": "Escalation", "points": 15, "text": "In the Marvel vs. Capcom franchise, which character yells 'Optic Blast!' and 'Mega Optic Blast!'?", "answer": "Cyclops (Scott Summers)" },
+  { "id": "r3_q17", "category": "Escalation", "points": 15, "text": "What sentient living island served as the sovereign homeland and nation for mutants during the Krakoan Age?", "answer": "Krakoa" },
+  { "id": "r3_q18", "category": "Escalation", "points": 15, "text": "Which Fantastic Four arch-nemesis wields the Cosmic Control Rod inside the Negative Zone?", "answer": "Annihilus" },
+  { "id": "r3_q19", "category": "Escalation", "points": 15, "text": "What device did Reed Richards invent that Doctor Doom claimed had faulty calculations, causing the explosion that scarred Victor's face?", "answer": "The dimensional communications machine / gateway to the Netherworld" },
+  { "id": "r3_q20", "category": "DOOMSDAY GAUNTLET", "points": 25, "text": "FINAL DOOMSDAY QUESTION: In the iconic 1982 Marvel graphic novel 'The Death of Captain Marvel', which celestial entity arrives as a gentle guide to escort Mar-Vell into the afterlife, ending his battle with terminal cancer?", "answer": "Death (Mistress Death)" }
+]

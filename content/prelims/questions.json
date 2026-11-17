@@ -1,0 +1,52 @@
+[
+  {
+    "category": "Heroes & Origins",
+    "questions": [
+      { "num": 1, "text": "Before becoming Iron Man, Tony Stark graduated from which elite real-world institute at age 17?", "answer": "MIT (Massachusetts Institute of Technology)" },
+      { "num": 2, "text": "What is the alias adopted by Bucky Barnes after being brainwashed by Soviet intelligence with a cybernetic arm?", "answer": "The Winter Soldier" },
+      { "num": 3, "text": "Which mutant superhero's secondary mutation allowed him to transform into a beast with blue fur and feline features?", "answer": "Beast (Dr. Henry 'Hank' McCoy)" },
+      { "num": 4, "text": "In the MCU, what is the full name of the artificial intelligence that preceded FRIDAY in Tony Stark's suits?", "answer": "J.A.R.V.I.S. (Just A Rather Very Intelligent System)" },
+      { "num": 5, "text": "What cosmic artifact gives the Nova Corps their power and is stored in the Worldmind?", "answer": "The Nova Force" }
+    ]
+  },
+  {
+    "category": "Villains & Conflicts",
+    "questions": [
+      { "num": 6, "text": "What is the real civilian surname of Norman Osborn's alter ego, Spider-Man's greatest nemesis?", "answer": "Green Goblin" },
+      { "num": 7, "text": "Which mutant clone of Wolverine, created by the Facility, later assumed the mantle of the All-New Wolverine?", "answer": "Laura Kinney / X-23" },
+      { "num": 8, "text": "In the 'Days of Future Past' timeline, what mutant-hunting robotic autonomous entities govern North America?", "answer": "Sentinels (Nimrod)" },
+      { "num": 9, "text": "What ancient mutant known as En Sabah Nur believes strictly in the doctrine of 'survival of the fittest'?", "answer": "Apocalypse" },
+      { "num": 10, "text": "Doctor Octopus founded which collective of six supervillains to defeat Spider-Man?", "answer": "The Sinister Six" }
+    ]
+  },
+  {
+    "category": "Behind the Panel (Meta & Creators)",
+    "questions": [
+      { "num": 11, "text": "Which comic book writer wrote the legendary 'Demon in a Bottle' arc addressing Tony Stark's alcoholism in 1979?", "answer": "David Michelinie (with Bob Layton)" },
+      { "num": 12, "text": "What four-word catchphrase was famously used by Stan Lee as his sign-off in monthly Marvel Bullpen Bulletins?", "answer": "Excelsior!" },
+      { "num": 13, "text": "In 1992, seven top artists left Marvel to form what competitor publisher responsible for Spawn and Savage Dragon?", "answer": "Image Comics" },
+      { "num": 14, "text": "Which British writer penned the transformative 1980s run of Thor, introducing Beta Ray Bill?", "answer": "Walt Simonson" },
+      { "num": 15, "text": "Which Marvel imprint, started in 2000, updated classic characters for contemporary audiences without 40 years of continuity baggage?", "answer": "Ultimate Marvel (Earth-1610)" }
+    ]
+  },
+  {
+    "category": "Screen & Adaptations",
+    "questions": [
+      { "num": 16, "text": "In Avengers: Infinity War, on which barren planet does Thanos sacrifice Gamora to acquire the Soul Stone?", "answer": "Vormir" },
+      { "num": 17, "text": "What song by Blue Swede plays during the opening sequence of Guardians of the Galaxy (2014)?", "answer": "Hooked on a Feeling" },
+      { "num": 18, "text": "Who directed both Spider-Man: Into the Spider-Verse and animated segments of Spider-Man lore?", "answer": "Bob Persichetti, Peter Ramsey, Rodney Rothman" },
+      { "num": 19, "text": "Which actor portrayed Doctor Doom in the 2005 and 2007 Fantastic Four movies directed by Tim Story?", "answer": "Julian McMahon" },
+      { "num": 20, "text": "What MCU series introduced the Time Variance Authority (TVA) and the concept of Sacred Timeline pruning?", "answer": "Loki" }
+    ]
+  },
+  {
+    "category": "Wildcard & Crossovers",
+    "questions": [
+      { "num": 21, "text": "In 1996's DC versus Marvel crossover event, who won the fan-voted battle between Batman and Captain America?", "answer": "Batman" },
+      { "num": 22, "text": "What fast-talking merc with a mouth is famous for consistently breaking the fourth wall and speaking directly to the reader?", "answer": "Deadpool (Wade Wilson)" },
+      { "num": 23, "text": "Which 16-bit arcade brawler released by Konami in 1992 allowed up to six simultaneous players across two screens to fight Magneto's army?", "answer": "X-Men Arcade (1992)" },
+      { "num": 24, "text": "Which herald of Galactus was once the astronomer Frankie Raye, possessing pyrokinetic abilities?", "answer": "Nova (Frankie Raye)" },
+      { "num": 25, "text": "TIEBREAKER / FINAL: Doctor Doom was created by Stan Lee and Jack Kirby, debuting in which milestone 1962 comic issue?", "answer": "The Fantastic Four #5 (July 1962)" }
+    ]
+  }
+]
