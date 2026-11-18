@@ -167,8 +167,8 @@ function generateEmail(imageSrc) {
                                 <div style="font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; color: #000000; text-transform: uppercase;">
                                   VENUE
                                 </div>
-                                <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 17px; color: #C41230; letter-spacing: 0.5px;">
-                                  [INSERT VENUE / ROOM NUMBER HERE]
+                                <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 19px; color: #C41230; letter-spacing: 0.5px;">
+                                  AC-03-LR-003
                                 </div>
                               </td>
                             </tr>
@@ -304,7 +304,7 @@ const textContent = `GREETINGS ASHOKA,
 
 📅 DATE:  Thursday, 19th November
 ⏰ TIME:  8:00 PM onwards
-📍 VENUE: [INSERT VENUE / ROOM NUMBER HERE]
+📍 VENUE: AC-03-LR-003
 
 In the spirit of the imminent release of the highly-anticipated 'Avengers: Doomsday', we are hosting a Marvel-themed quiz!
 

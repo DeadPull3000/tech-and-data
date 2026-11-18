@@ -22,7 +22,7 @@ This folder contains the complete, Gmail-friendly marketing email package for th
 2. In your browser window, press **`Ctrl + A`** (Cmd + A on Mac) to select everything, then **`Ctrl + C`** (Cmd + C) to copy.
 3. Open **Gmail** &rarr; click **Compose** (`+`).
 4. In the email body area, press **`Ctrl + V`** (Cmd + V) to paste.
-5. **Update Venue**: Replace `[INSERT VENUE / ROOM NUMBER HERE]` with the confirmed room or hall.
+5. **Venue**: Already pre-filled as **`AC-03-LR-003`**!
 6. Add your subject line:
    - `[Quizzing Club] The Gauntlet Has Been Thrown! ⚡ Road to Doomsday Quiz this Thursday at 8 PM!`
    - *or*: `⚡ Road to Doomsday: A Marvel-Themed Quiz by Vaishnavi Jha | Win Giani's Coupons!`
