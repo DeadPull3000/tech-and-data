@@ -1,0 +1,52 @@
+[
+  {
+    "category": "Heroes & Origins",
+    "questions": [
+      { "num": 1, "text": "Before becoming Iron Man, Tony Stark graduated from which elite real-world institute at age 17?", "answer": "MIT (Massachusetts Institute of Technology)", "hint": "Located in Cambridge, Massachusetts, where engineering geeks build robots while dropping calculators." },
+      { "num": 2, "text": "What is the alias adopted by Bucky Barnes after being brainwashed by Soviet intelligence with a cybernetic arm?", "answer": "The Winter Soldier", "hint": "Think the coldest season of the calendar plus armed military personnel." },
+      { "num": 3, "text": "Which mutant superhero's secondary mutation allowed him to transform into a beast with blue fur and feline features?", "answer": "Beast (Dr. Henry 'Hank' McCoy)", "hint": "He's a literate, Shakespeare-quoting gentleman who literally looks like a giant blue gorilla-cat." },
+      { "num": 4, "text": "In the MCU, what is the full name of the artificial intelligence that preceded FRIDAY in Tony Stark's suits?", "answer": "J.A.R.V.I.S. (Just A Rather Very Intelligent System)", "hint": "Named after Howard Stark's loyal butler, but upgraded with millions of silicon transistors." },
+      { "num": 5, "text": "What cosmic artifact gives the Nova Corps their power and is stored in the Worldmind?", "answer": "The Nova Force", "hint": "Supernova minus the 'super'—it powers human rockets across the galaxy." }
+    ]
+  },
+  {
+    "category": "Villains & Conflicts",
+    "questions": [
+      { "num": 6, "text": "What is the real civilian surname of Norman Osborn's alter ego, Spider-Man's greatest nemesis?", "answer": "Green Goblin", "hint": "He rides a glider tossing explosive pumpkin spice lattes while laughing hysterically." },
+      { "num": 7, "text": "Which mutant clone of Wolverine, created by the Facility, later assumed the mantle of the All-New Wolverine?", "answer": "Laura Kinney / X-23", "hint": "Named after a Roman numeral for 10 plus 13—her foot claws make pedicures impossible." },
+      { "num": 8, "text": "In the 'Days of Future Past' timeline, what mutant-hunting robotic autonomous entities govern North America?", "answer": "Sentinels (Nimrod)", "hint": "Towering purple robotic watchmen whose single job is scanning for X-genes and getting demolished by Wolverine." },
+      { "num": 9, "text": "What ancient mutant known as En Sabah Nur believes strictly in the doctrine of 'survival of the fittest'?", "answer": "Apocalypse", "hint": "Ancient Egyptian mutant who thinks four horsemen are the ultimate eco-friendly method of public transit." },
+      { "num": 10, "text": "Doctor Octopus founded which collective of six supervillains to defeat Spider-Man?", "answer": "The Sinister Six", "hint": "Doc Ock realized five villains wasn't enough to squash an arachnid, so he rounded up half a dozen." }
+    ]
+  },
+  {
+    "category": "Behind the Panel (Meta & Creators)",
+    "questions": [
+      { "num": 11, "text": "Which comic book writer wrote the legendary 'Demon in a Bottle' arc addressing Tony Stark's alcoholism in 1979?", "answer": "David Michelinie (with Bob Layton)", "hint": "A storyline so poignant it proved even Iron Man's golden titanium suit can't deflect liver damage." },
+      { "num": 12, "text": "What four-word catchphrase was famously used by Stan Lee as his sign-off in monthly Marvel Bullpen Bulletins?", "answer": "Excelsior!", "hint": "Latin for 'ever upward'—Stan's unmistakable one-word catchphrase of pure optimism!" },
+      { "num": 13, "text": "In 1992, seven top artists left Marvel to form what competitor publisher responsible for Spawn and Savage Dragon?", "answer": "Image Comics", "hint": "They wanted artistic freedom, so they created an 'Image' of their own." },
+      { "num": 14, "text": "Which British writer penned the transformative 1980s run of Thor, introducing Beta Ray Bill?", "answer": "Walt Simonson", "hint": "He gave Thor a horse-faced alien brother and once turned the Odinson into an amphibian (Throg)!" },
+      { "num": 15, "text": "Which Marvel imprint, started in 2000, updated classic characters for contemporary audiences without 40 years of continuity baggage?", "answer": "Ultimate Marvel (Earth-1610)", "hint": "Earth-1610, where Spider-Man was a millennial kid again and Nick Fury was modeled after Samuel L. Jackson." }
+    ]
+  },
+  {
+    "category": "Screen & Adaptations",
+    "questions": [
+      { "num": 16, "text": "In Avengers: Infinity War, on which barren planet does Thanos sacrifice Gamora to acquire the Soul Stone?", "answer": "Vormir", "hint": "A steep cliff, a floating Red Skull concierge, and a heartbreaking fall for a green daughter." },
+      { "num": 17, "text": "What song by Blue Swede plays during the opening sequence of Guardians of the Galaxy (2014)?", "answer": "Hooked on a Feeling", "hint": "Ooga-chaka ooga-ooga ooga-chaka! You're definitely trapped in a vibe." },
+      { "num": 18, "text": "Who directed both Spider-Man: Into the Spider-Verse and animated segments of Spider-Man lore?", "answer": "Bob Persichetti, Peter Ramsey, Rodney Rothman", "hint": "A trio of visionary animators whose 12-fps comic-book framerate won an Academy Award." },
+      { "num": 19, "text": "Which actor portrayed Doctor Doom in the 2005 and 2007 Fantastic Four movies directed by Tim Story?", "answer": "Julian McMahon", "hint": "Nip/Tuck star who donned the Latverian mask decades before Robert Downey Jr. was recruited for Doomsday." },
+      { "num": 20, "text": "What MCU series introduced the Time Variance Authority (TVA) and the concept of Sacred Timeline pruning?", "answer": "Loki", "hint": "The God of Mischief finally discovered 'glorious purpose' holding the multiverse together like a green tree." }
+    ]
+  },
+  {
+    "category": "Wildcard & Crossovers",
+    "questions": [
+      { "num": 21, "text": "In 1996's DC versus Marvel crossover event, who won the fan-voted battle between Batman and Captain America?", "answer": "Batman", "hint": "Because comic nerds firmly believe enough prep time and smoke pellets beats super soldier serum every single time." },
+      { "num": 22, "text": "What fast-talking merc with a mouth is famous for consistently breaking the fourth wall and speaking directly to the reader?", "answer": "Deadpool (Wade Wilson)", "hint": "He loves chimichangas, wears red so bad guys can't see him bleed, and knows he's inside this quiz right now." },
+      { "num": 23, "text": "Which 16-bit arcade brawler released by Konami in 1992 allowed up to six simultaneous players across two screens to fight Magneto's army?", "answer": "X-Men Arcade (1992)", "hint": "'Welcome to die!' shouted Magneto as six kids furiously mashed quarter-munching joystick buttons." },
+      { "num": 24, "text": "Which herald of Galactus was once the astronomer Frankie Raye, possessing pyrokinetic abilities?", "answer": "Nova (Frankie Raye)", "hint": "Shares an alias with a cosmic corpsman, but with fiery human-torch flair." },
+      { "num": 25, "text": "TIEBREAKER / FINAL: Doctor Doom was created by Stan Lee and Jack Kirby, debuting in which milestone 1962 comic issue?", "answer": "The Fantastic Four #5 (July 1962)", "hint": "His high-tech time platform and green cloak first appeared in issue #5 of Marvel's first superhero family." }
+    ]
+  }
+]

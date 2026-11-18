@@ -1,0 +1,92 @@
+[
+  {
+    "id": "r2_avengers_616",
+    "category": "Avengers",
+    "tier": "Earth-616",
+    "points": 10,
+    "text": "The Avengers were first formed in 1963 to stop Thor's adoptive brother Loki. Name the original five founding members from Avengers #1.",
+    "answer": "Iron Man, Thor, Hulk, Ant-Man (Hank Pym), and Wasp (Janet van Dyne). [Captain America joined in #4!]",
+    "hint": "Cap was still taking a 20-year ice nap! Think a green rage monster, a thunder god, a metal suit, and two bug-themed scientists."
+  },
+  {
+    "id": "r2_avengers_838",
+    "category": "Avengers",
+    "tier": "Earth-838",
+    "points": 20,
+    "text": "In the Earth-838 universe depicted in Doctor Strange in the Multiverse of Madness, who leads the Illuminati as the smartest man alive, and who portrays him in a cameo role?",
+    "answer": "Reed Richards / Mister Fantastic, portrayed by John Krasinski.",
+    "hint": "He really stretched his career far beyond Dunder Mifflin's paper company, only to get shredded like string cheese by Wanda!"
+  },
+  {
+    "id": "r2_xmen_616",
+    "category": "X-Men",
+    "tier": "Earth-616",
+    "points": 10,
+    "text": "What telepathic mutant cerebro-interface system was constructed by Charles Xavier beneath the Xavier School for Gifted Youngsters in Westchester, New York?",
+    "answer": "Cerebro (later Cerebra)",
+    "hint": "It literally translates from Spanish to 'brain'. Chuck gets a massive migraine whenever someone leaves it on standby."
+  },
+  {
+    "id": "r2_xmen_838",
+    "category": "X-Men",
+    "tier": "Earth-838",
+    "points": 20,
+    "text": "Which mutant telepath and psychic energy-wielding ninja swaps bodies with Betsy Braddock, later leading the covert mutant hit squad X-Force?",
+    "answer": "Psylocke / Kwannon",
+    "hint": "She turns mental focus into a glowing purple butterfly knife—talk about having sharp thoughts!"
+  },
+  {
+    "id": "r2_cosmic_616",
+    "category": "Cosmic",
+    "tier": "Earth-616",
+    "points": 10,
+    "text": "Norrin Radd sacrificed his freedom to save his home planet Zenn-La, becoming the herald of the World Devourer. By what moniker is he known across the cosmos?",
+    "answer": "The Silver Surfer (herald to Galactus)",
+    "hint": "Catching solar flares on a celestial surfboard while looking like a shiny chrome hood ornament for a hungry planet."
+  },
+  {
+    "id": "r2_cosmic_838",
+    "category": "Cosmic",
+    "tier": "Earth-838",
+    "points": 20,
+    "text": "What cosmic weapon—forged in the heart of a dying neutron star by Eitri the Dwarf King on Nidavellir—was wielded by Thor to replace Mjolnir during the Infinity War?",
+    "answer": "Stormbreaker",
+    "hint": "Part hammer, part battleaxe, with Groot's severed arm for a handle. It really knows how to break up a bad weather forecast!"
+  },
+  {
+    "id": "r2_street_616",
+    "category": "Street-Level",
+    "tier": "Earth-616",
+    "points": 10,
+    "text": "In Hell's Kitchen, blinded by radioactive isotopes as a boy, Matt Murdock learned martial arts under the blind master of the Chaste. What is this master's name?",
+    "answer": "Stick",
+    "hint": "You don't need 20/20 vision to guess this! His name comes from a branch of a tree, and he loves giving students a splintery thrashing."
+  },
+  {
+    "id": "r2_street_838",
+    "category": "Street-Level",
+    "tier": "Earth-838",
+    "points": 20,
+    "text": "Marc Spector was resurrected at the feet of an Egyptian moon deity after being left for dead in the Sudanese desert. Name this deity.",
+    "answer": "Khonshu",
+    "hint": "He wears a giant skeletal bird skull for a head, loves glowing white capes, and won't stop nagging Marc to seek bloody vengeance."
+  },
+  {
+    "id": "r2_panel_616",
+    "category": "Behind the Panel",
+    "tier": "Earth-616",
+    "points": 10,
+    "text": "Known as 'The King' of comics, this legendary artist co-created Captain America, the Fantastic Four, Thor, the Hulk, and the New Gods. Who is he?",
+    "answer": "Jack Kirby",
+    "hint": "Royalty of the 9th Art! He invented cosmic energy dots (Krackle) and shares a name with Nintendo's round pink vacuum puff."
+  },
+  {
+    "id": "r2_panel_838",
+    "category": "Behind the Panel",
+    "tier": "Earth-838",
+    "points": 20,
+    "text": "The iconic all-black Spider-Man symbiote suit introduced in Secret Wars #8 was originally designed by a 22-year-old Marvel fan who was paid $220 for the concept. What was his name?",
+    "answer": "Randy Schueller",
+    "hint": "His first name sounds like an Austin Powers adjective ('Yeah baby!'), and he gave Spidey the coolest wardrobe makeover in comic history."
+  }
+]

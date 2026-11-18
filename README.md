@@ -38,6 +38,7 @@ This monorepo brings together all our vertical's projects under a unified, begin
 
 ```text
 tech-and-data/
+├── road-to-doomsday/                # Full live quiz engine (WebSocket server, QM console, display & buzzer)
 ├── website/                         # Web applications and club portals
 │   └── README.md
 ├── ideas/                           # Brainstorming canvas & proposal incubator
@@ -58,6 +59,7 @@ tech-and-data/
 
 ### Directory Summary
 
+- **[`road-to-doomsday/`](road-to-doomsday/README.md)**: Production live quiz package for "Road to Doomsday" (WebSocket real-time server, sub-50ms phone buzzers, retro Marvel comic / 16-bit projector display, QM control console, fuzzy answer matching, and 65 curated questions).
 - **[`website/`](website/README.md)**: Reserved for our website project and web applications. It is kept lightweight and unopinionated until requirements and framework choices are finalized.
 - **[`ideas/`](ideas/idea-dump.md)**: A collaborative Markdown document (`idea-dump.md`) where anyone can propose experiments, feature ideas, and architectural notes.
 - **[`buzzer/`](buzzer/README.md)**: Reserved for the Buzzer project workspace. Hardware, networking, or software specifications will be documented here as development commences.

@@ -1,0 +1,790 @@
+/* ============================================================
+   ROAD TO DOOMSDAY — Display Stylesheet
+   Retro Marvel Comics / CRT Projector Aesthetic
+   ============================================================ */
+
+/* ---------- TOKENS ---------- */
+:root {
+  --crimson:    #C41230;
+  --gold:       #F5C518;
+  --void:       #1A1A2E;
+  --panel:      #FAFAFA;
+  --doom-green: #2D6A4F;
+  --cosmic:     #3A86FF;
+  --multiverse: #9B5DE5;
+
+  --font-display: 'Bangers', cursive;
+  --font-body:    'Space Mono', monospace;
+}
+
+/* ---------- RESET ---------- */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  width:100vw; height:100vh; overflow:hidden;
+  background: var(--void);
+  font-family: var(--font-body);
+  color: var(--panel);
+}
+
+/* ---------- OVERLAYS (always on top) ---------- */
+.overlay {
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:9999;
+}
+.scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0,0,0,.12) 2px,
+    rgba(0,0,0,.12) 4px
+  );
+}
+.halftone {
+  background: radial-gradient(circle, rgba(0,0,0,.07) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* ---------- SCENES ---------- */
+.scene {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  opacity:0; visibility:hidden;
+  transition: opacity .5s ease, visibility .5s;
+}
+.scene.active {
+  opacity:1; visibility:visible;
+}
+
+/* ---------- SHARED COMPONENTS ---------- */
+
+/* comic badge header */
+.comic-badge {
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  color: var(--panel);
+  background: var(--crimson);
+  padding: .15em .6em;
+  text-transform: uppercase;
+  letter-spacing:.05em;
+  border: 5px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  transform: rotate(-1deg);
+  margin-bottom: 1.2rem;
+}
+
+/* comic-panel border */
+.comic-panel {
+  border: 6px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  background: var(--panel);
+  color: var(--void);
+  position:relative;
+}
+
+/* kirby-krackle animated gradient border */
+.kirby-border {
+  border: 6px solid transparent;
+  border-image: none;
+  box-shadow:
+    0 0 0 4px #000,
+    0 0 30px 2px var(--cosmic),
+    0 0 60px 6px var(--multiverse);
+  animation: kirbyPulse 2s ease-in-out infinite alternate;
+  position: relative;
+}
+.kirby-border::before {
+  content: '';
+  position: absolute; inset: -12px;
+  border-radius: inherit;
+  background: conic-gradient(
+    var(--cosmic), var(--multiverse), var(--gold),
+    var(--cosmic), var(--multiverse), var(--gold), var(--cosmic)
+  );
+  z-index: -1;
+  animation: kirbyRotate 4s linear infinite;
+  filter: blur(8px);
+}
+@keyframes kirbyPulse {
+  0%   { box-shadow: 0 0 0 4px #000, 0 0 30px 2px var(--cosmic), 0 0 60px 6px var(--multiverse); }
+  100% { box-shadow: 0 0 0 4px #000, 0 0 50px 6px var(--gold),   0 0 80px 12px var(--cosmic); }
+}
+@keyframes kirbyRotate {
+  to { transform: rotate(360deg); }
+}
+
+.kirby-border-flat {
+  position: relative;
+}
+.kirby-border-flat::after {
+  content:'';
+  position:absolute; inset:-3px;
+  background: linear-gradient(90deg, var(--cosmic), var(--multiverse), var(--gold), var(--cosmic));
+  background-size: 300% 100%;
+  animation: kirbySlide 2s linear infinite;
+  z-index:-1;
+  border-radius: 4px;
+}
+@keyframes kirbySlide {
+  to { background-position: 300% 0; }
+}
+
+/* Speech bubble */
+.speech-bubble {
+  position: relative;
+  background: var(--panel);
+  color: var(--void);
+  border: 5px solid #000;
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  line-height: 1.35;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: 6px 6px 0 #000;
+}
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -30px; left: 60px;
+  border: 18px solid transparent;
+  border-top-color: #000;
+  border-bottom: 0;
+}
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; left: 64px;
+  border: 14px solid transparent;
+  border-top-color: var(--panel);
+  border-bottom: 0;
+}
+
+/* ============================================================
+   SCENE 1 — ATTRACT
+   ============================================================ */
+#scene-attract { background: var(--void); }
+
+.attract-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, var(--crimson) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, var(--multiverse) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, var(--cosmic) 0%, transparent 60%),
+    var(--void);
+  background-size: 200% 200%;
+  animation: attractBg 8s ease-in-out infinite alternate;
+}
+@keyframes attractBg {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+.attract-content {
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center;
+}
+
+.masthead {
+  background: var(--crimson);
+  padding: 2.5rem 4rem;
+  text-align:center;
+  border-radius: 8px;
+}
+.masthead-inner {
+  display:flex; flex-direction:column; align-items:center; gap:.3rem;
+}
+.masthead-sub {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: .3em;
+  text-transform:uppercase;
+}
+.masthead-title {
+  font-family: var(--font-display);
+  font-size: 7rem;
+  color: var(--gold);
+  text-shadow: 4px 4px 0 #000, -2px -2px 0 #000;
+  line-height: 1;
+  letter-spacing: .04em;
+}
+.masthead-tag {
+  font-family: var(--font-body);
+  font-size: .95rem;
+  color: var(--panel);
+  letter-spacing: .25em;
+}
+
+.insert-coin {
+  margin-top: 3rem;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--gold);
+  text-shadow: 2px 2px 0 #000;
+  animation: coinPulse 1s ease-in-out infinite alternate;
+}
+@keyframes coinPulse {
+  0%   { opacity:1; transform:scale(1); }
+  100% { opacity:.3; transform:scale(1.06); }
+}
+
+.phone-join-box {
+  margin-top: 2rem;
+  background: rgba(26, 26, 46, 0.94);
+  border: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 14px 28px;
+  text-align: center;
+  box-shadow: 6px 6px 0 #000;
+  max-width: 800px;
+}
+
+.join-badge {
+  display: inline-block;
+  background: var(--crimson);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  padding: 2px 14px;
+  border: 2px solid #000;
+  transform: rotate(-1deg);
+  letter-spacing: 1px;
+}
+
+.join-url {
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--gold);
+  margin: 10px 0 6px;
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+
+.join-sub {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* ============================================================
+   SCENE 2 — PRELIMS TIMER
+   ============================================================ */
+#scene-prelims_timer { background: var(--void); }
+
+.doom-timer-wrap {
+  display:flex; align-items:center; justify-content:center;
+}
+.doom-timer {
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+  background: radial-gradient(circle, var(--void) 60%, #0d0d1a 100%);
+}
+.doom-timer-ring {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  transform: rotate(-90deg);
+}
+.doom-ring-bg {
+  fill:none;
+  stroke: rgba(255,255,255,.08);
+  stroke-width:14;
+}
+.doom-ring-fg {
+  fill:none;
+  stroke: var(--crimson);
+  stroke-width:14;
+  stroke-linecap: round;
+  stroke-dasharray: 565.48;   /* 2πr = 2×π×90 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset .25s linear;
+  filter: drop-shadow(0 0 10px var(--crimson));
+}
+.doom-timer-text {
+  font-family: var(--font-display);
+  font-size: 7rem;
+  color: var(--crimson);
+  text-shadow: 0 0 20px var(--crimson);
+  z-index:2;
+}
+
+/* ============================================================
+   SCENE 3 — TEAM REVEAL
+   ============================================================ */
+#scene-team_reveal { background: var(--void); gap: 1.5rem; }
+
+.impact-frame {
+  width: 600px; height: 240px;
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+  opacity:0;
+  transform: scale(0);
+}
+.impact-frame.show {
+  animation: impactSlam .5s cubic-bezier(.17,.67,.24,1.4) forwards;
+}
+@keyframes impactSlam {
+  0%   { opacity:0; transform:scale(0) rotate(-8deg); }
+  60%  { opacity:1; transform:scale(1.15) rotate(2deg); }
+  80%  { transform:scale(.95) rotate(-1deg); }
+  100% { opacity:1; transform:scale(1) rotate(0); }
+}
+.impact-frame::before {
+  content:'';
+  position:absolute; inset: -20px;
+  background: radial-gradient(ellipse, var(--gold) 0%, var(--crimson) 40%, transparent 70%);
+  clip-path: polygon(
+    50% 0%, 61% 15%, 80% 2%, 72% 22%, 98% 20%,
+    78% 35%, 100% 50%, 78% 60%, 95% 80%,
+    70% 70%, 60% 95%, 50% 72%, 35% 98%,
+    30% 70%, 5% 82%, 22% 58%, 0% 48%,
+    20% 35%, 2% 18%, 28% 22%, 38% 2%
+  );
+  z-index:0;
+  animation: starBurst .6s ease-out forwards;
+}
+@keyframes starBurst {
+  0%   { transform: scale(0); opacity:0; }
+  50%  { opacity:1; }
+  100% { transform: scale(1); opacity:.85; }
+}
+.impact-text {
+  position:relative; z-index:1;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--panel);
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000;
+  text-transform: uppercase;
+  text-align:center;
+  padding: 0 1rem;
+}
+
+.team-list-reveal {
+  display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center;
+  max-width: 80%;
+}
+.team-list-reveal .team-chip {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  padding: .3em .8em;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  background: var(--doom-green);
+  color: var(--panel);
+  animation: chipIn .3s ease-out forwards;
+}
+@keyframes chipIn {
+  0%   { opacity:0; transform:translateY(20px); }
+  100% { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   SCENE 4 — QUESTION
+   ============================================================ */
+#scene-question { background: var(--void); padding: 2rem; }
+
+.question-panel {
+  width: 90%; max-width: 1600px;
+  min-height: 60vh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding: 3rem 4rem;
+  border-radius: 4px;
+  position:relative;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.question-panel.deck-enter {
+  animation: deckSlideSlam 0.55s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes deckSlideSlam {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-5deg) translateY(60px);
+    box-shadow: 0 0 0 #000;
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03) rotate(1.5deg) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg) translateY(0);
+    box-shadow: 8px 8px 0 #000;
+  }
+}
+
+/* Comic SFX Word Pop */
+.comic-sfx-word {
+  position: absolute;
+  top: 6%;
+  right: 10%;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--gold);
+  text-shadow: 5px 5px 0 #000, -2px -2px 0 var(--crimson);
+  letter-spacing: 2px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transform: scale(0) rotate(-15deg);
+}
+
+.comic-sfx-word.pop {
+  animation: sfxWordBlast 0.75s ease-out forwards;
+}
+
+@keyframes sfxWordBlast {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-25deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.3) rotate(-8deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1) rotate(-12deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4) rotate(-5deg) translateY(-30px);
+  }
+}
+
+/* Hint Card & Custom Lightbulb */
+.q-hint-card {
+  margin-top: 1.4rem;
+  background: #fff8db;
+  border: 4px dashed #c41230;
+  border-radius: 12px;
+  padding: 1rem 1.6rem;
+  max-width: 80%;
+  box-shadow: 5px 5px 0 #000;
+  transform: rotate(-1.5deg);
+  animation: hintSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  z-index: 4;
+  text-align: center;
+}
+
+.q-hint-card.hidden {
+  display: none;
+}
+
+.hint-sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--crimson);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  padding: 4px 16px;
+  border: 2.5px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  margin-bottom: 8px;
+  transform: rotate(-2deg);
+  letter-spacing: 1.5px;
+}
+
+.custom-lightbulb-svg {
+  display: inline-block;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(1.5px 1.5px 0 #000);
+  animation: bulbFlicker 2.4s ease-in-out infinite;
+}
+
+@keyframes bulbFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(1.5px 1.5px 0 #000);
+  }
+  20% {
+    transform: scale(1.1) rotate(-3deg);
+    filter: drop-shadow(2px 2px 0 #000) drop-shadow(0 0 6px #ffe600);
+  }
+  45% {
+    transform: scale(0.96) rotate(1deg);
+    filter: drop-shadow(1.5px 1.5px 0 #000);
+  }
+  70% {
+    transform: scale(1.08) rotate(-2deg);
+    filter: drop-shadow(2px 2px 0 #000) drop-shadow(0 0 8px #ffe600);
+  }
+}
+
+.hint-text {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: #1a1a2e;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+@keyframes hintSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9) rotate(4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(-1.5deg);
+  }
+}
+.q-badge {
+  position:absolute;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  padding: .2em .7em;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  z-index:3;
+}
+.q-category {
+  top: 16px; left: 16px;
+  background: var(--cosmic);
+  color: var(--panel);
+  transform: rotate(-3deg);
+}
+.q-points {
+  top: 16px; right: 16px;
+  background: var(--gold);
+  color: var(--void);
+  transform: rotate(2deg);
+}
+
+.q-image-area {
+  margin-top: 1.5rem;
+  max-width: 60%;
+}
+.q-image-area img {
+  max-width: 100%;
+  max-height: 40vh;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.timer-bar-track {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 18px;
+  background: rgba(0,0,0,.2);
+  overflow: hidden;
+}
+.timer-bar-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--doom-green), var(--cosmic), var(--gold));
+  transition: width .25s linear;
+}
+
+/* ============================================================
+   SCENE 5 — GRID (Incursion Protocol)
+   ============================================================ */
+#scene-grid { background: var(--void); padding: 2rem; }
+
+.grid-table {
+  border-collapse: separate;
+  border-spacing: 10px;
+  width: 80%; max-width: 1200px;
+}
+.grid-table th {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold);
+  padding: .4em;
+}
+.grid-col-head span {
+  font-family: var(--font-body);
+  font-size: .9rem;
+  color: var(--panel);
+}
+.grid-table td {
+  border: 4px solid #000;
+  background: var(--panel);
+  color: var(--void);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  text-align:center;
+  padding: 1.2em .8em;
+  cursor: default;
+  position:relative;
+  box-shadow: 4px 4px 0 #000;
+  transition: transform .4s, opacity .4s;
+}
+.grid-table .grid-cat {
+  background: var(--crimson);
+  color: var(--panel);
+  font-size: 1.1rem;
+  box-shadow: 3px 3px 0 #000;
+  text-transform: uppercase;
+  letter-spacing:.05em;
+  border: 3px solid #000;
+}
+.grid-table td.used {
+  animation: incursionCollapse .7s ease-in forwards;
+}
+@keyframes incursionCollapse {
+  0%   { transform: scale(1) rotate(0); opacity:1; }
+  50%  { transform: scale(.7) rotate(15deg); opacity:.5; }
+  100% { transform: scale(0) rotate(45deg); opacity:0; }
+}
+
+/* ============================================================
+   SCENE 6 — SCOREBOARD
+   ============================================================ */
+#scene-scoreboard { background: var(--void); padding: 2rem; }
+
+.scoreboard-list {
+  width: 85%; max-width: 1400px;
+  display:flex; flex-direction:column; gap: .9rem;
+}
+.score-row {
+  display:flex; align-items:center; gap: 1rem;
+  animation: scoreRowIn .4s ease-out forwards;
+}
+@keyframes scoreRowIn {
+  0%   { opacity:0; transform:translateX(-40px); }
+  100% { opacity:1; transform:translateX(0); }
+}
+.score-name {
+  flex: 0 0 220px;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  text-align: right;
+  text-shadow: 2px 2px 0 #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.score-bar-track {
+  flex: 1;
+  height: 40px;
+  background: rgba(255,255,255,.08);
+  border: 3px solid #000;
+  position:relative;
+  image-rendering: pixelated;
+}
+.score-bar-fill {
+  height: 100%;
+  transition: width .6s cubic-bezier(.25,.8,.25,1);
+  /* colour set inline */
+  image-rendering: pixelated;
+  box-shadow: inset -4px 0 0 rgba(0,0,0,.3);
+}
+/* pixel dither pattern on bar */
+.score-bar-fill::after {
+  content:'';
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px, transparent 6px,
+    rgba(0,0,0,.12) 6px, rgba(0,0,0,.12) 8px
+  );
+}
+.score-value {
+  flex: 0 0 100px;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--gold);
+  text-shadow: 2px 2px 0 #000;
+  text-align:left;
+}
+
+/* ============================================================
+   SCENE 7 — DOOMSDAY CLOCK
+   ============================================================ */
+#scene-doomsday_clock { background: var(--void); }
+
+.doomsday-clock-wrap {
+  width: 420px; height: 420px;
+}
+.doomsday-clock { width:100%; height:100%; }
+
+.doom-seg {
+  fill: rgba(255,255,255,.06);
+  stroke: var(--doom-green);
+  stroke-width: 2;
+  transition: fill .4s;
+}
+.doom-seg.filled {
+  fill: var(--doom-green);
+  filter: drop-shadow(0 0 8px var(--doom-green));
+  animation: segPulse .6s ease-out;
+}
+@keyframes segPulse {
+  0%   { filter: drop-shadow(0 0 30px var(--gold)); }
+  100% { filter: drop-shadow(0 0 8px var(--doom-green)); }
+}
+.doom-center {
+  fill: var(--void);
+  stroke: var(--doom-green);
+  stroke-width: 3;
+}
+.doom-clock-label {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  fill: var(--doom-green);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* ============================================================
+   SCENE 8 — VICTORY
+   ============================================================ */
+#scene-victory { background: var(--void); overflow:hidden; }
+
+.kirby-explosion {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 20%, var(--cosmic) 20%, var(--cosmic) 22%, transparent 22%),
+    radial-gradient(circle at 50% 50%, transparent 35%, var(--multiverse) 35%, var(--multiverse) 37%, transparent 37%),
+    radial-gradient(circle at 50% 50%, transparent 50%, var(--gold) 50%, var(--gold) 51.5%, transparent 51.5%);
+  animation: explode 3s ease-in-out infinite alternate;
+}
+@keyframes explode {
+  0%   { transform:scale(1) rotate(0); opacity:.7; }
+  100% { transform:scale(1.6) rotate(15deg); opacity:.5; }
+}
+
+.victory-content {
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:.5rem;
+  text-align:center;
+}
+.victory-issue {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: .3em;
+}
+.victory-name {
+  font-family: var(--font-display);
+  font-size: 7rem;
+  color: var(--gold);
+  text-shadow: 4px 4px 0 #000, 0 0 40px var(--gold);
+  line-height:1.05;
+  max-width: 90vw;
+  word-break: break-word;
+}
+.victory-subtitle {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--panel);
+  text-shadow: 3px 3px 0 #000;
+  margin-top: .3rem;
+}
+
+/* ---------- UTILITY ---------- */
+.hidden { display:none!important; }

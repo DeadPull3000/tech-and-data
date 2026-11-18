@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BUZZER — Road to Doomsday</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/buzzer.css">
+</head>
+<body>
+  <!-- Halftone overlay -->
+  <div class="buzzer-overlay halftone"></div>
+
+  <div class="buzzer-container">
+    <!-- Header -->
+    <header class="buzzer-header">
+      <div class="team-banner">
+        <span class="banner-sub">FACTION TERMINAL</span>
+        <h1 class="team-name" id="team-name">CONNECTING...</h1>
+      </div>
+      <div class="header-right">
+        <button id="sound-toggle-btn" class="sound-pill" title="Sound Effects">🔊 SFX ON</button>
+        <div class="conn-dot" id="conn-dot" title="Connection Status"></div>
+      </div>
+    </header>
+
+    <!-- Status message -->
+    <div class="status-box" id="status-box">
+      <span class="status-text" id="status-text">INITIALIZING...</span>
+    </div>
+
+    <!-- MAIN INTERACTION AREA -->
+    <main class="buzzer-main">
+      <!-- 1. BUZZER MODE -->
+      <div id="mode-buzzer" class="mode-panel active">
+        <button id="buzz-btn" class="arcade-btn stand-by" disabled>
+          <span class="btn-subtext" id="buzz-subtext">STAND BY</span>
+          <span class="btn-maintext" id="buzz-maintext">WAITING</span>
+        </button>
+      </div>
+
+      <!-- 2. POUNCE MODE -->
+      <div id="mode-pounce" class="mode-panel">
+        <div class="pounce-card">
+          <div class="pounce-header">
+            <span class="pounce-badge">POUNCE ACTIVE</span>
+            <span class="pounce-timer" id="pounce-timer-count">30s</span>
+          </div>
+          <p class="pounce-prompt">Type your answer and lock it in before time expires!</p>
+          <input type="text" id="pounce-input" class="pounce-input" placeholder="Type answer here..." autocomplete="off">
+          <button id="pounce-submit-btn" class="pounce-btn">
+            LOCK IN ANSWER
+          </button>
+          <div id="pounce-confirmation" class="pounce-confirmation hidden">
+            <span>ANSWER SUBMITTED:</span>
+            <strong id="pounce-submitted-val"></strong>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer info -->
+    <footer class="buzzer-footer">
+      <span>ROAD TO DOOMSDAY • TECH & DATA</span>
+    </footer>
+  </div>
+
+  <script src="/js/buzzer.js"></script>
+</body>
+</html>
