@@ -37,11 +37,12 @@
   },
   {
     "id": "r1_q5",
-    "category": "Behind the Panel",
+    "category": "MCU & Battleworld",
     "points": 10,
-    "text": "In 1984, Marvel launched a 12-issue crossover series specifically commissioned to help Mattel market a new line of superhero action figures. What was the name of this milestone event?",
-    "answer": "Marvel Super Heroes Secret Wars (Secret Wars)",
-    "hint": "Shhh! Keep your voice down! If everyone knew about these military skirmishes, they wouldn't be very confidential, would they?",
+    "text": "At San Diego Comic-Con 2024, Marvel Studios dropped a multiverse megaton when Kevin Feige brought dozens of green-cloaked figures onto the Hall H stage. One of them stepped forward, pulled off his iconic chrome Doctor Doom mask to a deafening crowd roar, revealing that the former bedrock face of the Marvel Cinematic Universe was returning to lead 'Avengers: Doomsday' and 'Avengers: Secret Wars'. Which Oscar-winning actor shocked the world with this villainous reveal?",
+    "answer": "Robert Downey Jr. (RDJ)",
+    "acceptableAnswers": ["Robert Downey Jr.", "RDJ", "Robert Downey Jr", "Downey Jr."],
+    "hint": "You either die an iron-clad hero, or you live long enough to get paid over $80 million dollars to return as the greatest dictator in comic book history!",
     "image": null
   },
   {

@@ -272,6 +272,35 @@ body {
   color: var(--gold);
   border-top: 1px dashed #2d2d48;
   padding-top: 6px;
+  transition: all 0.2s ease;
+}
+
+.q-answer.revealed-live {
+  background: rgba(45, 106, 79, 0.25);
+  border: 1px solid var(--doom-green);
+  border-radius: 4px;
+  padding: 8px 10px;
+  color: #a7f3d0;
+  font-weight: bold;
+  animation: answerGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes answerGlow {
+  0% { box-shadow: 0 0 4px rgba(45, 106, 79, 0.4); }
+  100% { box-shadow: 0 0 12px rgba(45, 106, 79, 0.8); }
+}
+
+.btn-advance-ready {
+  background: #f59e0b !important;
+  color: #000 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6) !important;
+  animation: advancePulse 1.2s infinite alternate !important;
+}
+
+@keyframes advancePulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.04); filter: brightness(1.2); }
 }
 
 .q-hint {

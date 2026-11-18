@@ -22,9 +22,12 @@
   const btnPrevQ = document.getElementById('btn-prev-q');
   const btnShowQ = document.getElementById('btn-show-q');
   const btnRevealHint = document.getElementById('btn-reveal-hint');
+  const btnRevealAnswer = document.getElementById('btn-reveal-answer');
   const btnNextQ = document.getElementById('btn-next-q');
   const qJson = document.getElementById('q-json');
   const btnLoadQ = document.getElementById('btn-load-q');
+
+  let answerRevealed = false;
 
   // Answer Key Elements
   const btnToggleAk = document.getElementById('btn-toggle-ak');
@@ -117,7 +120,7 @@
     'X-Men',
     'Cosmic',
     'Street-Level',
-    'Behind the Panel'
+    'MCU Vault'
   ];
 
   // ─── WebSocket Client ─────────────────────────────────────────────
@@ -243,10 +246,20 @@
         case 'question_changed':
           if (payload) {
             state.currentQuestionIndex = payload.index;
+            answerRevealed = false;
             renderQuestionUI();
             if (panelAnswerKey && !panelAnswerKey.classList.contains('hidden')) {
               renderAnswerKey();
             }
+          }
+          break;
+
+        case 'answer_revealed':
+          answerRevealed = true;
+          if (qAnswer) qAnswer.classList.add('revealed-live');
+          if (btnNextQ) {
+            btnNextQ.textContent = 'Next: Advance Question ⏭';
+            btnNextQ.classList.add('btn-advance-ready');
           }
           break;
       }
@@ -289,6 +302,14 @@
   function renderQuestionUI() {
     const list = state.questions || [];
     const idx = state.currentQuestionIndex;
+
+    // Reset live reveal state on console for question transition
+    answerRevealed = false;
+    if (qAnswer) qAnswer.classList.remove('revealed-live');
+    if (btnNextQ) {
+      btnNextQ.textContent = 'Next: Reveal Answer ▶';
+      btnNextQ.classList.remove('btn-advance-ready');
+    }
 
     qCounter.textContent = `${list.length > 0 && idx >= 0 ? idx + 1 : 0} / ${list.length}`;
 
@@ -748,18 +769,52 @@
     };
   });
 
+  // Trigger Answer Reveal
+  function triggerRevealAnswer() {
+    const list = state.questions || [];
+    const idx = state.currentQuestionIndex;
+    const q = (idx >= 0 && idx < list.length) ? list[idx] : null;
+
+    send('reveal_answer', {
+      answer: q ? q.answer : null,
+      acceptableAnswers: q ? q.acceptableAnswers : []
+    });
+
+    answerRevealed = true;
+    if (qAnswer) qAnswer.classList.add('revealed-live');
+    if (btnNextQ) {
+      btnNextQ.textContent = 'Next: Advance Question ⏭';
+      btnNextQ.classList.add('btn-advance-ready');
+    }
+  }
+
   // Question Navigation
   btnPrevQ.onclick = () => {
+    answerRevealed = false;
     if (state.currentQuestionIndex > 0) {
       send('show_question', { questionIndex: state.currentQuestionIndex - 1 });
     }
   };
 
   btnNextQ.onclick = () => {
-    send('next_question', {});
+    if (!answerRevealed) {
+      // Step 1: Reveal Answer transition on projector & console with comic animation
+      triggerRevealAnswer();
+    } else {
+      // Step 2: Advance to next question
+      answerRevealed = false;
+      send('next_question', {});
+    }
   };
 
+  if (btnRevealAnswer) {
+    btnRevealAnswer.onclick = () => {
+      triggerRevealAnswer();
+    };
+  }
+
   btnShowQ.onclick = () => {
+    answerRevealed = false;
     send('show_question', { questionIndex: state.currentQuestionIndex });
   };
 
@@ -948,6 +1003,12 @@
     }
     if (e.key === 'a' || e.key === 'A') {
       if (btnToggleAk) btnToggleAk.click();
+    } else if (e.key === 'n' || e.key === 'N' || e.key === 'ArrowRight') {
+      if (btnNextQ) btnNextQ.click();
+    } else if (e.key === 'p' || e.key === 'P' || e.key === 'ArrowLeft') {
+      if (btnPrevQ) btnPrevQ.click();
+    } else if (e.key === 'r' || e.key === 'R') {
+      if (btnRevealAnswer) btnRevealAnswer.click();
     } else if (e.key === 'Escape') {
       if (panelAnswerKey && !panelAnswerKey.classList.contains('hidden')) {
         panelAnswerKey.classList.add('hidden');

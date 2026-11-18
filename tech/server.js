@@ -404,6 +404,19 @@ function handleMessage(ws, msg) {
       break;
     }
 
+    case 'reveal_answer': {
+      const q = state.questions[state.currentQuestionIndex];
+      const answer = (payload && payload.answer) || (q && q.answer) || null;
+      const acceptableAnswers = (payload && payload.acceptableAnswers) || (q && q.acceptableAnswers) || [];
+      broadcast('answer_revealed', {
+        answer,
+        acceptableAnswers,
+        index: state.currentQuestionIndex,
+      });
+      console.log(`[answer] Revealed for question #${state.currentQuestionIndex}: ${answer}`);
+      break;
+    }
+
     // ── Judging & Scores ──
     case 'judge': {
       const { teamId, correct, points } = payload || {};

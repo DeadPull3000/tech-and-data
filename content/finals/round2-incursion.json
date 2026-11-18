@@ -72,21 +72,23 @@
     "hint": "He wears a giant skeletal bird skull for a head, loves glowing white capes, and won't stop nagging Marc to seek bloody vengeance."
   },
   {
-    "id": "r2_panel_616",
-    "category": "Behind the Panel",
+    "id": "r2_mcu_616",
+    "category": "MCU Vault",
     "tier": "Earth-616",
     "points": 10,
-    "text": "Known as 'The King' of comics, this legendary artist co-created Captain America, the Fantastic Four, Thor, the Hulk, and the New Gods. Who is he?",
-    "answer": "Jack Kirby",
-    "hint": "Royalty of the 9th Art! He invented cosmic energy dots (Krackle) and shares a name with Nintendo's round pink vacuum puff."
+    "text": "Before turning Hydra infiltrators into bruised elevator wall décor in 'Captain America: The Winter Soldier', Steve Rogers politely asked if anyone wanted to get out. Five years later in 'Avengers: Endgame', Steve boarded the exact same elevator with Jasper Sitwell and Brock Rumlow, but bypassed the brawl entirely by leaning in and whispering what scandalous two-word greeting?",
+    "answer": "Hail Hydra",
+    "acceptableAnswers": ["Hail Hydra", "hail hydra", "Hail hydra"],
+    "hint": "Two words that would make Red Skull shed a single tear of joy, referencing a 2016 comic cliffhanger that broke the entire comic book internet."
   },
   {
-    "id": "r2_panel_838",
-    "category": "Behind the Panel",
+    "id": "r2_mcu_838",
+    "category": "MCU Vault",
     "tier": "Earth-838",
     "points": 20,
-    "text": "The iconic all-black Spider-Man symbiote suit introduced in Secret Wars #8 was originally designed by a 22-year-old Marvel fan who was paid $220 for the concept. What was his name?",
-    "answer": "Randy Schueller",
-    "hint": "His first name sounds like an Austin Powers adjective ('Yeah baby!'), and he gave Spidey the coolest wardrobe makeover in comic history."
+    "text": "In 'Doctor Strange in the Multiverse of Madness', Earth-838's Illuminati tribunal claimed to possess the smartest intellects across the cosmos. Which hero—introduced as the leader of the Fantastic Four and played by John Krasinski—famously bragged that Black Bolt could destroy Wanda Maximoff with a whisper, only to be promptly shredded into biological string cheese?",
+    "answer": "Reed Richards / Mister Fantastic",
+    "acceptableAnswers": ["Reed Richards", "Mister Fantastic", "Mr Fantastic", "Reed", "Mr. Fantastic"],
+    "hint": "He was billed as the smartest man alive until he gave away his best teammate's tactical weakness in five seconds flat, ending up turned into Italian pasta."
   }
 ]
