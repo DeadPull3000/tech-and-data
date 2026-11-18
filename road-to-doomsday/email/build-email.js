@@ -41,113 +41,106 @@ function generateEmail(imageSrc) {
       text-decoration: none;
       display: block;
     }
-    /* Mobile full-width override: eliminates letterboxing and covers entire available area */
-    @media only screen and (max-width: 620px) {
-      .outer-wrapper {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+    /* Mobile-first polish */
+    @media only screen and (max-width: 600px) {
+      .outer-wrap {
+        padding: 0 !important;
       }
-      .main-table {
+      .card-wrap {
         width: 100% !important;
         max-width: 100% !important;
+        border-radius: 0 !important;
         border-left: 0 !important;
         border-right: 0 !important;
         box-shadow: none !important;
       }
-      .poster-img {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
+      .content-pad {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
       }
-      .content-padding {
-        padding-left: 14px !important;
-        padding-right: 14px !important;
-      }
-      .headline-text {
+      .headline-lg {
         font-size: 26px !important;
       }
-      .venue-text {
-        font-size: 20px !important;
+      .venue-lg {
+        font-size: 22px !important;
       }
-      .bounty-text {
+      .bounty-lg {
         font-size: 20px !important;
       }
     }
-    /* Dark mode color lock */
+    /* Dark mode locks to prevent muddy inversion */
     @media (prefers-color-scheme: dark) {
-      .dark-preserve-beige {
+      .bg-locked-beige {
         background-color: #EDE8D0 !important;
         background-image: linear-gradient(to bottom, #EDE8D0, #EDE8D0) !important;
       }
-      .dark-preserve-white {
+      .bg-locked-white {
         background-color: #FFFFFF !important;
         background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF) !important;
       }
-      .dark-preserve-yellow {
+      .bg-locked-yellow {
         background-color: #FFE600 !important;
         background-image: linear-gradient(to bottom, #FFE600, #FFE600) !important;
       }
-      .dark-preserve-cream {
+      .bg-locked-cream {
         background-color: #FFF8DB !important;
         background-image: linear-gradient(to bottom, #FFF8DB, #FFF8DB) !important;
       }
-      .dark-preserve-red {
+      .bg-locked-red {
         background-color: #C41230 !important;
         background-image: linear-gradient(to bottom, #C41230, #C41230) !important;
       }
-      .dark-text-black {
+      .txt-black {
         color: #000000 !important;
       }
-      .dark-text-white {
+      .txt-white {
         color: #FFFFFF !important;
       }
     }
   </style>
 </head>
-<body class="dark-preserve-beige" style="margin: 0; padding: 0; background-color: #EDE8D0; background-image: linear-gradient(to bottom, #EDE8D0, #EDE8D0); font-family: 'Trebuchet MS', 'Segoe UI', Helvetica, Arial, sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; width: 100% !important;">
+<body class="bg-locked-beige" style="margin: 0; padding: 0; background-color: #EDE8D0; background-image: linear-gradient(to bottom, #EDE8D0, #EDE8D0); font-family: 'Trebuchet MS', 'Segoe UI', Helvetica, Arial, sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; width: 100% !important;">
 
-  <!-- Outer Centering Table (Beige in both Light & Dark Mode) -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#EDE8D0" class="outer-wrapper dark-preserve-beige" style="background-color: #EDE8D0; background-image: linear-gradient(to bottom, #EDE8D0, #EDE8D0); width: 100%; margin: 0; padding: 20px 0; border: 0;">
+  <!-- Outer Centering Table (Vintage Newsprint Beige in both Light & Dark Mode) -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#EDE8D0" class="outer-wrap bg-locked-beige" style="background-color: #EDE8D0; background-image: linear-gradient(to bottom, #EDE8D0, #EDE8D0); width: 100%; margin: 0; padding: 20px 0; border: 0;">
     <tr>
       <td align="center" style="padding: 0; margin: 0;">
 
-        <!-- Main Fluid Comic Table (100% width on Mobile, 620px Max on Desktop) -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" class="main-table dark-preserve-white" style="width: 100%; max-width: 620px; margin: 0 auto; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF); border: 4px solid #000000; box-shadow: 6px 6px 0px #000000; border-radius: 2px;">
+        <!-- Main Fluid Comic Card (100% on phones, up to 580px max on desktop) -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" class="card-wrap bg-locked-white" style="width: 100%; max-width: 580px; margin: 0 auto; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF); border: 3px solid #000000; box-shadow: 6px 6px 0px #000000; border-radius: 8px; overflow: hidden;">
 
-          <!-- ═════ 1. EMBEDDED RETRO POSTER (FITS 100% OF AVAILABLE AREA) ═════ -->
+          <!-- ═════ 1. RETRO POSTER (FITS 100% EDGE-TO-EDGE) ═════ -->
           <tr>
-            <td align="center" class="dark-preserve-yellow" style="padding: 0; margin: 0; line-height: 0; background-color: #FFE600; background-image: linear-gradient(to bottom, #FFE600, #FFE600); width: 100%;">
-              <img src="${imageSrc}" alt="Road to Doomsday Quiz Poster by Vaishnavi Jha - Retro Marvel Comic Cover" width="100%" class="poster-img" style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0; padding: 0; border: 0;" />
+            <td align="center" class="bg-locked-yellow" style="padding: 0; margin: 0; line-height: 0; background-color: #FFE600; background-image: linear-gradient(to bottom, #FFE600, #FFE600); width: 100%;">
+              <img src="${imageSrc}" alt="Road to Doomsday Quiz Poster by Vaishnavi Jha - Retro Marvel Comic Cover" width="100%" style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0; padding: 0; border: 0;" />
             </td>
           </tr>
 
-          <!-- ═════ 2. COMIC TICKER / ISSUE BAR ═════ -->
+          <!-- ═════ 2. RETRO COMIC TICKER ═════ -->
           <tr>
-            <td bgcolor="#C41230" class="dark-preserve-red" style="background-color: #C41230; background-image: linear-gradient(to bottom, #C41230, #C41230); padding: 10px 14px; border-bottom: 3px solid #000000; width: 100%;">
+            <td bgcolor="#C41230" class="bg-locked-red" style="background-color: #C41230; background-image: linear-gradient(to bottom, #C41230, #C41230); padding: 10px 14px; border-bottom: 3px solid #000000; width: 100%;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td align="center" class="dark-text-white" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 14px; letter-spacing: 2px; color: #FFE600; text-transform: uppercase;">
-                    &gt;&gt; ALL UNIVERSES ASSEMBLE! &bull; THURSDAY, 19TH NOV &bull; 8:00 PM &lt;&lt;
+                  <td align="center" class="txt-white" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 13px; letter-spacing: 1.8px; color: #FFE600; text-transform: uppercase;">
+                    &gt;&gt; ALL UNIVERSES ASSEMBLE! &bull; THURSDAY 19TH NOV &bull; 8 PM &lt;&lt;
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- ═════ 3. SALUTATION & OPENING ═════ -->
+          <!-- ═════ 3. SALUTATION & GREETING ═════ -->
           <tr>
-            <td class="content-padding dark-preserve-white" style="padding: 22px 20px 10px 20px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
+            <td class="content-pad bg-locked-white" style="padding: 24px 22px 10px 22px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td>
-                    <!-- Comic Corner Badge -->
+                    <!-- Teletype Badge -->
                     <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 2px; margin-bottom: 10px; letter-spacing: 1px;">
-                      COMMUNIQUE // THE QUIZZING CLUB
+                      COMMUNIQUE // ISSUE #01
                     </div>
                     
-                    <h1 class="headline-text dark-text-black" style="margin: 0 0 10px 0; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 28px; line-height: 1.15; color: #000000; letter-spacing: 0.5px;">
+                    <h1 class="headline-lg txt-black" style="margin: 0 0 8px 0; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 28px; line-height: 1.15; color: #000000; letter-spacing: 0.5px;">
                       GREETINGS ASHOKA,
                     </h1>
                   </td>
@@ -156,26 +149,26 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 4. TL;DR DOSSIER BOX (VINTAGE CAPTION PANEL) ═════ -->
+          <!-- ═════ 4. TL;DR CAPTION DOSSIER ═════ -->
           <tr>
-            <td class="content-padding dark-preserve-white" style="padding: 4px 20px 16px 20px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF8DB" class="dark-preserve-cream" style="background-color: #FFF8DB; background-image: linear-gradient(to bottom, #FFF8DB, #FFF8DB); border: 3px solid #000000; box-shadow: 4px 4px 0px #000000;">
+            <td class="content-pad bg-locked-white" style="padding: 4px 22px 16px 22px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF8DB" class="bg-locked-cream" style="background-color: #FFF8DB; background-image: linear-gradient(to bottom, #FFF8DB, #FFF8DB); border: 2.5px solid #000000; box-shadow: 3.5px 3.5px 0px #000000; border-radius: 4px;">
                 <tr>
                   <td style="padding: 14px 16px;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td style="padding-bottom: 8px; border-bottom: 2px dashed #000000;">
-                          <span style="display: inline-block; background-color: #C41230; background-image: linear-gradient(to bottom, #C41230, #C41230); color: #FFFFFF; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 13px; letter-spacing: 1.5px; padding: 2px 8px; border: 1.5px solid #000000;">
+                          <span style="display: inline-block; background-color: #C41230; background-image: linear-gradient(to bottom, #C41230, #C41230); color: #FFFFFF; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 13px; letter-spacing: 1.5px; padding: 2px 8px; border: 1.5px solid #000000; border-radius: 2px;">
                             TL;DR
                           </span>
-                          <span class="dark-text-black" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 18px; color: #000000; margin-left: 8px; vertical-align: middle; letter-spacing: 0.5px;">
+                          <span class="txt-black" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 18px; color: #000000; margin-left: 8px; vertical-align: middle; letter-spacing: 0.5px;">
                             A 'ROAD TO DOOMSDAY' QUIZ
                           </span>
                         </td>
                       </tr>
                       <tr>
-                        <td class="dark-text-black" style="padding-top: 10px; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; color: #111111; line-height: 1.45;">
-                          By <strong>Vaishnavi Jha</strong> &bull; An epic Marvel-themed battle of wits celebrating the upcoming <em>Avengers: Doomsday</em>!
+                        <td class="txt-black" style="padding-top: 10px; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; color: #111111; line-height: 1.45;">
+                          By <strong>Vaishnavi Jha</strong> &bull; An epic multi-round Marvel showdown celebrating the upcoming <em>Avengers: Doomsday</em>!
                         </td>
                       </tr>
                     </table>
@@ -185,36 +178,43 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 5. EVENT COORDINATES GRID (RETRO DOSSIER CARDS) ═════ -->
+          <!-- ═════ 5. EVENT ITINERARY (PRETTY MOBILE-FIRST STACK) ═════ -->
           <tr>
-            <td class="content-padding dark-preserve-white" style="padding: 2px 20px 18px 20px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <td class="content-pad bg-locked-white" style="padding: 0 22px 18px 22px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F8FAFC" style="background-color: #F8FAFC; border: 2.5px solid #000000; box-shadow: 3.5px 3.5px 0px #000000; border-radius: 6px; overflow: hidden;">
+                
+                <!-- Date Row -->
                 <tr>
-                  <!-- Date Box -->
-                  <td width="50%" valign="top" style="padding-right: 5px;">
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F4F9F4" style="background-color: #F4F9F4; background-image: linear-gradient(to bottom, #F4F9F4, #F4F9F4); border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
+                  <td style="padding: 13px 16px; border-bottom: 2px solid #000000; background-color: #F0FDF4; background-image: linear-gradient(to bottom, #F0FDF4, #F0FDF4);">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td style="padding: 12px 12px;">
-                          <div style="display: inline-block; background-color: #000000; color: #FFFFFF; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 6px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                        <td width="90" valign="middle">
+                          <div style="display: inline-block; background-color: #000000; color: #FFFFFF; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 3px 6px; letter-spacing: 1px; border-radius: 2px;">
                             [ DATE ]
                           </div>
-                          <div class="dark-text-black" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #000000; margin-top: 2px;">
-                            Thursday, 19th Nov
+                        </td>
+                        <td valign="middle" align="left">
+                          <div class="txt-black" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 17px; color: #000000; letter-spacing: 0.5px;">
+                            Thursday, 19th November
                           </div>
                         </td>
                       </tr>
                     </table>
                   </td>
-                  
-                  <!-- Time Box -->
-                  <td width="50%" valign="top" style="padding-left: 5px;">
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF4E6" style="background-color: #FFF4E6; background-image: linear-gradient(to bottom, #FFF4E6, #FFF4E6); border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
+                </tr>
+
+                <!-- Time Row -->
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 2px solid #000000; background-color: #FFFBEB; background-image: linear-gradient(to bottom, #FFFBEB, #FFFBEB);">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td style="padding: 12px 12px;">
-                          <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 6px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                        <td width="90" valign="middle">
+                          <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 3px 6px; letter-spacing: 1px; border-radius: 2px;">
                             [ TIME ]
                           </div>
-                          <div class="dark-text-black" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #000000; margin-top: 2px;">
+                        </td>
+                        <td valign="middle" align="left">
+                          <div class="txt-black" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 17px; color: #000000; letter-spacing: 0.5px;">
                             8:00 PM Onwards
                           </div>
                         </td>
@@ -225,14 +225,16 @@ function generateEmail(imageSrc) {
 
                 <!-- Venue Row -->
                 <tr>
-                  <td colspan="2" style="padding-top: 10px;">
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFE600" class="dark-preserve-yellow" style="background-color: #FFE600; background-image: linear-gradient(to bottom, #FFE600, #FFE600); border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
+                  <td style="padding: 14px 16px; background-color: #FFE600; background-image: linear-gradient(to bottom, #FFE600, #FFE600);">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td style="padding: 14px 16px;">
-                          <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 8px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
-                            [ COORDINATES // VENUE ]
+                        <td width="90" valign="middle">
+                          <div style="display: inline-block; background-color: #C41230; color: #FFFFFF; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 11px; padding: 3px 6px; letter-spacing: 1px; border: 1px solid #000000; border-radius: 2px;">
+                            LOCATION
                           </div>
-                          <div class="venue-text" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 22px; color: #C41230; letter-spacing: 1px;">
+                        </td>
+                        <td valign="middle" align="left">
+                          <div class="venue-lg" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 24px; color: #C41230; letter-spacing: 1px; line-height: 1.1;">
                             AC-03-LR-003
                           </div>
                         </td>
@@ -240,35 +242,36 @@ function generateEmail(imageSrc) {
                     </table>
                   </td>
                 </tr>
+
               </table>
             </td>
           </tr>
 
-          <!-- ═════ 6. NARRATIVE BODY (RETRO MARVEL COMIC COPY) ═════ -->
+          <!-- ═════ 6. NARRATIVE BODY (COMIC PROSE) ═════ -->
           <tr>
-            <td class="content-padding dark-preserve-white" style="padding: 0 20px 18px 20px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
-              <p class="dark-text-black" style="margin: 0 0 12px 0; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222222;">
+            <td class="content-pad bg-locked-white" style="padding: 0 22px 18px 22px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
+              <p class="txt-black" style="margin: 0 0 12px 0; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222222;">
                 In the spirit of the imminent release of the highly-anticipated <strong>'Avengers: Doomsday'</strong>, we are hosting a Marvel-themed quiz.
               </p>
-              <p class="dark-text-black" style="margin: 0; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222222;">
-                Doctor Doom has cast his shadow across the Multiverse &mdash; from the classic comic panels of Stan Lee and Jack Kirby to the Marvel Cinematic Universe. Bring your squad, test your lore, and prepare for battle!
+              <p class="txt-black" style="margin: 0; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222222;">
+                Doctor Doom has cast his shadow across the Multiverse &mdash; from classic comic lore to the MCU. Bring your squad, test your trivia, and prepare for battle!
               </p>
             </td>
           </tr>
 
-          <!-- ═════ 7. THE LOOT: GIANI'S COUPONS ACTION BURST ═════ -->
+          <!-- ═════ 7. THE LOOT: GIANI'S COUPONS BURST ═════ -->
           <tr>
-            <td class="content-padding dark-preserve-white" style="padding: 0 20px 18px 20px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#C41230" class="dark-preserve-red" style="background-color: #C41230; background-image: linear-gradient(to bottom, #C41230, #C41230); border: 3px solid #000000; box-shadow: 4px 4px 0px #000000;">
+            <td class="content-pad bg-locked-white" style="padding: 0 22px 18px 22px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#C41230" class="bg-locked-red" style="background-color: #C41230; background-image: linear-gradient(to bottom, #C41230, #C41230); border: 2.5px solid #000000; box-shadow: 3.5px 3.5px 0px #000000; border-radius: 6px;">
                 <tr>
                   <td style="padding: 16px 18px;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td align="center">
-                          <div style="display: inline-block; background-color: #FFE600; color: #000000; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 12px; letter-spacing: 2px; padding: 2px 10px; border: 1.5px solid #000000; text-transform: uppercase;">
+                          <div style="display: inline-block; background-color: #FFE600; color: #000000; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 11px; letter-spacing: 2px; padding: 2px 10px; border: 1.5px solid #000000; text-transform: uppercase; border-radius: 2px;">
                             VICTORY BOUNTY
                           </div>
-                          <div class="bounty-text dark-text-white" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 21px; color: #FFFFFF; letter-spacing: 1px; margin-top: 8px; text-transform: uppercase;">
+                          <div class="bounty-lg txt-white" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 21px; color: #FFFFFF; letter-spacing: 1px; margin-top: 8px; text-transform: uppercase; line-height: 1.25;">
                             PULL UP AND GET A CHANCE TO WIN GIANI'S COUPONS!
                           </div>
                           <div style="font-family: 'Trebuchet MS', Arial, sans-serif; font-size: 13px; color: #FFF8DB; margin-top: 6px; font-weight: bold;">
@@ -283,16 +286,16 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 8. \"OPEN TO ALL\" RETRO COMIC BULLETIN ═════ -->
+          <!-- ═════ 8. \"OPEN TO ALL\" NOTICE SPEECH CARD ═════ -->
           <tr>
-            <td class="content-padding dark-preserve-white" style="padding: 0 20px 22px 20px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F0F3F8" style="background-color: #F0F3F8; background-image: linear-gradient(to bottom, #F0F3F8, #F0F3F8); border: 3px solid #000000; border-radius: 3px; box-shadow: 4px 4px 0px #000000;">
+            <td class="content-pad bg-locked-white" style="padding: 0 22px 22px 22px; background-color: #FFFFFF; background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF);">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1F5F9" style="background-color: #F1F5F9; background-image: linear-gradient(to bottom, #F1F5F9, #F1F5F9); border: 2.5px solid #000000; border-radius: 6px; box-shadow: 3.5px 3.5px 0px #000000;">
                 <tr>
                   <td style="padding: 14px 16px;">
-                    <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 11px; letter-spacing: 1.5px; padding: 2px 8px; border: 1px solid #000000; margin-bottom: 8px; text-transform: uppercase;">
+                    <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 11px; letter-spacing: 1.5px; padding: 2px 8px; border: 1px solid #000000; margin-bottom: 8px; text-transform: uppercase; border-radius: 2px;">
                       NOTICE TO ALL RECRUITS &amp; VARIANTS
                     </div>
-                    <div class="dark-text-black" style="font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.55; color: #111111;">
+                    <div class="txt-black" style="font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.55; color: #111111;">
                       <strong>NOTE:</strong> You do <strong>not</strong> need to be a member of the Quiz Club to attend quizzes! <strong>All quizzes are open to all</strong> &mdash; all batches, majors, variants, and casual fans are welcome. Just pull up!
                     </div>
                   </td>
@@ -301,24 +304,24 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 9. RETRO BULLPEN SIGN-OFF & FOOTER ═════ -->
+          <!-- ═════ 9. RETRO BULLPEN FOOTER ═════ -->
           <tr>
-            <td bgcolor="#000000" style="background-color: #000000; background-image: linear-gradient(to bottom, #000000, #000000); padding: 20px 18px; border-top: 4px solid #000000;">
+            <td bgcolor="#000000" style="background-color: #000000; background-image: linear-gradient(to bottom, #000000, #000000); padding: 20px 22px; border-top: 3px solid #000000;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td align="left" valign="middle">
-                    <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #FFE600; letter-spacing: 1px;">
+                    <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 15px; color: #FFE600; letter-spacing: 1px;">
                       REGARDS,
                     </div>
-                    <div class="dark-text-white" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 22px; color: #FFFFFF; letter-spacing: 1.5px; margin-top: 2px;">
+                    <div class="txt-white" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 21px; color: #FFFFFF; letter-spacing: 1.5px; margin-top: 2px;">
                       THE QUIZZING CLUB
                     </div>
-                    <div style="font-family: 'Courier New', Courier, monospace; font-size: 11px; color: #AAAAAA; margin-top: 6px; letter-spacing: 0.5px;">
+                    <div style="font-family: 'Courier New', Courier, monospace; font-size: 11px; color: #AAAAAA; margin-top: 5px; letter-spacing: 0.5px;">
                       Ashoka University &bull; Special Dispatch
                     </div>
                   </td>
                   <td align="right" valign="middle">
-                    <div style="display: inline-block; background-color: #FFE600; color: #000000; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 13px; padding: 6px 12px; border: 2px solid #FFFFFF; letter-spacing: 1px;">
+                    <div style="display: inline-block; background-color: #FFE600; color: #000000; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 13px; padding: 6px 12px; border: 2px solid #FFFFFF; letter-spacing: 1px; border-radius: 3px;">
                       EXCELSIOR!
                     </div>
                   </td>
@@ -328,12 +331,12 @@ function generateEmail(imageSrc) {
           </tr>
 
         </table>
-        <!-- End Main Fluid Table -->
+        <!-- End Main Fluid Card -->
 
-        <!-- Subtle Email Client Footer Note -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="main-table" style="max-width: 620px; width: 100%; margin: 12px auto;">
+        <!-- Client Footnote -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="card-wrap" style="max-width: 580px; width: 100%; margin: 12px auto;">
           <tr>
-            <td align="center" style="font-family: 'Courier New', Courier, monospace; font-size: 10px; color: #555555;">
+            <td align="center" style="font-family: 'Courier New', Courier, monospace; font-size: 10px; color: #666666;">
               Sent with retro comic ink by The Quizzing Club &bull; Road to Doomsday
             </td>
           </tr>
@@ -360,4 +363,4 @@ if (fs.existsSync(monorepoEmailDir)) {
   fs.writeFileSync(path.join(monorepoEmailDir, 'email_embed.html'), generateEmail(posterDataUri), 'utf8');
 }
 
-console.log('Successfully generated beige-background dark-mode locked email templates!');
+console.log('Successfully generated beautiful mobile-first retro email templates!');
