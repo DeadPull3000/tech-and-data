@@ -38,6 +38,12 @@
   const akSearchInput = document.getElementById('ak-search-input');
   const akTotalCount = document.getElementById('ak-total-count');
 
+  // Instructions & Format Guide Elements
+  const btnToggleInstructions = document.getElementById('btn-toggle-instructions');
+  const btnCloseInstructions = document.getElementById('btn-close-instructions');
+  const btnProjectInstructions = document.getElementById('btn-project-instructions');
+  const panelInstructionsGuide = document.getElementById('panel-instructions-guide');
+
   // Timer Controls
   const timerDisplay = document.getElementById('timer-display');
   const timerDuration = document.getElementById('timer-duration');
@@ -993,16 +999,42 @@
     };
   }
 
-  // Hotkey: 'A' toggles Answer Key (when not focused on text input), 'Escape' closes it
+  // Instructions & Format Guide Event Listeners
+  if (btnToggleInstructions && panelInstructionsGuide) {
+    btnToggleInstructions.onclick = () => {
+      const isHidden = panelInstructionsGuide.classList.toggle('hidden');
+      if (!isHidden) {
+        panelInstructionsGuide.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+  }
+
+  if (btnCloseInstructions && panelInstructionsGuide) {
+    btnCloseInstructions.onclick = () => {
+      panelInstructionsGuide.classList.add('hidden');
+    };
+  }
+
+  if (btnProjectInstructions) {
+    btnProjectInstructions.onclick = () => {
+      send('set_scene', { scene: 'instructions' });
+      highlightScene('instructions');
+    };
+  }
+
+  // Hotkey: 'A' toggles Answer Key, 'I' toggles Instructions Guide, 'Escape' closes both
   window.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-      if (e.key === 'Escape' && panelAnswerKey && !panelAnswerKey.classList.contains('hidden')) {
-        panelAnswerKey.classList.add('hidden');
+      if (e.key === 'Escape') {
+        if (panelAnswerKey && !panelAnswerKey.classList.contains('hidden')) panelAnswerKey.classList.add('hidden');
+        if (panelInstructionsGuide && !panelInstructionsGuide.classList.contains('hidden')) panelInstructionsGuide.classList.add('hidden');
       }
       return;
     }
     if (e.key === 'a' || e.key === 'A') {
       if (btnToggleAk) btnToggleAk.click();
+    } else if (e.key === 'i' || e.key === 'I') {
+      if (btnToggleInstructions) btnToggleInstructions.click();
     } else if (e.key === 'n' || e.key === 'N' || e.key === 'ArrowRight') {
       if (btnNextQ) btnNextQ.click();
     } else if (e.key === 'p' || e.key === 'P' || e.key === 'ArrowLeft') {
@@ -1012,6 +1044,9 @@
     } else if (e.key === 'Escape') {
       if (panelAnswerKey && !panelAnswerKey.classList.contains('hidden')) {
         panelAnswerKey.classList.add('hidden');
+      }
+      if (panelInstructionsGuide && !panelInstructionsGuide.classList.contains('hidden')) {
+        panelInstructionsGuide.classList.add('hidden');
       }
     }
   });

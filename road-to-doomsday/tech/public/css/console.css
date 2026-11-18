@@ -762,3 +762,64 @@ body {
   justify-content: flex-end;
   margin-top: auto;
 }
+
+/* ── QM Format & Instructions Guide ── */
+#panel-instructions-guide.hidden {
+  display: none;
+}
+
+.qm-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.qm-guide-card {
+  background: #19192b;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.qm-guide-card-head {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  border-bottom: 1px dashed var(--panel-border);
+  padding-bottom: 6px;
+}
+
+.qm-guide-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.qm-guide-list li {
+  margin-bottom: 6px;
+}
+
+.qm-guide-list strong {
+  color: #fff;
+}
+
+kbd {
+  display: inline-block;
+  background: #2b2b45;
+  border: 1px solid #4a4a6e;
+  border-bottom: 2px solid #33334d;
+  color: #f3f4f6;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin: 0 2px;
+}
