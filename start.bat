@@ -34,4 +34,4 @@ echo Press Ctrl+C or close this window to stop the server.
 echo.
 
 :: Keep window open
-node server.js
+pause >nul
