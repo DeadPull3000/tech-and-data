@@ -25,6 +25,7 @@
     <span class="bar-label">SCENE</span>
     <div class="scene-buttons">
       <button class="scene-btn active" data-scene="attract">Attract</button>
+      <button class="scene-btn" data-scene="instructions">📜 Instructions &amp; Format</button>
       <button class="scene-btn" data-scene="prelims_timer">Prelims Timer</button>
       <button class="scene-btn" data-scene="team_reveal">Team Reveal</button>
       <button class="scene-btn" data-scene="question">Question</button>
@@ -68,7 +69,8 @@
         <button id="btn-reveal-hint" class="btn btn-sm btn-gold"><img src="images/lightbulb.svg" class="custom-lightbulb-icon" alt="" aria-hidden="true"> Reveal Hint</button>
         <button id="btn-reveal-answer" class="btn btn-sm btn-green">★ Reveal Answer</button>
         <button id="btn-next-q" class="btn btn-sm btn-primary">Next: Reveal Answer ▶</button>
-        <button id="btn-toggle-ak" class="btn btn-sm btn-green" style="margin-left:auto">📖 View Answer Key (All Rounds)</button>
+        <button id="btn-toggle-instructions" class="btn btn-sm btn-gold" style="margin-left:auto">📜 Quiz Format &amp; Instructions Guide</button>
+        <button id="btn-toggle-ak" class="btn btn-sm btn-green">📖 View Answer Key (All Rounds)</button>
       </div>
       <details class="q-loader">
         <summary>Load Questions (JSON)</summary>
@@ -100,6 +102,68 @@
 
       <div class="ak-grid" id="ak-cards-container">
         <!-- Generated Question Cards -->
+      </div>
+    </section>
+
+    <!-- ── 3C. Quiz Format & Instructions Guide (QM Console Drawer) ── -->
+    <section class="panel panel-wide hidden" id="panel-instructions-guide">
+      <div class="ak-header">
+        <div>
+          <h2>📜 QUIZMASTER MANUAL &bull; RULES, FORMAT &amp; SHORTCUTS</h2>
+          <span class="ak-sub">Quick operational reference for hosting the Road to Doomsday Quiz</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button id="btn-project-instructions" class="btn btn-sm btn-gold">▶ Project Instructions on Screen</button>
+          <button id="btn-close-instructions" class="btn btn-sm btn-red">✕ Close Guide</button>
+        </div>
+      </div>
+
+      <div class="qm-guide-grid">
+        <!-- Card 1: Quiz Acts & Points -->
+        <div class="qm-guide-card">
+          <div class="qm-guide-card-head" style="color:var(--gold);">★ ACTS &amp; POINT STRUCTURE</div>
+          <ul class="qm-guide-list">
+            <li><strong>Prelims (Written, 25 Qs):</strong> 10 pts each across 5 categories. Top qualifying squads reach Finals.</li>
+            <li><strong>Round 1 — Multiverse Files (10 Qs):</strong> 10 pts per question. Buzzer &amp; pounce enabled.</li>
+            <li><strong>Round 2 — Incursion Protocol (10 Qs):</strong> 2&times;5 Grid. Pick <em>Earth-616</em> (+10 pts) or <em>Earth-838</em> (+20 pts).</li>
+            <li><strong>Round 3 — Doomsday Gauntlet (20 Qs):</strong> Rapid Fire (+10 pts, Qs 1-10), Escalation (+15 pts, Qs 11-19), Finale (+25 pts, Q20).</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Combat & Scoring Rules -->
+        <div class="qm-guide-card">
+          <div class="qm-guide-card-head" style="color:#4ade80;">⚡ BUZZER &amp; POUNCE PROTOCOL</div>
+          <ul class="qm-guide-list">
+            <li><strong>Buzzer:</strong> First team to buzz gets the chance to answer. Arm/Disarm with <code>Buzzer</code> panel.</li>
+            <li><strong>Pounce Window:</strong> Open pounce before reading answer. Correct = <strong>+10 pts</strong>, Incorrect = <strong>-5 pts penalty</strong>.</li>
+            <li><strong>Auto-Grade:</strong> Click <em>⚡ Auto-Grade Matches</em> to automatically score fuzzy-matched answers.</li>
+            <li><strong>Doomsday Clock:</strong> Wrong buzzer attempts tick the Doom Clock +1 level closer to midnight (Level 12).</li>
+          </ul>
+        </div>
+
+        <!-- Card 3: QM 2-Step Question Transition -->
+        <div class="qm-guide-card">
+          <div class="qm-guide-card-head" style="color:#60a5fa;">▶ TWO-STEP QUESTION NAVIGATION</div>
+          <ul class="qm-guide-list">
+            <li><strong>Step 1 (First Click / N):</strong> Slams in the animated retro comic <em>Answer Card</em> with SFX on the projector. Button turns to <em>Next: Advance Question ⏭</em>.</li>
+            <li><strong>Step 2 (Second Click / N):</strong> Advances to the next question with the 3D comic deck flip and resets the reveal state.</li>
+            <li><strong>Manual Reveal:</strong> Click <em>★ Reveal Answer</em> to reveal anytime without advancing.</li>
+          </ul>
+        </div>
+
+        <!-- Card 4: Keyboard Shortcuts Cheatsheet -->
+        <div class="qm-guide-card">
+          <div class="qm-guide-card-head" style="color:#f472b6;">⌨️ KEYBOARD SHORTCUTS</div>
+          <ul class="qm-guide-list">
+            <li><kbd>N</kbd> or <kbd>→</kbd> : Next (1st press = Reveal Answer, 2nd press = Advance Question)</li>
+            <li><kbd>P</kbd> or <kbd>←</kbd> : Previous Question</li>
+            <li><kbd>R</kbd> : Reveal Answer on Display</li>
+            <li><kbd>H</kbd> : Reveal Hint on Display</li>
+            <li><kbd>A</kbd> : Toggle All-Rounds Master Answer Key</li>
+            <li><kbd>I</kbd> : Toggle this Instructions &amp; Format Guide</li>
+            <li><kbd>Esc</kbd> : Close open drawers / modals</li>
+          </ul>
+        </div>
       </div>
     </section>
 

@@ -9,6 +9,7 @@
   // ─── DOM Elements ────────────────────────────────────────────────
   const scenes = {
     attract: document.getElementById('scene-attract'),
+    instructions: document.getElementById('scene-instructions'),
     prelims_timer: document.getElementById('scene-prelims_timer'),
     team_reveal: document.getElementById('scene-team_reveal'),
     question: document.getElementById('scene-question'),
