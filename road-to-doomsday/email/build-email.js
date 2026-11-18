@@ -223,6 +223,26 @@ function generateEmail(imageSrc) {
                   </td>
                 </tr>
 
+                <!-- Squad / Team Size Row -->
+                <tr>
+                  <td style="padding: 13px 16px; border-bottom: 2px solid #000000; background-color: #F8FAFC; background-image: linear-gradient(to bottom, #F8FAFC, #F8FAFC);">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td width="90" valign="middle">
+                          <div style="display: inline-block; background-color: #000000; color: #38BDF8; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 3px 6px; letter-spacing: 1px; border-radius: 2px;">
+                            [ TEAMS ]
+                          </div>
+                        </td>
+                        <td valign="middle" align="left">
+                          <div class="txt-black" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 17px; color: #000000; letter-spacing: 0.5px;">
+                            Teams of 2&ndash;3 can participate
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
                 <!-- Venue Row -->
                 <tr>
                   <td style="padding: 14px 16px; background-color: #FFE600; background-image: linear-gradient(to bottom, #FFE600, #FFE600);">
@@ -296,7 +316,7 @@ function generateEmail(imageSrc) {
                       NOTICE TO ALL RECRUITS &amp; VARIANTS
                     </div>
                     <div class="txt-black" style="font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.55; color: #111111;">
-                      <strong>NOTE:</strong> You do <strong>not</strong> need to be a member of the Quiz Club to attend quizzes! <strong>All quizzes are open to all</strong> &mdash; all batches, majors, variants, and casual fans are welcome. Just pull up!
+                      <strong>NOTE:</strong> Teams of 2&ndash;3 can participate. You do <strong>not</strong> need to be a member of the Quiz Club to attend quizzes! <strong>All quizzes are open to all</strong> &mdash; all batches, majors, variants, and casual fans are welcome. Just pull up!
                     </div>
                   </td>
                 </tr>
