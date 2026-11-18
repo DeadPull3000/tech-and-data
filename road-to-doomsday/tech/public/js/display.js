@@ -33,6 +33,10 @@
   const comicSfxWord = document.getElementById('comic-sfx-word');
   const qHintCard = document.getElementById('q-hint-card');
   const qHintText = document.getElementById('q-hint-text');
+  const qAnswerCard = document.getElementById('q-answer-card');
+  const answerStampWord = document.getElementById('answer-stamp-word');
+  const qAnswerText = document.getElementById('q-answer-text');
+  const qAnswerAlts = document.getElementById('q-answer-alts');
 
   const COMIC_ACTION_WORDS = ['POW!', 'BAM!', 'SNIKT!', 'THWIP!', 'KRAK!', 'ZAP!', 'WHAM!', 'BOOM!'];
   let actionWordIdx = 0;
@@ -60,7 +64,7 @@
     'X-MEN',
     'COSMIC',
     'STREET-LEVEL',
-    'BEHIND THE PANEL'
+    'MCU VAULT'
   ];
 
   // ─── Audio Synthesis (Retro Web Audio API Chiptune/SFX) ──────────
@@ -237,9 +241,12 @@
 
   // 1. Question Display
   function renderQuestion(q, index) {
-    // Hide hint card on new question
+    // Hide hint and answer cards on new question
     if (qHintCard) {
       qHintCard.classList.add('hidden');
+    }
+    if (qAnswerCard) {
+      qAnswerCard.classList.add('hidden');
     }
 
     if (!q) {
@@ -285,6 +292,39 @@
       qTimerBar.style.width = '100%';
       qTimerBar.style.backgroundColor = '#2D6A4F';
     }
+  }
+
+  function renderAnswerReveal(answer, acceptableAnswers) {
+    if (!qAnswerCard || !qAnswerText) return;
+
+    // Pick a dramatic punchy comic word
+    const burstWords = ['BOOM!', 'WHAM!', 'POW!', 'KABOOM!', 'BAM!', 'THWAM!', 'ZAP!', 'SHRAK!'];
+    const burstWord = burstWords[Math.floor(Math.random() * burstWords.length)];
+    if (answerStampWord) {
+      answerStampWord.textContent = burstWord;
+    }
+
+    qAnswerText.textContent = answer || '—';
+
+    if (qAnswerAlts) {
+      if (acceptableAnswers && acceptableAnswers.length > 0) {
+        qAnswerAlts.innerHTML = `
+          <span class="answer-alts-label">Accepted Variations:</span>
+          ${acceptableAnswers.map(a => `<span class="answer-alt-pill">${a}</span>`).join('')}
+        `;
+        qAnswerAlts.classList.remove('hidden');
+      } else {
+        qAnswerAlts.innerHTML = '';
+        qAnswerAlts.classList.add('hidden');
+      }
+    }
+
+    // Trigger slam animation
+    qAnswerCard.classList.remove('hidden');
+    void qAnswerCard.offsetWidth; // Reflow to restart keyframe animation
+
+    // Audio fanfare
+    playSynthSFX('correct');
   }
 
   // 2. Scoreboard
@@ -620,6 +660,13 @@
             qHintText.textContent = payload.hint;
             qHintCard.classList.remove('hidden');
             playSynthSFX('buzz');
+          }
+          break;
+        }
+
+        case 'answer_revealed': {
+          if (payload) {
+            renderAnswerReveal(payload.answer, payload.acceptableAnswers);
           }
           break;
         }

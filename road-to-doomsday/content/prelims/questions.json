@@ -2,51 +2,201 @@
   {
     "category": "Heroes & Origins",
     "questions": [
-      { "num": 1, "text": "Before becoming Iron Man, Tony Stark graduated from which elite real-world institute at age 17?", "answer": "MIT (Massachusetts Institute of Technology)", "hint": "Located in Cambridge, Massachusetts, where engineering geeks build robots while dropping calculators." },
-      { "num": 2, "text": "What is the alias adopted by Bucky Barnes after being brainwashed by Soviet intelligence with a cybernetic arm?", "answer": "The Winter Soldier", "hint": "Think the coldest season of the calendar plus armed military personnel." },
-      { "num": 3, "text": "Which mutant superhero's secondary mutation allowed him to transform into a beast with blue fur and feline features?", "answer": "Beast (Dr. Henry 'Hank' McCoy)", "hint": "He's a literate, Shakespeare-quoting gentleman who literally looks like a giant blue gorilla-cat." },
-      { "num": 4, "text": "In the MCU, what is the full name of the artificial intelligence that preceded FRIDAY in Tony Stark's suits?", "answer": "J.A.R.V.I.S. (Just A Rather Very Intelligent System)", "hint": "Named after Howard Stark's loyal butler, but upgraded with millions of silicon transistors." },
-      { "num": 5, "text": "What cosmic artifact gives the Nova Corps their power and is stored in the Worldmind?", "answer": "The Nova Force", "hint": "Supernova minus the 'super'—it powers human rockets across the galaxy." }
+      {
+        "num": 1,
+        "text": "Before building high-tech armor suits in caves and blowing up tanks with Jericho missiles, billionaire playboy philanthropist Tony Stark graduated at the tender age of 17 summa cum laude from which elite real-world Cambridge, Massachusetts engineering institute?",
+        "answer": "MIT (Massachusetts Institute of Technology)",
+        "acceptableAnswers": ["MIT", "Massachusetts Institute of Technology"],
+        "hint": "Located in Cambridge, Massachusetts, where engineering geeks build autonomous robots while dropping graphing calculators down stairwells."
+      },
+      {
+        "num": 2,
+        "text": "In Captain America: The Winter Soldier, Steve Rogers discovers his childhood best friend Bucky Barnes didn't die falling from that train in 1945, but was instead recovered by Hydra, brainwashed with trigger words like 'Longing', 'Seventeen', and 'Freight Car', and fitted with a bionic arm. By what chilling seasonal moniker was this legendary ghost assassin known?",
+        "answer": "The Winter Soldier",
+        "acceptableAnswers": ["Winter Soldier", "The Winter Soldier", "Bucky Barnes"],
+        "hint": "Think the coldest season of the calendar plus armed military personnel—definitely not an Autumn Soldier."
+      },
+      {
+        "num": 3,
+        "text": "Dr. Henry 'Hank' McCoy is a biochemist who quotes Shakespeare, holds six PhDs, and serves as the X-Men's resident intellect. However, an experimental serum he drank in an attempt to cure his mutations backfired spectacularly, triggering a secondary mutation that gave him blue fur, claws, and feline physiology. What ironic superhero alias does this otherwise cultured gentleman go by?",
+        "answer": "Beast (Dr. Henry 'Hank' McCoy)",
+        "acceptableAnswers": ["Beast", "Hank McCoy", "Dr. Hank McCoy"],
+        "hint": "He's a refined gentleman who literally looks like a giant blue acrobatic gorilla-cat wearing reading glasses!"
+      },
+      {
+        "num": 4,
+        "text": "Before Tony Stark switched to the Irish-accented FRIDAY, his Iron Man suits and Malibu mansion were managed by a dryly sarcastic, British-accented AI voiced by Paul Bettany. Named as a tribute to Howard Stark's loyal butler, what is the full humorous backronym behind this AI's name?",
+        "answer": "J.A.R.V.I.S. (Just A Rather Very Intelligent System)",
+        "acceptableAnswers": ["JARVIS", "J.A.R.V.I.S.", "Just A Rather Very Intelligent System"],
+        "hint": "Just A Rather Very Intelligent System—because Tony couldn't even name a hard drive without making a cheeky pun."
+      },
+      {
+        "num": 5,
+        "text": "On the planet Xandar, the Nova Corps draws their superhuman flight, energy projection, and gravitational manipulation from a quasi-sentient supercomputer called the Worldmind. What is the name of this limitless cosmic energy field that powers every Centurion from Rhomann Dey to Richard Rider?",
+        "answer": "The Nova Force",
+        "acceptableAnswers": ["Nova Force", "The Nova Force"],
+        "hint": "Take the Corps' first name and add 'Force'—guaranteed to turn ordinary space cops into human rockets."
+      }
     ]
   },
   {
     "category": "Villains & Conflicts",
     "questions": [
-      { "num": 6, "text": "What is the real civilian surname of Norman Osborn's alter ego, Spider-Man's greatest nemesis?", "answer": "Green Goblin", "hint": "He rides a glider tossing explosive pumpkin spice lattes while laughing hysterically." },
-      { "num": 7, "text": "Which mutant clone of Wolverine, created by the Facility, later assumed the mantle of the All-New Wolverine?", "answer": "Laura Kinney / X-23", "hint": "Named after a Roman numeral for 10 plus 13—her foot claws make pedicures impossible." },
-      { "num": 8, "text": "In the 'Days of Future Past' timeline, what mutant-hunting robotic autonomous entities govern North America?", "answer": "Sentinels (Nimrod)", "hint": "Towering purple robotic watchmen whose single job is scanning for X-genes and getting demolished by Wolverine." },
-      { "num": 9, "text": "What ancient mutant known as En Sabah Nur believes strictly in the doctrine of 'survival of the fittest'?", "answer": "Apocalypse", "hint": "Ancient Egyptian mutant who thinks four horsemen are the ultimate eco-friendly method of public transit." },
-      { "num": 10, "text": "Doctor Octopus founded which collective of six supervillains to defeat Spider-Man?", "answer": "The Sinister Six", "hint": "Doc Ock realized five villains wasn't enough to squash an arachnid, so he rounded up half a dozen." }
+      {
+        "num": 6,
+        "text": "Which billionaire CEO of Oscorp drank an untested human performance enhancer, developed a cackling split personality, dressed up in purple and green chainmail, and spent decades flying on a bat glider tossing explosive pumpkin spice lattes at Spider-Man?",
+        "answer": "Green Goblin (Norman Osborn)",
+        "acceptableAnswers": ["Green Goblin", "Norman Osborn", "Goblin"],
+        "hint": "He's Norman Osborn, and if your best friend's dad keeps laughing maniacally while flying a jet glider, you should probably pick new study buddies."
+      },
+      {
+        "num": 7,
+        "text": "Created by the shadowy Facility from a damaged genetic sample of Weapon X, this deadly female mutant possesses Wolverine's regenerative healing factor and retractable adamantium claws—two in each hand and one in each foot. What is her original alphanumeric codename (and later alias)?",
+        "answer": "Laura Kinney / X-23 (All-New Wolverine)",
+        "acceptableAnswers": ["X-23", "Laura Kinney", "X23", "Wolverine"],
+        "hint": "Named after a Roman numeral for 10 plus 13—her foot claws make getting pedicures a hazardous occupation."
+      },
+      {
+        "num": 8,
+        "text": "In the dystopian 'Days of Future Past' timeline, what towering, purple-and-magenta robotic entities were manufactured by Bolivar Trask to detect the mutant X-gene, eventually taking over North America and enslaving superhumanity in internment camps?",
+        "answer": "Sentinels (Nimrod)",
+        "acceptableAnswers": ["Sentinels", "Sentinel", "Nimrod"],
+        "hint": "Towering robotic watchmen whose single job is scanning for mutants and getting their heads sliced off by Wolverine's claws."
+      },
+      {
+        "num": 9,
+        "text": "Born over 5,000 years ago in Ancient Egypt under the birth name En Sabah Nur, this blue-lipped mutant with alien celestial tech believes strictly in ruthless 'survival of the fittest' and famously recruits four mutant disciples as his Harbingers of Death, Famine, Pestilence, and War. What world-ending moniker does he go by?",
+        "answer": "Apocalypse (En Sabah Nur)",
+        "acceptableAnswers": ["Apocalypse", "En Sabah Nur"],
+        "hint": "En Sabah Nur thinks four horsemen are the ultimate eco-friendly method of global extinction!"
+      },
+      {
+        "num": 10,
+        "text": "After suffering repeated solo embarrassments against Spider-Man, Dr. Otto Octavius decided that villainy is a numbers game. In 'The Amazing Spider-Man Annual #1' (1964), he assembled Electro, Kraven the Hunter, Mysterio, Sandman, and Vulture under what iconic numerical team name?",
+        "answer": "The Sinister Six",
+        "acceptableAnswers": ["Sinister Six", "The Sinister Six"],
+        "hint": "Doc Ock realized five supervillains wasn't enough to squash one spider, so he rounded up half a dozen."
+      }
     ]
   },
   {
-    "category": "Behind the Panel (Meta & Creators)",
+    "category": "Marvel Cinematic Universe (MCU Vault)",
     "questions": [
-      { "num": 11, "text": "Which comic book writer wrote the legendary 'Demon in a Bottle' arc addressing Tony Stark's alcoholism in 1979?", "answer": "David Michelinie (with Bob Layton)", "hint": "A storyline so poignant it proved even Iron Man's golden titanium suit can't deflect liver damage." },
-      { "num": 12, "text": "What four-word catchphrase was famously used by Stan Lee as his sign-off in monthly Marvel Bullpen Bulletins?", "answer": "Excelsior!", "hint": "Latin for 'ever upward'—Stan's unmistakable one-word catchphrase of pure optimism!" },
-      { "num": 13, "text": "In 1992, seven top artists left Marvel to form what competitor publisher responsible for Spawn and Savage Dragon?", "answer": "Image Comics", "hint": "They wanted artistic freedom, so they created an 'Image' of their own." },
-      { "num": 14, "text": "Which British writer penned the transformative 1980s run of Thor, introducing Beta Ray Bill?", "answer": "Walt Simonson", "hint": "He gave Thor a horse-faced alien brother and once turned the Odinson into an amphibian (Throg)!" },
-      { "num": 15, "text": "Which Marvel imprint, started in 2000, updated classic characters for contemporary audiences without 40 years of continuity baggage?", "answer": "Ultimate Marvel (Earth-1610)", "hint": "Earth-1610, where Spider-Man was a millennial kid again and Nick Fury was modeled after Samuel L. Jackson." }
+      {
+        "num": 11,
+        "text": "In 2008's 'Iron Man', after three harrowing months eating cave sludge in Afghanistan and hammering together the Mark I armor, Tony Stark returns to the United States. Before sitting flat on the floor for his historic press conference, he famously demands two immediate things: that the press briefing happen right now, and an American cheeseburger from which real-world fast-food royal establishment—a detail Robert Downey Jr. insisted on because eating an unpalatably greasy burger there in 2003 genuinely inspired him to throw his substances into the ocean and turn his life around?",
+        "answer": "Burger King",
+        "acceptableAnswers": ["Burger King", "BK"],
+        "hint": "The King of flame-broiled burgers whose greasy Whopper allegedly snapped RDJ back to reality—talk about a royal reboot!"
+      },
+      {
+        "num": 12,
+        "text": "The iconic post-credits scene of 2012's 'The Avengers' features the six battered heroes silently chewing shawarma in a wrecked New York joint after saving the world. The scene was famously shot on the fly during the global press tour just two days before the red-carpet premiere. Throughout the entire sequence, Captain America (Chris Evans) sits with his right hand firmly pressed against his face, refusing to eat or look up. What was the hilarious behind-the-scenes reason for this awkward pose?",
+        "answer": "He had grown a full beard for the movie 'Snowpiercer' (covered by an unconvincing prosthetic jaw)",
+        "acceptableAnswers": ["He had a beard", "Beard for Snowpiercer", "Prosthetic jaw", "Hiding his beard", "Snowpiercer beard", "Prosthetic chin", "Fake chin"],
+        "hint": "He was already boarding a dystopian frozen train and couldn't shave, so Marvel glued on a bulky fake rubber chin that made him look like he just got his wisdom teeth yanked!"
+      },
+      {
+        "num": 13,
+        "text": "In Episode 7 of 'WandaVision', nosy neighbor Agnes finally drops her suburban housewife facade in a wickedly catchy musical montage, gleefully revealing that she had been pulling the strings across Westview the entire time (and confessed to killing Sparky the dog!). What was the title of this viral, Emmy-winning earworm song performed by Kathryn Hahn that briefly hit #1 on the iTunes soundtrack charts?",
+        "answer": "Agatha All Along",
+        "acceptableAnswers": ["Agatha All Along", "It Was Agatha All Along"],
+        "hint": "A song so catchy it won an Emmy and proved you shouldn't leave your pet beagle unsupervised around 300-year-old Salem witches with purple sparklers!"
+      },
+      {
+        "num": 14,
+        "text": "During 'Spider-Man: Homecoming', Peter Parker discovers the Training Wheels Protocol on his Stark suit and panics when his onboard AI Karen activates a lethal combat setting. In 'Avengers: Endgame', on the battlefield of Earth, with the Infinity Gauntlet in hand and hordes of Thanos's Outriders closing in, Peter finally commands Karen to activate this protocol. What is the terrifying, uncharacteristically bloodthirsty two-word name of this feature that deploys four mechanical waldoes and glowing red lenses?",
+        "answer": "Instant Kill (Mode)",
+        "acceptableAnswers": ["Instant Kill", "Instant Kill Mode", "Instant-Kill"],
+        "hint": "Friendly Neighborhood Spider-Man suddenly turns into Unfriendly Cemetery Spider-Man in zero point two seconds flat!"
+      },
+      {
+        "num": 15,
+        "text": "In the season finale of 'Loki' Season 2, after centuries of time-slipping and studying quantum mechanics to fix Victor Timely's Throughput Multiplier, Loki realizes the Temporal Loom cannot accommodate endless branch growth. Sacrificing his freedom, he destroys the Loom with his bare hands, gathers the dying dead branches of the Multiverse, infuses them with his green magic, and sits isolated on the throne at the End of Time. In doing so, he reshapes the multiverse into what colossal mythical Norse cosmic structure?",
+        "answer": "Yggdrasil (The World Tree)",
+        "acceptableAnswers": ["Yggdrasil", "World Tree", "The World Tree"],
+        "hint": "From a petty prince who wanted a shiny golden throne in Stuttgart to the Multiverse's ultimate green WiFi router who literally holds the timeline together with his bare hands as the Norse World Tree!"
+      }
     ]
   },
   {
     "category": "Screen & Adaptations",
     "questions": [
-      { "num": 16, "text": "In Avengers: Infinity War, on which barren planet does Thanos sacrifice Gamora to acquire the Soul Stone?", "answer": "Vormir", "hint": "A steep cliff, a floating Red Skull concierge, and a heartbreaking fall for a green daughter." },
-      { "num": 17, "text": "What song by Blue Swede plays during the opening sequence of Guardians of the Galaxy (2014)?", "answer": "Hooked on a Feeling", "hint": "Ooga-chaka ooga-ooga ooga-chaka! You're definitely trapped in a vibe." },
-      { "num": 18, "text": "Who directed both Spider-Man: Into the Spider-Verse and animated segments of Spider-Man lore?", "answer": "Bob Persichetti, Peter Ramsey, Rodney Rothman", "hint": "A trio of visionary animators whose 12-fps comic-book framerate won an Academy Award." },
-      { "num": 19, "text": "Which actor portrayed Doctor Doom in the 2005 and 2007 Fantastic Four movies directed by Tim Story?", "answer": "Julian McMahon", "hint": "Nip/Tuck star who donned the Latverian mask decades before Robert Downey Jr. was recruited for Doomsday." },
-      { "num": 20, "text": "What MCU series introduced the Time Variance Authority (TVA) and the concept of Sacred Timeline pruning?", "answer": "Loki", "hint": "The God of Mischief finally discovered 'glorious purpose' holding the multiverse together like a green tree." }
+      {
+        "num": 16,
+        "text": "In Avengers: Infinity War, Thanos and Gamora journey to the isolated sixth celestial sphere of the galaxy to claim the Soul Stone, where they are greeted by a ghostly Red Skull acting as a stonekeeper. On what desolate, perpetual-twilight planet does this devastating sacrifice take place?",
+        "answer": "Vormir",
+        "acceptableAnswers": ["Vormir"],
+        "hint": "A steep cliff, a floating Red Skull concierge, and a heartbreaking fall for a green daughter."
+      },
+      {
+        "num": 17,
+        "text": "In the legendary opening credits of Guardians of the Galaxy (2014), Peter Quill lands on the rain-drenched ruins of Morag, kicks alien lizard rats like footballs, and dances with his Sony Walkman cassette player to which 1974 Swedish pop hit by Blue Swede?",
+        "answer": "Hooked on a Feeling",
+        "acceptableAnswers": ["Hooked on a Feeling", "Hooked On A Feeling"],
+        "hint": "Ooga-chaka ooga-ooga ooga-chaka! You're definitely trapped in an intoxicating 70s groove."
+      },
+      {
+        "num": 18,
+        "text": "Spider-Man: Into the Spider-Verse blew minds in 2018 by combining computer animation with hand-drawn comic linework, Ben-Day halftone dots, and a revolutionary 12-frames-per-second staggered framerate. Name any one of the three co-directors who took home the Academy Award for Best Animated Feature for this masterpiece.",
+        "answer": "Bob Persichetti / Peter Ramsey / Rodney Rothman",
+        "acceptableAnswers": ["Bob Persichetti", "Peter Ramsey", "Rodney Rothman", "Persichetti", "Ramsey", "Rothman"],
+        "hint": "Pick from Bob, Peter, or Rodney—these visionaries taught Miles Morales how to take a 'leap of faith' in Nike Air Jordans."
+      },
+      {
+        "num": 19,
+        "text": "Long before Robert Downey Jr. was recruited to conquer the multiverse as Victor von Doom in 2026's 'Avengers: Doomsday', which Australian actor donned the green cape and metallic mask in Tim Story's 2005 and 2007 'Fantastic Four' films?",
+        "answer": "Julian McMahon",
+        "acceptableAnswers": ["Julian McMahon", "McMahon"],
+        "hint": "Nip/Tuck and Charmed star who tried to electrocute Reed Richards decades before Doom went global."
+      },
+      {
+        "num": 20,
+        "text": "Introduced in Phase 4 of the MCU, which bureaucratic retro-futuristic organization operates in null-time outside of space, using Infinity Stones as mundane office paperweights and pruning timeline branches with thermal reset charges?",
+        "answer": "TVA (Time Variance Authority)",
+        "acceptableAnswers": ["TVA", "Time Variance Authority"],
+        "hint": "Three letters where Owen Wilson eats key lime pie and Miss Minutes terrifies everyone with an animated southern drawl."
+      }
     ]
   },
   {
     "category": "Wildcard & Crossovers",
     "questions": [
-      { "num": 21, "text": "In 1996's DC versus Marvel crossover event, who won the fan-voted battle between Batman and Captain America?", "answer": "Batman", "hint": "Because comic nerds firmly believe enough prep time and smoke pellets beats super soldier serum every single time." },
-      { "num": 22, "text": "What fast-talking merc with a mouth is famous for consistently breaking the fourth wall and speaking directly to the reader?", "answer": "Deadpool (Wade Wilson)", "hint": "He loves chimichangas, wears red so bad guys can't see him bleed, and knows he's inside this quiz right now." },
-      { "num": 23, "text": "Which 16-bit arcade brawler released by Konami in 1992 allowed up to six simultaneous players across two screens to fight Magneto's army?", "answer": "X-Men Arcade (1992)", "hint": "'Welcome to die!' shouted Magneto as six kids furiously mashed quarter-munching joystick buttons." },
-      { "num": 24, "text": "Which herald of Galactus was once the astronomer Frankie Raye, possessing pyrokinetic abilities?", "answer": "Nova (Frankie Raye)", "hint": "Shares an alias with a cosmic corpsman, but with fiery human-torch flair." },
-      { "num": 25, "text": "TIEBREAKER / FINAL: Doctor Doom was created by Stan Lee and Jack Kirby, debuting in which milestone 1962 comic issue?", "answer": "The Fantastic Four #5 (July 1962)", "hint": "His high-tech time platform and green cloak first appeared in issue #5 of Marvel's first superhero family." }
+      {
+        "num": 21,
+        "text": "In 1996's historic 'DC versus Marvel' crossover mini-series, the outcomes of the five flagship superhero battles were decided by real-world fan voting ballots. When Captain America traded punches with Batman in a subterranean sewer, who was voted the victor by comic book readers?",
+        "answer": "Batman (Bruce Wayne)",
+        "acceptableAnswers": ["Batman", "Bruce Wayne"],
+        "hint": "Because comic nerds firmly believe enough prep time and smoke pellets beats super soldier serum every single time."
+      },
+      {
+        "num": 22,
+        "text": "Wade Wilson was diagnosed with terminal cancer, endured horrific experimentation in the Weapon X program, gained an accelerated healing factor that made him practically immortal, and realized he is a fictional comic character. Known as the 'Merc with a Mouth', what alias does he go by, who loves chimichangas and breaks the fourth wall to mock this quiz?",
+        "answer": "Deadpool (Wade Wilson)",
+        "acceptableAnswers": ["Deadpool", "Wade Wilson"],
+        "hint": "He wears red so bad guys can't see him bleed, and he's probably complaining right now about how long this question prompt is."
+      },
+      {
+        "num": 23,
+        "text": "Which legendary 16-bit arcade brawler released by Konami in 1992 featured a dual-monitor cabinet allowing up to six simultaneous players to play as Cyclops, Colossus, Wolverine, Storm, Nightcrawler, and Dazzler, famous for Magneto screaming 'Welcome to die!'?",
+        "answer": "X-Men Arcade (1992)",
+        "acceptableAnswers": ["X-Men Arcade", "X-Men", "X-Men (1992)"],
+        "hint": "'Welcome to die!' shouted Magneto as six kids furiously mashed quarter-munching joystick buttons."
+      },
+      {
+        "num": 24,
+        "text": "Originally introduced as Johnny Storm's college girlfriend, this astronomer was exposed to the same cosmic chemicals that created the Human Torch, gained pyrokinetic powers, and volunteered to become a herald of Galactus to save Earth. By what fiery cosmic alias was Frankie Raye known?",
+        "answer": "Nova (Frankie Raye)",
+        "acceptableAnswers": ["Nova", "Frankie Raye"],
+        "hint": "Shares her cosmic codename with Richard Rider's corps, but with flaming hair and a golden star-cruising surfboard!"
+      },
+      {
+        "num": 25,
+        "text": "TIEBREAKER / FINALE: Victor von Doom was created by Stan Lee and Jack Kirby as the arrogant, scarred monarch of Latveria who combines cutting-edge cybernetics with dark sorcery. In which milestone 1962 comic issue did Doctor Doom make his historic first appearance?",
+        "answer": "The Fantastic Four #5 (July 1962)",
+        "acceptableAnswers": ["The Fantastic Four #5", "Fantastic Four #5", "FF #5", "Fantastic Four 5", "Issue 5"],
+        "hint": "His time machine platform and emerald hooded tunic first appeared in issue #5 of Marvel's First Family!"
+      }
     ]
   }
 ]
