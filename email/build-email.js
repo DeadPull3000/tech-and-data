@@ -12,36 +12,76 @@ function generateEmail(imageSrc) {
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="x-apple-disable-message-reformatting" />
   <title>Road to Doomsday Quiz — The Quizzing Club</title>
-  <!--[if mso]>
   <style type="text/css">
-    body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      -webkit-text-size-adjust: 100% !important;
+      -ms-text-size-adjust: 100% !important;
+    }
+    table, td {
+      mso-table-lspace: 0pt !important;
+      mso-table-rspace: 0pt !important;
+    }
+    img {
+      -ms-interpolation-mode: bicubic;
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+      display: block;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    @media only screen and (max-width: 600px) {
+      .fluid-container {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .content-padding {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+      }
+      .headline-text {
+        font-size: 24px !important;
+      }
+      .venue-text {
+        font-size: 20px !important;
+      }
+      .bounty-text {
+        font-size: 19px !important;
+      }
+    }
   </style>
-  <![endif]-->
 </head>
-<body style="margin: 0; padding: 0; background-color: #EDE8D0; font-family: 'Trebuchet MS', 'Segoe UI', Helvetica, Arial, sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+<body style="margin: 0; padding: 0; background-color: #FFFFFF; font-family: 'Trebuchet MS', 'Segoe UI', Helvetica, Arial, sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; width: 100% !important;">
 
-  <!-- Outer Centering Wrapper -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#EDE8D0" style="background-color: #EDE8D0; width: 100%; margin: 0; padding: 24px 0;">
+  <!-- Outer Full-Width Container (100% Screen Coverage) -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="background-color: #FFFFFF; width: 100%; margin: 0; padding: 0; border: 0;">
     <tr>
-      <td align="center" style="padding: 0 10px;">
+      <td align="center" style="padding: 0; margin: 0;">
 
-        <!-- Main Comic Container Table (600px Max) -->
-        <table width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="max-width: 600px; width: 100%; background-color: #FFFFFF; border: 4px solid #000000; box-shadow: 7px 7px 0px #000000; border-radius: 2px;">
+        <!-- Main Fluid Table (100% width on Mobile, up to 640px Max on Desktop) -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" class="fluid-container" style="width: 100%; max-width: 640px; margin: 0 auto; background-color: #FFFFFF; border: 0;">
 
-          <!-- ═════ 1. EMBEDDED RETRO POSTER (TOP OF EMAIL) ═════ -->
+          <!-- ═════ 1. EMBEDDED RETRO POSTER (COVERS 100% OF AVAILABLE AREA) ═════ -->
           <tr>
-            <td align="center" bgcolor="#FFE600" style="background-color: #FFE600; padding: 0; border-bottom: 4px solid #000000; line-height: 0;">
-              <img src="${imageSrc}" alt="Road to Doomsday Quiz Poster by Vaishnavi Jha - Retro Marvel Comic Cover" width="600" style="width: 100%; max-width: 600px; height: auto; display: block; border: 0; margin: 0;" />
+            <td align="center" style="padding: 0; margin: 0; line-height: 0; background-color: #FFE600; width: 100%;">
+              <img src="${imageSrc}" alt="Road to Doomsday Quiz Poster by Vaishnavi Jha - Retro Marvel Comic Cover" width="100%" style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0; padding: 0; border: 0;" />
             </td>
           </tr>
 
-          <!-- ═════ 3. COMIC TICKER / ISSUE BAR ═════ -->
+          <!-- ═════ 2. COMIC TICKER / ISSUE BAR ═════ -->
           <tr>
-            <td bgcolor="#C41230" style="background-color: #C41230; padding: 8px 16px; border-bottom: 3px solid #000000;">
+            <td bgcolor="#C41230" style="background-color: #C41230; padding: 10px 14px; border-bottom: 3px solid #000000; width: 100%;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td align="center" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 14px; letter-spacing: 2px; color: #FFE600; text-transform: uppercase;">
+                  <td align="center" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 14px; letter-spacing: 1.5px; color: #FFE600; text-transform: uppercase;">
                     &gt;&gt; ALL UNIVERSES ASSEMBLE! &bull; THURSDAY, 19TH NOV &bull; 8:00 PM &lt;&lt;
                   </td>
                 </tr>
@@ -49,18 +89,18 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 4. SALUTATION & OPENING ═════ -->
+          <!-- ═════ 3. SALUTATION & OPENING ═════ -->
           <tr>
-            <td style="padding: 24px 28px 12px 28px; background-color: #FFFFFF;">
+            <td class="content-padding" style="padding: 22px 18px 10px 18px; background-color: #FFFFFF;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td>
                     <!-- Comic Corner Badge -->
-                    <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 2px; margin-bottom: 12px; letter-spacing: 1px;">
+                    <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 2px; margin-bottom: 10px; letter-spacing: 1px;">
                       COMMUNIQUE // THE QUIZZING CLUB
                     </div>
                     
-                    <h1 style="margin: 0 0 10px 0; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 28px; line-height: 1.15; color: #000000; letter-spacing: 0.5px;">
+                    <h1 class="headline-text" style="margin: 0 0 10px 0; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 28px; line-height: 1.15; color: #000000; letter-spacing: 0.5px;">
                       GREETINGS ASHOKA,
                     </h1>
                   </td>
@@ -69,12 +109,12 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 5. TL;DR DOSSIER BOX (VINTAGE CAPTION PANEL) ═════ -->
+          <!-- ═════ 4. TL;DR DOSSIER BOX (VINTAGE CAPTION PANEL) ═════ -->
           <tr>
-            <td style="padding: 6px 28px 18px 28px;">
+            <td class="content-padding" style="padding: 4px 18px 16px 18px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF8DB" style="background-color: #FFF8DB; border: 3px solid #000000; box-shadow: 4px 4px 0px #000000;">
                 <tr>
-                  <td style="padding: 16px 20px;">
+                  <td style="padding: 14px 16px;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td style="padding-bottom: 8px; border-bottom: 2px dashed #000000;">
@@ -87,7 +127,7 @@ function generateEmail(imageSrc) {
                         </td>
                       </tr>
                       <tr>
-                        <td style="padding-top: 10px; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; color: #111111; line-height: 1.4;">
+                        <td style="padding-top: 10px; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; color: #111111; line-height: 1.45;">
                           By <strong>Vaishnavi Jha</strong> &bull; An epic Marvel-themed battle of wits celebrating the upcoming <em>Avengers: Doomsday</em>!
                         </td>
                       </tr>
@@ -98,21 +138,21 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 6. EVENT COORDINATES GRID (RETRO DOSSIER CARDS) ═════ -->
+          <!-- ═════ 5. EVENT COORDINATES GRID (RETRO DOSSIER CARDS) ═════ -->
           <tr>
-            <td style="padding: 4px 28px 20px 28px;">
+            <td class="content-padding" style="padding: 2px 18px 18px 18px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <!-- Date Box -->
-                  <td width="48%" valign="top" style="padding-right: 6px;">
+                  <td width="50%" valign="top" style="padding-right: 5px;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F4F9F4" style="background-color: #F4F9F4; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
                       <tr>
-                        <td style="padding: 12px 14px;">
+                        <td style="padding: 12px 12px;">
                           <div style="display: inline-block; background-color: #000000; color: #FFFFFF; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 6px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
                             [ DATE ]
                           </div>
                           <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #000000; margin-top: 2px;">
-                            Thursday, 19th November
+                            Thursday, 19th Nov
                           </div>
                         </td>
                       </tr>
@@ -120,12 +160,12 @@ function generateEmail(imageSrc) {
                   </td>
                   
                   <!-- Time Box -->
-                  <td width="48%" valign="top" style="padding-left: 6px;">
+                  <td width="50%" valign="top" style="padding-left: 5px;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF4E6" style="background-color: #FFF4E6; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
                       <tr>
-                        <td style="padding: 12px 14px;">
+                        <td style="padding: 12px 12px;">
                           <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 6px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
-                            [ ZERO HOUR // TIME ]
+                            [ TIME ]
                           </div>
                           <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #000000; margin-top: 2px;">
                             8:00 PM Onwards
@@ -138,14 +178,14 @@ function generateEmail(imageSrc) {
 
                 <!-- Venue Row -->
                 <tr>
-                  <td colspan="2" style="padding-top: 12px;">
+                  <td colspan="2" style="padding-top: 10px;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFE600" style="background-color: #FFE600; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
                       <tr>
-                        <td style="padding: 14px 18px;">
+                        <td style="padding: 14px 16px;">
                           <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 8px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
                             [ COORDINATES // VENUE ]
                           </div>
-                          <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 22px; color: #C41230; letter-spacing: 1px;">
+                          <div class="venue-text" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 22px; color: #C41230; letter-spacing: 1px;">
                             AC-03-LR-003
                           </div>
                         </td>
@@ -157,10 +197,10 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 7. NARRATIVE BODY (RETRO MARVEL COMIC COPY) ═════ -->
+          <!-- ═════ 6. NARRATIVE BODY (RETRO MARVEL COMIC COPY) ═════ -->
           <tr>
-            <td style="padding: 0 28px 20px 28px;">
-              <p style="margin: 0 0 14px 0; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222222;">
+            <td class="content-padding" style="padding: 0 18px 18px 18px;">
+              <p style="margin: 0 0 12px 0; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222222;">
                 In the spirit of the imminent release of the highly-anticipated <strong>'Avengers: Doomsday'</strong>, we are hosting a Marvel-themed quiz.
               </p>
               <p style="margin: 0; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222222;">
@@ -169,19 +209,19 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 8. THE LOOT: GIANI'S COUPONS ACTION BURST ═════ -->
+          <!-- ═════ 7. THE LOOT: GIANI'S COUPONS ACTION BURST ═════ -->
           <tr>
-            <td style="padding: 0 28px 22px 28px;">
+            <td class="content-padding" style="padding: 0 18px 18px 18px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#C41230" style="background-color: #C41230; border: 3px solid #000000; box-shadow: 4px 4px 0px #000000;">
                 <tr>
-                  <td style="padding: 16px 20px;">
+                  <td style="padding: 16px 18px;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td align="center">
                           <div style="display: inline-block; background-color: #FFE600; color: #000000; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 12px; letter-spacing: 2px; padding: 2px 10px; border: 1.5px solid #000000; text-transform: uppercase;">
                             VICTORY BOUNTY
                           </div>
-                          <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 21px; color: #FFFFFF; letter-spacing: 1px; margin-top: 8px; text-transform: uppercase;">
+                          <div class="bounty-text" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 21px; color: #FFFFFF; letter-spacing: 1px; margin-top: 8px; text-transform: uppercase;">
                             PULL UP AND GET A CHANCE TO WIN GIANI'S COUPONS!
                           </div>
                           <div style="font-family: 'Trebuchet MS', Arial, sans-serif; font-size: 13px; color: #FFF8DB; margin-top: 6px; font-weight: bold;">
@@ -196,12 +236,12 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 9. \"OPEN TO ALL\" RETRO COMIC BULLETIN ═════ -->
+          <!-- ═════ 8. \"OPEN TO ALL\" RETRO COMIC BULLETIN ═════ -->
           <tr>
-            <td style="padding: 0 28px 24px 28px;">
+            <td class="content-padding" style="padding: 0 18px 22px 18px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F0F3F8" style="background-color: #F0F3F8; border: 3px solid #000000; border-radius: 3px; box-shadow: 4px 4px 0px #000000;">
                 <tr>
-                  <td style="padding: 16px 20px;">
+                  <td style="padding: 14px 16px;">
                     <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 11px; letter-spacing: 1.5px; padding: 2px 8px; border: 1px solid #000000; margin-bottom: 8px; text-transform: uppercase;">
                       NOTICE TO ALL RECRUITS &amp; VARIANTS
                     </div>
@@ -214,9 +254,9 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 10. RETRO BULLPEN SIGN-OFF & FOOTER ═════ -->
+          <!-- ═════ 9. RETRO BULLPEN SIGN-OFF & FOOTER ═════ -->
           <tr>
-            <td bgcolor="#000000" style="background-color: #000000; padding: 22px 28px; border-top: 4px solid #000000;">
+            <td bgcolor="#000000" style="background-color: #000000; padding: 20px 18px; border-top: 4px solid #000000;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td align="left" valign="middle">
@@ -241,10 +281,10 @@ function generateEmail(imageSrc) {
           </tr>
 
         </table>
-        <!-- End Main Table -->
+        <!-- End Main Fluid Table -->
 
         <!-- Subtle Email Client Footer Note -->
-        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; margin-top: 14px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="fluid-container" style="max-width: 640px; width: 100%; margin: 12px auto;">
           <tr>
             <td align="center" style="font-family: 'Courier New', Courier, monospace; font-size: 10px; color: #777777;">
               Sent with retro comic ink by The Quizzing Club &bull; Road to Doomsday
@@ -266,42 +306,11 @@ fs.writeFileSync(path.join(emailDir, 'email.html'), generateEmail('poster.jpg'),
 // 2. Output embedded data URI version (100% self-contained for 1-click copy-paste into Gmail Compose window)
 fs.writeFileSync(path.join(emailDir, 'email_embed.html'), generateEmail(posterDataUri), 'utf8');
 
-// 3. Output plain text / markdown version
-const textContent = `GREETINGS ASHOKA,
-
-=======================================================
->> TL;DR: A 'ROAD TO DOOMSDAY' QUIZ BY VAISHNAVI JHA <<
-=======================================================
-
-[ DATE ]  : Thursday, 19th November
-[ TIME ]  : 8:00 PM onwards
-[ VENUE ] : AC-03-LR-003
-
-In the spirit of the imminent release of the highly-anticipated 'Avengers: Doomsday', we are hosting a Marvel-themed quiz!
-
-Doctor Doom has cast his shadow across the Multiverse. From classic comic panels to the MCU, bring your squad and test your lore!
-
--- VICTORY BOUNTY --
-Pull up and get a chance to win Giani's coupons!
-
--- NOTICE TO ALL RECRUITS --
-You do not need to be a member of the Quiz Club to attend quizzes! All quizzes are open to all.
-
-EXCELSIOR!
-
-Regards,
-The Quizzing Club
-Ashoka University
-`;
-
-fs.writeFileSync(path.join(emailDir, 'email.txt'), textContent, 'utf8');
-
 // Also mirror to tech-and-data monorepo
 const monorepoEmailDir = path.resolve(__dirname, '..', '..', 'tech-and-data', 'road-to-doomsday', 'email');
 if (fs.existsSync(monorepoEmailDir)) {
   fs.writeFileSync(path.join(monorepoEmailDir, 'email.html'), generateEmail('poster.jpg'), 'utf8');
   fs.writeFileSync(path.join(monorepoEmailDir, 'email_embed.html'), generateEmail(posterDataUri), 'utf8');
-  fs.writeFileSync(path.join(monorepoEmailDir, 'email.txt'), textContent, 'utf8');
 }
 
-console.log('Successfully generated all emoji-free retro email templates!');
+console.log('Successfully generated full-width fluid responsive email templates!');
