@@ -35,9 +35,9 @@ function generateEmail(imageSrc) {
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td align="left" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 15px; letter-spacing: 2px; color: #000000; text-transform: uppercase;">
-                    ★ MARVEL COMICS GROUP ★
+                    MARVEL COMICS GROUP
                   </td>
-                  <td align="right" style="font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; color: #000000; text-transform: uppercase;">
+                  <td align="right" style="font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; color: #000000; text-transform: uppercase; letter-spacing: 1px;">
                     SPECIAL ASHOKA DISPATCH
                   </td>
                 </tr>
@@ -57,8 +57,8 @@ function generateEmail(imageSrc) {
             <td bgcolor="#C41230" style="background-color: #C41230; padding: 8px 16px; border-bottom: 3px solid #000000;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td align="center" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 14px; letter-spacing: 1.5px; color: #FFE600; text-transform: uppercase;">
-                    ⚡ ALL UNIVERSES ASSEMBLE! • THURSDAY, 19TH NOV • 8:00 PM ⚡
+                  <td align="center" style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 14px; letter-spacing: 2px; color: #FFE600; text-transform: uppercase;">
+                    &gt;&gt; ALL UNIVERSES ASSEMBLE! &bull; THURSDAY, 19TH NOV &bull; 8:00 PM &lt;&lt;
                   </td>
                 </tr>
               </table>
@@ -114,7 +114,7 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 6. EVENT COORDINATES GRID ═════ -->
+          <!-- ═════ 6. EVENT COORDINATES GRID (RETRO DOSSIER CARDS) ═════ -->
           <tr>
             <td style="padding: 4px 28px 20px 28px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -124,10 +124,10 @@ function generateEmail(imageSrc) {
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F4F9F4" style="background-color: #F4F9F4; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
                       <tr>
                         <td style="padding: 12px 14px;">
-                          <div style="font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; color: #555555; text-transform: uppercase;">
-                            📅 DATE
+                          <div style="display: inline-block; background-color: #000000; color: #FFFFFF; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 6px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                            [ DATE ]
                           </div>
-                          <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #000000; margin-top: 3px;">
+                          <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #000000; margin-top: 2px;">
                             Thursday, 19th November
                           </div>
                         </td>
@@ -140,10 +140,10 @@ function generateEmail(imageSrc) {
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFF4E6" style="background-color: #FFF4E6; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
                       <tr>
                         <td style="padding: 12px 14px;">
-                          <div style="font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; color: #555555; text-transform: uppercase;">
-                            ⏰ TIME
+                          <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 6px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                            [ ZERO HOUR // TIME ]
                           </div>
-                          <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #000000; margin-top: 3px;">
+                          <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 16px; color: #000000; margin-top: 2px;">
                             8:00 PM Onwards
                           </div>
                         </td>
@@ -157,22 +157,13 @@ function generateEmail(imageSrc) {
                   <td colspan="2" style="padding-top: 12px;">
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFE600" style="background-color: #FFE600; border: 2.5px solid #000000; box-shadow: 3px 3px 0px #000000;">
                       <tr>
-                        <td style="padding: 12px 16px;">
-                          <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                              <td width="30" valign="middle" style="font-size: 20px;">
-                                📍
-                              </td>
-                              <td valign="middle">
-                                <div style="font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; color: #000000; text-transform: uppercase;">
-                                  VENUE
-                                </div>
-                                <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 19px; color: #C41230; letter-spacing: 0.5px;">
-                                  AC-03-LR-003
-                                </div>
-                              </td>
-                            </tr>
-                          </table>
+                        <td style="padding: 14px 18px;">
+                          <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: bold; padding: 2px 8px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                            [ COORDINATES // VENUE ]
+                          </div>
+                          <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 22px; color: #C41230; letter-spacing: 1px;">
+                            AC-03-LR-003
+                          </div>
                         </td>
                       </tr>
                     </table>
@@ -189,7 +180,7 @@ function generateEmail(imageSrc) {
                 In the spirit of the imminent release of the highly-anticipated <strong>'Avengers: Doomsday'</strong>, we are hosting a Marvel-themed quiz.
               </p>
               <p style="margin: 0; font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #222222;">
-                Doctor Doom has cast his shadow across the Multiverse &mdash; from the classic panels of Stan Lee and Jack Kirby to the Marvel Cinematic Universe. Bring your knowledge, assemble your squad, and prepare for battle!
+                Doctor Doom has cast his shadow across the Multiverse &mdash; from the classic comic panels of Stan Lee and Jack Kirby to the Marvel Cinematic Universe. Bring your squad, test your lore, and prepare for battle!
               </p>
             </td>
           </tr>
@@ -204,7 +195,7 @@ function generateEmail(imageSrc) {
                       <tr>
                         <td align="center">
                           <div style="display: inline-block; background-color: #FFE600; color: #000000; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 12px; letter-spacing: 2px; padding: 2px 10px; border: 1.5px solid #000000; text-transform: uppercase;">
-                            ★ THE SPOILS OF VICTORY ★
+                            VICTORY BOUNTY
                           </div>
                           <div style="font-family: 'Impact', 'Arial Black', sans-serif; font-size: 21px; color: #FFFFFF; letter-spacing: 1px; margin-top: 8px; text-transform: uppercase;">
                             PULL UP AND GET A CHANCE TO WIN GIANI'S COUPONS!
@@ -221,22 +212,18 @@ function generateEmail(imageSrc) {
             </td>
           </tr>
 
-          <!-- ═════ 9. \"OPEN TO ALL\" SPEECH BUBBLE CARD ═════ -->
+          <!-- ═════ 9. \"OPEN TO ALL\" RETRO COMIC BULLETIN ═════ -->
           <tr>
             <td style="padding: 0 28px 24px 28px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F0F3F8" style="background-color: #F0F3F8; border: 3px solid #000000; border-radius: 4px; box-shadow: 4px 4px 0px #000000;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F0F3F8" style="background-color: #F0F3F8; border: 3px solid #000000; border-radius: 3px; box-shadow: 4px 4px 0px #000000;">
                 <tr>
                   <td style="padding: 16px 20px;">
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr>
-                        <td width="30" valign="top" style="font-size: 22px; line-height: 1;">
-                          📢
-                        </td>
-                        <td valign="top" style="font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.55; color: #111111;">
-                          <strong>NOTE:</strong> You do <strong>not</strong> need to be a member of the Quiz Club to attend quizzes! <strong>All quizzes are open to all</strong> &mdash; all batches, majors, variants, and casual fans are welcome. Just pull up!
-                        </td>
-                      </tr>
-                    </table>
+                    <div style="display: inline-block; background-color: #000000; color: #FFE600; font-family: 'Impact', 'Arial Black', sans-serif; font-size: 11px; letter-spacing: 1.5px; padding: 2px 8px; border: 1px solid #000000; margin-bottom: 8px; text-transform: uppercase;">
+                      NOTICE TO ALL RECRUITS &amp; VARIANTS
+                    </div>
+                    <div style="font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.55; color: #111111;">
+                      <strong>NOTE:</strong> You do <strong>not</strong> need to be a member of the Quiz Club to attend quizzes! <strong>All quizzes are open to all</strong> &mdash; all batches, majors, variants, and casual fans are welcome. Just pull up!
+                    </div>
                   </td>
                 </tr>
               </table>
@@ -299,21 +286,21 @@ fs.writeFileSync(path.join(emailDir, 'email_embed.html'), generateEmail(posterDa
 const textContent = `GREETINGS ASHOKA,
 
 =======================================================
-⚡ TL;DR: A 'ROAD TO DOOMSDAY' QUIZ BY VAISHNAVI JHA ⚡
+>> TL;DR: A 'ROAD TO DOOMSDAY' QUIZ BY VAISHNAVI JHA <<
 =======================================================
 
-📅 DATE:  Thursday, 19th November
-⏰ TIME:  8:00 PM onwards
-📍 VENUE: AC-03-LR-003
+[ DATE ]  : Thursday, 19th November
+[ TIME ]  : 8:00 PM onwards
+[ VENUE ] : AC-03-LR-003
 
 In the spirit of the imminent release of the highly-anticipated 'Avengers: Doomsday', we are hosting a Marvel-themed quiz!
 
-From the classic comic panels to the Marvel Cinematic Universe, Doctor Doom has cast his shadow across the cosmos. Bring your squad and test your knowledge!
+Doctor Doom has cast his shadow across the Multiverse. From classic comic panels to the MCU, bring your squad and test your lore!
 
-★ THE SPOILS OF VICTORY:
+-- VICTORY BOUNTY --
 Pull up and get a chance to win Giani's coupons!
 
-💬 NOTE:
+-- NOTICE TO ALL RECRUITS --
 You do not need to be a member of the Quiz Club to attend quizzes! All quizzes are open to all.
 
 EXCELSIOR!
@@ -333,4 +320,4 @@ if (fs.existsSync(monorepoEmailDir)) {
   fs.writeFileSync(path.join(monorepoEmailDir, 'email.txt'), textContent, 'utf8');
 }
 
-console.log('Successfully generated all email templates!');
+console.log('Successfully generated all emoji-free retro email templates!');
