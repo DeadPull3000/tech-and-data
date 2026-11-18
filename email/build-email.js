@@ -316,7 +316,7 @@ function generateEmail(imageSrc) {
                       NOTICE TO ALL RECRUITS &amp; VARIANTS
                     </div>
                     <div class="txt-black" style="font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.55; color: #111111;">
-                      <strong>NOTE:</strong> Teams of 2&ndash;3 can participate. You do <strong>not</strong> need to be a member of the Quiz Club to attend quizzes! <strong>All quizzes are open to all</strong> &mdash; all batches, majors, variants, and casual fans are welcome. Just pull up!
+                      <strong>NOTE:</strong> You do <strong>not</strong> need to be a member of the Quiz Club to attend quizzes! <strong>All quizzes are open to all</strong> &mdash; all batches, majors, variants, and casual fans are welcome. Just pull up!
                     </div>
                   </td>
                 </tr>
