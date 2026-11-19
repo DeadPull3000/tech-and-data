@@ -699,7 +699,7 @@
     .then(r => r.json())
     .then(data => {
       if (data) {
-        const url = data.joinUrl || `http://${data.ip || 'localhost'}:${data.port || 3000}/join`;
+        const url = data.joinUrl || `http://${data.ip || '172.19.212.126'}:${data.port || 3000}/buzzer/join`;
         if (joinUrlText) joinUrlText.textContent = url;
         if (instrUrlText) instrUrlText.textContent = url;
         if (data.qr) {

@@ -955,7 +955,7 @@
     .then(r => r.json())
     .then(data => {
       if (data) {
-        currentJoinUrl = data.joinUrl || `http://${data.ip || 'localhost'}:${data.port || 3000}/join`;
+        currentJoinUrl = data.joinUrl || `http://${data.ip || '172.19.212.126'}:${data.port || 3000}/buzzer/join`;
         currentQrData = data.qr || '';
         if (phoneConnectUrl) phoneConnectUrl.textContent = currentJoinUrl;
         if (consoleQrUrl) consoleQrUrl.textContent = currentJoinUrl;

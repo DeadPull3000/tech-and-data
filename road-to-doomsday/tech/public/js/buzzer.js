@@ -16,7 +16,7 @@
     const params = new URLSearchParams(window.location.search);
     const paramTeam = params.get('team');
 
-    if (pathParts.length >= 2 && pathParts[0] === 'buzzer' && pathParts[1] !== 'your_team') {
+    if (pathParts.length >= 2 && pathParts[0] === 'buzzer' && pathParts[1] !== 'your_team' && pathParts[1].toLowerCase() !== 'join') {
       // Legacy or direct route: /buzzer/avengers
       const raw = decodeURIComponent(pathParts[1]);
       teamName = raw.replace(/_/g, ' ').toUpperCase();
@@ -24,18 +24,18 @@
       teamColor = localStorage.getItem('r2d_team_color') || '#C41230';
       localStorage.setItem('r2d_team_id', teamId);
       localStorage.setItem('r2d_team_name', teamName);
-    } else if (paramTeam) {
+    } else if (paramTeam && paramTeam.toLowerCase() !== 'join') {
       teamName = paramTeam.trim().toUpperCase();
       teamId = paramTeam.toLowerCase().replace(/[^a-z0-9]/g, '_');
       teamColor = localStorage.getItem('r2d_team_color') || '#C41230';
       localStorage.setItem('r2d_team_id', teamId);
       localStorage.setItem('r2d_team_name', teamName);
     } else {
-      // Check localStorage
+      // Route is /buzzer/join, /join, or /buzzer
       const storedId = localStorage.getItem('r2d_team_id');
       const storedName = localStorage.getItem('r2d_team_name');
       const storedColor = localStorage.getItem('r2d_team_color');
-      if (storedId && storedName) {
+      if (storedId && storedName && storedName !== 'RECRUIT SQUAD') {
         teamId = storedId;
         teamName = storedName;
         teamColor = storedColor || '#C41230';
