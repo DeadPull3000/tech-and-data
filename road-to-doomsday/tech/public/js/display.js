@@ -691,11 +691,21 @@
 
   // Boot
   const joinUrlText = document.getElementById('join-url-text');
+  const joinQrImg = document.getElementById('join-qr-img');
+  const instrQrImg = document.getElementById('instr-qr-img');
+  const instrUrlText = document.getElementById('instr-url-text');
+
   fetch('/api/network')
     .then(r => r.json())
     .then(data => {
-      if (data && data.ip && joinUrlText) {
-        joinUrlText.textContent = `http://${data.ip}:${data.port || 3000}/buzzer/<your_team>`;
+      if (data) {
+        const url = data.joinUrl || `http://${data.ip || 'localhost'}:${data.port || 3000}/join`;
+        if (joinUrlText) joinUrlText.textContent = url;
+        if (instrUrlText) instrUrlText.textContent = url;
+        if (data.qr) {
+          if (joinQrImg) joinQrImg.src = data.qr;
+          if (instrQrImg) instrQrImg.src = data.qr;
+        }
       }
     })
     .catch(() => {});

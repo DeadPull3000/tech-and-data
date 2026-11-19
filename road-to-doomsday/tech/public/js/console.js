@@ -941,19 +941,46 @@
     };
   });
 
-  // Fetch Network Info
+  // Fetch Network Info & QR Code
+  const consoleQrDialog = document.getElementById('console-qr-dialog');
+  const consoleQrImg = document.getElementById('console-qr-img');
+  const consoleQrUrl = document.getElementById('console-qr-url');
+  const btnShowConsoleQr = document.getElementById('btn-show-console-qr');
+  const btnCloseConsoleQr = document.getElementById('btn-close-console-qr');
+
+  let currentJoinUrl = '';
+  let currentQrData = '';
+
   fetch('/api/network')
     .then(r => r.json())
     .then(data => {
-      if (data && data.ip && phoneConnectUrl) {
-        phoneConnectUrl.textContent = `http://${data.ip}:${data.port || 3000}/buzzer/<team>`;
+      if (data) {
+        currentJoinUrl = data.joinUrl || `http://${data.ip || 'localhost'}:${data.port || 3000}/join`;
+        currentQrData = data.qr || '';
+        if (phoneConnectUrl) phoneConnectUrl.textContent = currentJoinUrl;
+        if (consoleQrUrl) consoleQrUrl.textContent = currentJoinUrl;
+        if (consoleQrImg && currentQrData) consoleQrImg.src = currentQrData;
       }
     })
     .catch(() => {});
 
+  if (btnShowConsoleQr && consoleQrDialog) {
+    btnShowConsoleQr.onclick = () => {
+      if (consoleQrDialog.showModal) consoleQrDialog.showModal();
+      else consoleQrDialog.setAttribute('open', '');
+    };
+  }
+
+  if (btnCloseConsoleQr && consoleQrDialog) {
+    btnCloseConsoleQr.onclick = () => {
+      if (consoleQrDialog.close) consoleQrDialog.close();
+      else consoleQrDialog.removeAttribute('open');
+    };
+  }
+
   if (btnCopyUrl) {
     btnCopyUrl.onclick = () => {
-      const url = phoneConnectUrl ? phoneConnectUrl.textContent : '';
+      const url = currentJoinUrl || (phoneConnectUrl ? phoneConnectUrl.textContent : '');
       if (navigator.clipboard) {
         navigator.clipboard.writeText(url).then(() => {
           btnCopyUrl.textContent = 'Copied!';

@@ -13,12 +13,56 @@
   <!-- Halftone overlay -->
   <div class="buzzer-overlay halftone"></div>
 
+  <!-- SQUAD REGISTRATION MODAL (Opens automatically if no team name is set) -->
+  <div id="modal-squad-setup" class="squad-modal-overlay">
+    <div class="squad-card">
+      <div class="squad-comic-burst">NEW SQUAD</div>
+      <div class="squad-badge">⚡ SQUAD REGISTRATION ⚡</div>
+      <h2 class="squad-title">ASSEMBLE YOUR TEAM</h2>
+      <p class="squad-sub">Scan complete! Enter your squad codename and select your war banner to join the Road to Doomsday Quiz.</p>
+
+      <form id="squad-form" class="squad-form">
+        <label class="squad-label" for="squad-name-input">SQUAD CODENAME</label>
+        <div class="squad-input-wrap">
+          <input 
+            type="text" 
+            id="squad-name-input" 
+            class="squad-input" 
+            placeholder="e.g. Midnight Sons, Avengers..." 
+            maxlength="24"
+            required
+            autocomplete="off"
+            autofocus
+          />
+        </div>
+
+        <label class="squad-label">WAR BANNER COLOR</label>
+        <div class="squad-color-picker" id="squad-color-picker">
+          <button type="button" class="color-dot active" data-color="#C41230" style="background:#C41230;" title="Crimson"></button>
+          <button type="button" class="color-dot" data-color="#0077B6" style="background:#0077B6;" title="Cosmic Blue"></button>
+          <button type="button" class="color-dot" data-color="#2D6A4F" style="background:#2D6A4F;" title="Doom Green"></button>
+          <button type="button" class="color-dot" data-color="#F5C518" style="background:#F5C518;" title="Gold"></button>
+          <button type="button" class="color-dot" data-color="#7B2CBF" style="background:#7B2CBF;" title="Multiverse Purple"></button>
+          <button type="button" class="color-dot" data-color="#E85D04" style="background:#E85D04;" title="Solar Orange"></button>
+        </div>
+
+        <button type="submit" id="btn-squad-submit" class="arcade-join-btn">
+          ⚡ LOCK IN &amp; DEPLOY BUZZER ➔
+        </button>
+      </form>
+      <div class="squad-footer-note">Teams of 2–3 heroes &bull; Open to all</div>
+    </div>
+  </div>
+
   <div class="buzzer-container">
     <!-- Header -->
     <header class="buzzer-header">
-      <div class="team-banner">
+      <div class="team-banner" id="team-banner">
         <span class="banner-sub">FACTION TERMINAL</span>
-        <h1 class="team-name" id="team-name">CONNECTING...</h1>
+        <div class="team-title-row">
+          <h1 class="team-name" id="team-name">CONNECTING...</h1>
+          <button id="btn-edit-squad" class="edit-squad-btn" title="Change Squad Name">✎</button>
+        </div>
       </div>
       <div class="header-right">
         <button id="sound-toggle-btn" class="sound-pill" title="Sound Effects">🔊 SFX ON</button>

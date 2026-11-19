@@ -28,10 +28,26 @@
         </div>
       </div>
       <p class="insert-coin">INSERT COIN TO BEGIN</p>
-      <div class="phone-join-box kirby-border-flat">
-        <span class="join-badge">⚡ CONNECT PHONES FOR BUZZER ⚡</span>
-        <p class="join-url" id="join-url-text">http://localhost:3000/buzzer/your_team</p>
-        <p class="join-sub">Connect to Host Wi-Fi & open the URL above in any mobile browser</p>
+      <div class="comic-qr-station kirby-border-flat">
+        <span class="comic-qr-badge">⚡ SCAN TO ASSEMBLE SQUAD &amp; BUZZER ⚡</span>
+        <div class="comic-qr-body">
+          <div class="comic-qr-frame">
+            <img id="join-qr-img" class="comic-qr-img" src="" alt="Scan QR to Join" />
+            <div class="qr-crosshair qr-ch-tl"></div>
+            <div class="qr-crosshair qr-ch-tr"></div>
+            <div class="qr-crosshair qr-ch-bl"></div>
+            <div class="qr-crosshair qr-ch-br"></div>
+          </div>
+          <div class="comic-qr-info">
+            <h3 class="qr-cta-title">POINT CAMERA &bull; NAME YOUR SQUAD</h3>
+            <p class="qr-cta-desc">Scan with your phone to choose your squad codename and immediately deploy your mobile buzzer!</p>
+            <div class="qr-url-pill">
+              <span class="qr-url-label">MANUAL LINK:</span>
+              <span class="join-url" id="join-url-text">http://localhost:3000/join</span>
+            </div>
+            <p class="join-sub">⚡ Connect to Host Wi-Fi &bull; Works in any mobile browser &bull; No app install</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -104,6 +120,15 @@
               <li><strong>Victory Bounty:</strong> Win delicious <strong>Giani's Coupons</strong> and eternal comic glory!</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <!-- Compact QR Join Banner on Instructions Screen -->
+      <div class="instr-qr-strip kirby-border-flat">
+        <img id="instr-qr-img" class="instr-qr-thumbnail" src="" alt="Scan QR Code" />
+        <div class="instr-qr-text">
+          <span class="instr-qr-title">⚡ READY TO PLAY? SCAN TO REGISTER YOUR SQUAD &amp; ARM BUZZER ⚡</span>
+          <span class="instr-qr-link">Direct URL: <code id="instr-url-text">http://localhost:3000/join</code> &bull; Host Wi-Fi</span>
         </div>
       </div>
     </div>

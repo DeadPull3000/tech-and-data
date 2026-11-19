@@ -9,6 +9,7 @@ const { WebSocketServer } = require('ws');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+const QRCode = require('qrcode');
 
 // ─── Paths ───────────────────────────────────────────────────────
 const PORT = 3000;
@@ -137,6 +138,9 @@ app.get('/', (_req, res) => {
 });
 app.get('/console', (_req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'console.html'));
+});
+app.get(['/join', '/buzzer'], (_req, res) => {
+  res.sendFile(path.join(PUBLIC_DIR, 'buzzer.html'));
 });
 app.get('/buzzer/:teamId', (_req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'buzzer.html'));
@@ -293,9 +297,16 @@ function handleMessage(ws, msg) {
   switch (type) {
     // ── Registration ──
     case 'register': {
-      const { role, teamId, teamName } = payload || {};
+      const { role, teamId, teamName, color } = payload || {};
       clients.set(ws, { role, teamId, teamName });
       console.log(`[register] ${role}${teamId ? ` (${teamId})` : ''}`);
+      if (role === 'buzzer' && teamId) {
+        if (!state.teams[teamId]) {
+          state.teams[teamId] = { teamId, teamName: teamName || teamId, color: color || '#C41230', score: 0 };
+          state.scores[teamId] = state.scores[teamId] || 0;
+          broadcast('teams_updated', { teams: Object.values(state.teams) });
+        }
+      }
       // Send full state on connect
       send(ws, 'state_sync', getStateSync());
       break;
@@ -644,12 +655,47 @@ function getAllIPs() {
 }
 
 // ─── API Routes ──────────────────────────────────────────────────
-app.get('/api/network', (_req, res) => {
+app.get('/api/network', async (_req, res) => {
+  const ip = getLocalIP();
+  const joinUrl = `http://${ip}:${PORT}/join`;
+  let qr = null;
+  try {
+    qr = await QRCode.toDataURL(joinUrl, {
+      margin: 1,
+      width: 320,
+      color: {
+        dark: '#000000',
+        light: '#FFE600',
+      },
+    });
+  } catch (err) {
+    console.warn('[qr] Error generating QR:', err.message);
+  }
   res.json({
-    ip: getLocalIP(),
+    ip,
     allIPs: getAllIPs(),
-    port: PORT
+    port: PORT,
+    joinUrl,
+    qr
   });
+});
+
+app.get('/api/qr', async (req, res) => {
+  const ip = getLocalIP();
+  const target = req.query.url || `http://${ip}:${PORT}/join`;
+  try {
+    const qr = await QRCode.toDataURL(target, {
+      margin: 1,
+      width: parseInt(req.query.size, 10) || 320,
+      color: {
+        dark: req.query.dark || '#000000',
+        light: req.query.light || '#FFE600',
+      },
+    });
+    res.json({ url: target, qr });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.get('/api/questions', (_req, res) => {

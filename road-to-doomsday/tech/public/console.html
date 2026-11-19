@@ -14,11 +14,25 @@
   <div class="top-status-bar">
     <div id="conn-status" class="conn-disconnected">⬤ DISCONNECTED</div>
     <div class="buzzer-url-pill">
-      <span>📱 Phone Buzzer:</span>
-      <code id="phone-connect-url">Loading IP...</code>
+      <span>📱 Phone Join:</span>
+      <code id="phone-connect-url">Loading...</code>
       <button id="btn-copy-url" class="btn btn-sm btn-gold">Copy</button>
+      <button id="btn-show-console-qr" class="btn btn-sm btn-green" title="View QR Code">⚡ QR</button>
     </div>
   </div>
+
+  <!-- QR Modal for Quizmaster -->
+  <dialog id="console-qr-dialog" style="border:3px solid #000; border-radius:8px; padding:20px; background:#19192b; color:#fff; box-shadow:8px 8px 0 #000; text-align:center; max-width:340px;">
+    <h3 style="font-family:inherit; color:var(--gold); margin-bottom:8px;">⚡ SQUAD JOIN QR CODE</h3>
+    <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Teams scan this QR to choose their name &amp; deploy their buzzer</p>
+    <div style="background:#FFE600; padding:10px; border:2px solid #000; border-radius:4px; display:inline-block; margin-bottom:12px;">
+      <img id="console-qr-img" src="" alt="Join QR Code" style="width:200px; height:200px; display:block;" />
+    </div>
+    <div>
+      <code id="console-qr-url" style="font-size:12px; color:#fff; word-break:break-all; display:block; margin-bottom:12px;"></code>
+      <button id="btn-close-console-qr" class="btn btn-sm btn-red">✕ Close</button>
+    </div>
+  </dialog>
 
   <!-- ═══════════════ 1. SCENE CONTROL (top bar) ═══════════════ -->
   <header id="scene-bar">
