@@ -87,11 +87,12 @@
   let myOrder = null;
   let cooldown = false;
   let ws = null;
-  let teamName = teamId.replace(/_/g, ' ').toUpperCase();
   let soundEnabled = true;
   let lastScore = null;
 
-  teamNameEl.textContent = teamName;
+  if (teamName && teamNameEl) {
+    teamNameEl.textContent = teamName;
+  }
 
   // ─── Web Audio API Buzzer Synthesizer ────────────────────────────
   let audioCtx = null;
@@ -509,44 +510,54 @@
     };
   });
 
+  function submitSquadSetup(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const entered = squadNameInput ? squadNameInput.value.trim() : '';
+    if (!entered) {
+      if (squadNameInput) squadNameInput.focus();
+      return;
+    }
+
+    teamName = entered.toUpperCase();
+    teamId = entered.toLowerCase().replace(/[^a-z0-9]/g, '_');
+    teamColor = selectedColor;
+
+    localStorage.setItem('r2d_team_id', teamId);
+    localStorage.setItem('r2d_team_name', teamName);
+    localStorage.setItem('r2d_team_color', teamColor);
+
+    if (teamNameEl) teamNameEl.textContent = teamName;
+    if (teamBanner) teamBanner.style.background = teamColor;
+
+    if (modalSquadSetup) {
+      modalSquadSetup.classList.add('hidden');
+      modalSquadSetup.style.display = 'none';
+    }
+
+    try { initAudio(); } catch (err) {}
+    try { playBuzzerSound('first'); } catch (err) {}
+    try { vibrate(100); } catch (err) {}
+
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({
+        type: 'add_team',
+        payload: { teamId, teamName, color: teamColor }
+      }));
+      ws.send(JSON.stringify({
+        type: 'register',
+        payload: { role: 'buzzer', teamId, teamName, color: teamColor }
+      }));
+    } else {
+      connect();
+    }
+  }
+
   if (squadForm) {
-    squadForm.onsubmit = (e) => {
-      e.preventDefault();
-      const entered = squadNameInput ? squadNameInput.value.trim() : '';
-      if (!entered) return;
-
-      teamName = entered.toUpperCase();
-      teamId = entered.toLowerCase().replace(/[^a-z0-9]/g, '_');
-      teamColor = selectedColor;
-
-      localStorage.setItem('r2d_team_id', teamId);
-      localStorage.setItem('r2d_team_name', teamName);
-      localStorage.setItem('r2d_team_color', teamColor);
-
-      teamNameEl.textContent = teamName;
-      if (teamBanner) teamBanner.style.background = teamColor;
-
-      if (modalSquadSetup) {
-        modalSquadSetup.classList.add('hidden');
-      }
-
-      initAudio();
-      playBuzzerSound('lock');
-      vibrate(100);
-
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({
-          type: 'add_team',
-          payload: { teamId, teamName, color: teamColor }
-        }));
-        ws.send(JSON.stringify({
-          type: 'register',
-          payload: { role: 'buzzer', teamId, teamName, color: teamColor }
-        }));
-      } else {
-        connect();
-      }
-    };
+    squadForm.onsubmit = submitSquadSetup;
+  }
+  const btnSquadSubmit = document.getElementById('btn-squad-submit');
+  if (btnSquadSubmit) {
+    btnSquadSubmit.onclick = submitSquadSetup;
   }
 
   if (btnEditSquad) {
@@ -560,6 +571,7 @@
       selectedColor = teamColor;
       if (modalSquadSetup) {
         modalSquadSetup.classList.remove('hidden');
+        modalSquadSetup.style.display = 'flex';
         if (squadNameInput) squadNameInput.focus();
       }
     };
@@ -567,11 +579,17 @@
 
   // Initial Onboarding Check
   if (needsOnboarding) {
-    if (modalSquadSetup) modalSquadSetup.classList.remove('hidden');
+    if (modalSquadSetup) {
+      modalSquadSetup.classList.remove('hidden');
+      modalSquadSetup.style.display = 'flex';
+    }
     if (squadNameInput) squadNameInput.focus();
   } else {
-    if (modalSquadSetup) modalSquadSetup.classList.add('hidden');
-    teamNameEl.textContent = teamName;
+    if (modalSquadSetup) {
+      modalSquadSetup.classList.add('hidden');
+      modalSquadSetup.style.display = 'none';
+    }
+    if (teamNameEl) teamNameEl.textContent = teamName;
     if (teamBanner) teamBanner.style.background = teamColor;
   }
 
