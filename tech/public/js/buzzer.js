@@ -5,31 +5,65 @@
 (() => {
   'use strict';
 
-  // ─── Extract Team ID ─────────────────────────────────────────────
-  function getTeamId() {
+  // ─── Extract or Prompt Team ID & Name ─────────────────────────────
+  let teamId = null;
+  let teamName = null;
+  let teamColor = '#C41230';
+  let needsOnboarding = false;
+
+  function initTeamIdentity() {
     const pathParts = window.location.pathname.split('/').filter(Boolean);
-    if (pathParts.length >= 2 && pathParts[0] === 'buzzer') {
-      return decodeURIComponent(pathParts[1]);
-    }
     const params = new URLSearchParams(window.location.search);
-    if (params.get('team')) {
-      return params.get('team');
+    const paramTeam = params.get('team');
+
+    if (pathParts.length >= 2 && pathParts[0] === 'buzzer' && pathParts[1] !== 'your_team') {
+      // Legacy or direct route: /buzzer/avengers
+      const raw = decodeURIComponent(pathParts[1]);
+      teamName = raw.replace(/_/g, ' ').toUpperCase();
+      teamId = raw.toLowerCase().replace(/[^a-z0-9]/g, '_');
+      teamColor = localStorage.getItem('r2d_team_color') || '#C41230';
+      localStorage.setItem('r2d_team_id', teamId);
+      localStorage.setItem('r2d_team_name', teamName);
+    } else if (paramTeam) {
+      teamName = paramTeam.trim().toUpperCase();
+      teamId = paramTeam.toLowerCase().replace(/[^a-z0-9]/g, '_');
+      teamColor = localStorage.getItem('r2d_team_color') || '#C41230';
+      localStorage.setItem('r2d_team_id', teamId);
+      localStorage.setItem('r2d_team_name', teamName);
+    } else {
+      // Check localStorage
+      const storedId = localStorage.getItem('r2d_team_id');
+      const storedName = localStorage.getItem('r2d_team_name');
+      const storedColor = localStorage.getItem('r2d_team_color');
+      if (storedId && storedName) {
+        teamId = storedId;
+        teamName = storedName;
+        teamColor = storedColor || '#C41230';
+      } else {
+        needsOnboarding = true;
+        teamId = 'squad_' + Math.floor(1000 + Math.random() * 9000);
+        teamName = 'RECRUIT SQUAD';
+        teamColor = '#C41230';
+      }
     }
-    let stored = localStorage.getItem('r2d_team_id');
-    if (!stored) {
-      stored = 'team_' + Math.floor(1000 + Math.random() * 9000);
-      localStorage.setItem('r2d_team_id', stored);
-    }
-    return stored;
   }
 
-  const teamId = getTeamId();
+  initTeamIdentity();
 
   // ─── DOM Elements ────────────────────────────────────────────────
   const teamNameEl = document.getElementById('team-name');
+  const teamBanner = document.getElementById('team-banner');
+  const btnEditSquad = document.getElementById('btn-edit-squad');
   const connDot = document.getElementById('conn-dot');
   const statusText = document.getElementById('status-text');
   const soundToggleBtn = document.getElementById('sound-toggle-btn');
+
+  // Squad Modal Elements
+  const modalSquadSetup = document.getElementById('modal-squad-setup');
+  const squadForm = document.getElementById('squad-form');
+  const squadNameInput = document.getElementById('squad-name-input');
+  const colorDots = document.querySelectorAll('.color-dot');
+  let selectedColor = teamColor;
 
   // Mode Panels
   const modeBuzzer = document.getElementById('mode-buzzer');
@@ -196,12 +230,22 @@
     ws.onopen = () => {
       connDot.className = 'conn-dot online';
       statusText.textContent = 'CONNECTED • WAITING FOR QUIZMASTER';
+      // Register team identity with server
+      ws.send(JSON.stringify({
+        type: 'add_team',
+        payload: {
+          teamId: teamId,
+          teamName: teamName,
+          color: teamColor
+        }
+      }));
       ws.send(JSON.stringify({
         type: 'register',
         payload: {
           role: 'buzzer',
           teamId: teamId,
-          teamName: teamName
+          teamName: teamName,
+          color: teamColor
         }
       }));
     };
@@ -217,6 +261,9 @@
             if (payload.teams && payload.teams[teamId]) {
               teamName = payload.teams[teamId].teamName;
               teamNameEl.textContent = teamName;
+              if (payload.teams[teamId].color && teamBanner) {
+                teamBanner.style.background = payload.teams[teamId].color;
+              }
             }
             if (payload.buzzer) {
               setArmedState(payload.buzzer.armed);
@@ -234,6 +281,9 @@
             if (me) {
               teamName = me.teamName;
               teamNameEl.textContent = teamName;
+              if (me.color && teamBanner) {
+                teamBanner.style.background = me.color;
+              }
             }
           }
           break;
@@ -449,6 +499,81 @@
       pounceSubmitBtn.click();
     }
   });
+
+  // ─── Squad Setup / Edit Event Listeners ──────────────────────────
+  colorDots.forEach(dot => {
+    dot.onclick = () => {
+      colorDots.forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+      selectedColor = dot.dataset.color || '#C41230';
+    };
+  });
+
+  if (squadForm) {
+    squadForm.onsubmit = (e) => {
+      e.preventDefault();
+      const entered = squadNameInput ? squadNameInput.value.trim() : '';
+      if (!entered) return;
+
+      teamName = entered.toUpperCase();
+      teamId = entered.toLowerCase().replace(/[^a-z0-9]/g, '_');
+      teamColor = selectedColor;
+
+      localStorage.setItem('r2d_team_id', teamId);
+      localStorage.setItem('r2d_team_name', teamName);
+      localStorage.setItem('r2d_team_color', teamColor);
+
+      teamNameEl.textContent = teamName;
+      if (teamBanner) teamBanner.style.background = teamColor;
+
+      if (modalSquadSetup) {
+        modalSquadSetup.classList.add('hidden');
+      }
+
+      initAudio();
+      playBuzzerSound('lock');
+      vibrate(100);
+
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({
+          type: 'add_team',
+          payload: { teamId, teamName, color: teamColor }
+        }));
+        ws.send(JSON.stringify({
+          type: 'register',
+          payload: { role: 'buzzer', teamId, teamName, color: teamColor }
+        }));
+      } else {
+        connect();
+      }
+    };
+  }
+
+  if (btnEditSquad) {
+    btnEditSquad.onclick = () => {
+      if (squadNameInput) {
+        squadNameInput.value = (teamName === 'RECRUIT SQUAD' || teamName.startsWith('SQUAD_') || teamName.startsWith('TEAM_')) ? '' : teamName;
+      }
+      colorDots.forEach(d => {
+        d.classList.toggle('active', d.dataset.color === teamColor);
+      });
+      selectedColor = teamColor;
+      if (modalSquadSetup) {
+        modalSquadSetup.classList.remove('hidden');
+        if (squadNameInput) squadNameInput.focus();
+      }
+    };
+  }
+
+  // Initial Onboarding Check
+  if (needsOnboarding) {
+    if (modalSquadSetup) modalSquadSetup.classList.remove('hidden');
+    if (squadNameInput) squadNameInput.focus();
+  } else {
+    if (modalSquadSetup) modalSquadSetup.classList.add('hidden');
+    teamNameEl.textContent = teamName;
+    if (teamBanner) teamBanner.style.background = teamColor;
+  }
 
   // Start connection
   connect();

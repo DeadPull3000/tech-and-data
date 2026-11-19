@@ -232,43 +232,177 @@ html, body {
   100% { opacity:.3; transform:scale(1.06); }
 }
 
-.phone-join-box {
+/* ── Retro Comic QR Station (Attract Screen) ── */
+.comic-qr-station {
   margin-top: 2rem;
-  background: rgba(26, 26, 46, 0.94);
-  border: 4px solid var(--gold);
-  border-radius: 8px;
-  padding: 14px 28px;
-  text-align: center;
-  box-shadow: 6px 6px 0 #000;
-  max-width: 800px;
+  background: rgba(22, 22, 38, 0.96);
+  background-image: 
+    radial-gradient(circle, rgba(255, 230, 0, 0.1) 1.5px, transparent 1.5px),
+    linear-gradient(135deg, rgba(30, 30, 55, 0.95) 0%, rgba(18, 18, 32, 0.98) 100%);
+  background-size: 16px 16px, 100% 100%;
+  border: 4px solid #000;
+  border-radius: 12px;
+  padding: 16px 24px;
+  box-shadow: 8px 8px 0 #000, 12px 12px 0 var(--crimson);
+  max-width: 860px;
+  width: 90%;
+  position: relative;
+  text-align: left;
 }
 
-.join-badge {
-  display: inline-block;
+.comic-qr-badge {
+  position: absolute;
+  top: -18px;
+  left: 20px;
   background: var(--crimson);
-  color: #fff;
+  color: var(--gold);
   font-family: var(--font-display);
   font-size: 1.3rem;
-  padding: 2px 14px;
+  padding: 4px 16px;
+  border: 2.5px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  transform: rotate(-1.5deg);
+  letter-spacing: 1.5px;
+  text-shadow: 1.5px 1.5px 0 #000;
+}
+
+.comic-qr-body {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 6px;
+}
+
+.comic-qr-frame {
+  flex-shrink: 0;
+  background: #FFE600;
+  padding: 10px;
+  border: 3.5px solid #000;
+  border-radius: 6px;
+  box-shadow: 5px 5px 0 #000;
+  transform: rotate(-2deg);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.comic-qr-frame:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.comic-qr-img {
+  width: 155px;
+  height: 155px;
+  display: block;
   border: 2px solid #000;
-  transform: rotate(-1deg);
+  image-rendering: pixelated;
+  background: #FFE600;
+}
+
+.comic-qr-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.qr-cta-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--gold);
+  text-shadow: 2px 2px 0 #000;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.qr-cta-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #f0f0f5;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.qr-url-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1.5px solid #444;
+  padding: 5px 12px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.qr-url-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--gold);
   letter-spacing: 1px;
 }
 
 .join-url {
-  font-family: var(--font-body);
-  font-size: 1.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.15rem;
   font-weight: bold;
-  color: var(--gold);
-  margin: 10px 0 6px;
-  letter-spacing: 1px;
-  word-break: break-all;
+  color: #fff;
+  letter-spacing: 0.5px;
 }
 
 .join-sub {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+  color: #aaa;
+  margin: 0;
+}
+
+/* Instructions Screen Compact QR Banner */
+.instr-qr-strip {
+  margin-top: 1.4rem;
+  width: 100%;
+  background: rgba(22, 22, 38, 0.95);
+  border: 3px solid #000;
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 #000;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.instr-qr-thumbnail {
+  width: 58px;
+  height: 58px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  background: #FFE600;
+  flex-shrink: 0;
+}
+
+.instr-qr-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.instr-qr-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+.instr-qr-link {
+  font-size: 0.9rem;
   color: #ccc;
+}
+
+.instr-qr-link code {
+  color: #fff;
+  font-weight: bold;
+  background: rgba(255,255,255,0.1);
+  padding: 1px 6px;
+  border-radius: 3px;
 }
 
 /* ============================================================
