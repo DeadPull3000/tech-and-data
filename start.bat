@@ -27,7 +27,7 @@ echo ========================================================
 echo  Server is running!
 echo  Display View:       http://localhost:3000/
 echo  QM Console:         http://localhost:3000/console
-echo  Buzzer (phones):    http://^<your-ip^>:3000/join  (or scan Comic QR on screen)
+echo  Buzzer (phones):    http://172.19.212.126:3000/buzzer/join  (or scan Comic QR on screen)
 echo ========================================================
 echo.
 echo Press Ctrl+C or close this window to stop the server.

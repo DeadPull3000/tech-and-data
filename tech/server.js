@@ -139,7 +139,7 @@ app.get('/', (_req, res) => {
 app.get('/console', (_req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'console.html'));
 });
-app.get(['/join', '/buzzer'], (_req, res) => {
+app.get(['/join', '/buzzer', '/buzzer/join'], (_req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'buzzer.html'));
 });
 app.get('/buzzer/:teamId', (_req, res) => {
@@ -625,20 +625,18 @@ setInterval(() => {
 
 // ─── Get local IP for display ────────────────────────────────────
 function getLocalIP() {
+  if (process.env.HOST_IP) return process.env.HOST_IP;
   const interfaces = os.networkInterfaces();
-  const candidates = [];
+  // 1. Look for designated mobile/hotspot IP (172.19.212.126) if present
   for (const name of Object.keys(interfaces)) {
-    const isVirtual = /vethernet|wsl|virtual|hyper-v|vmware|docker/i.test(name);
     for (const iface of interfaces[name]) {
-      if (iface.family === 'IPv4' && !iface.internal) {
-        if (!isVirtual) {
-          return iface.address;
-        }
-        candidates.push(iface.address);
+      if (iface.family === 'IPv4' && iface.address === '172.19.212.126') {
+        return iface.address;
       }
     }
   }
-  return candidates[0] || 'localhost';
+  // 2. Default to designated mobile IP for phone buzzers
+  return '172.19.212.126';
 }
 
 function getAllIPs() {
@@ -657,7 +655,7 @@ function getAllIPs() {
 // ─── API Routes ──────────────────────────────────────────────────
 app.get('/api/network', async (_req, res) => {
   const ip = getLocalIP();
-  const joinUrl = `http://${ip}:${PORT}/join`;
+  const joinUrl = process.env.JOIN_URL || `http://${ip}:${PORT}/buzzer/join`;
   let qr = null;
   try {
     qr = await QRCode.toDataURL(joinUrl, {
@@ -682,7 +680,7 @@ app.get('/api/network', async (_req, res) => {
 
 app.get('/api/qr', async (req, res) => {
   const ip = getLocalIP();
-  const target = req.query.url || `http://${ip}:${PORT}/join`;
+  const target = req.query.url || `http://${ip}:${PORT}/buzzer/join`;
   try {
     const qr = await QRCode.toDataURL(target, {
       margin: 1,
