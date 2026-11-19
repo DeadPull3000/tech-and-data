@@ -540,6 +540,24 @@
       const { type, payload } = msg;
 
       switch (type) {
+        case 'network_update': {
+          if (payload) {
+            if (joinUrlText && payload.joinUrl) joinUrlText.textContent = payload.joinUrl;
+            if (instrUrlText && payload.joinUrl) instrUrlText.textContent = payload.joinUrl;
+            if (payload.qr) {
+              if (joinQrImg) joinQrImg.src = payload.qr;
+              if (instrQrImg) instrQrImg.src = payload.qr;
+            }
+            const joinSub = document.querySelector('.join-sub');
+            if (joinSub) {
+              joinSub.innerHTML = payload.isTunnel
+                ? '⚡ <strong>Public Cloudflare Link</strong> &bull; Works on Mobile 4G/5G or Wi-Fi &bull; Zero Lag'
+                : '⚡ Connect to Host Wi-Fi &bull; Works in any mobile browser &bull; No app install';
+            }
+          }
+          break;
+        }
+
         case 'state_sync': {
           if (payload) {
             Object.assign(state, payload);
@@ -699,12 +717,18 @@
     .then(r => r.json())
     .then(data => {
       if (data) {
-        const url = data.joinUrl || `http://${data.ip || '172.19.212.126'}:${data.port || 3000}/buzzer/join`;
+        const url = data.joinUrl || `http://${data.ip || 'localhost'}:${data.port || 3000}/buzzer/join`;
         if (joinUrlText) joinUrlText.textContent = url;
         if (instrUrlText) instrUrlText.textContent = url;
         if (data.qr) {
           if (joinQrImg) joinQrImg.src = data.qr;
           if (instrQrImg) instrQrImg.src = data.qr;
+        }
+        const joinSub = document.querySelector('.join-sub');
+        if (joinSub) {
+          joinSub.innerHTML = data.isTunnel
+            ? '⚡ <strong>Public Cloudflare Link</strong> &bull; Works on Mobile 4G/5G or Wi-Fi &bull; Zero Lag'
+            : '⚡ Connect to Host Wi-Fi &bull; Works in any mobile browser &bull; No app install';
         }
       }
     })

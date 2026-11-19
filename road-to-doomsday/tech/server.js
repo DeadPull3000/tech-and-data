@@ -623,20 +623,29 @@ setInterval(() => {
   }
 }, 10000);
 
+// ─── Network & Tunnel State ───────────────────────────────────────
+let tunnelProcess = null;
+let tunnelUrl = null;
+let activeJoinUrl = null;
+let activeQrDataUrl = null;
+
 // ─── Get local IP for display ────────────────────────────────────
 function getLocalIP() {
   if (process.env.HOST_IP) return process.env.HOST_IP;
   const interfaces = os.networkInterfaces();
-  // 1. Look for designated mobile/hotspot IP (172.19.212.126) if present
+  const candidates = [];
   for (const name of Object.keys(interfaces)) {
+    const isVirtual = /vethernet|wsl|virtual|hyper-v|vmware|docker/i.test(name);
     for (const iface of interfaces[name]) {
-      if (iface.family === 'IPv4' && iface.address === '172.19.212.126') {
-        return iface.address;
+      if (iface.family === 'IPv4' && !iface.internal) {
+        if (!isVirtual) {
+          return iface.address;
+        }
+        candidates.push(iface.address);
       }
     }
   }
-  // 2. Default to designated mobile IP for phone buzzers
-  return '172.19.212.126';
+  return candidates[0] || 'localhost';
 }
 
 function getAllIPs() {
@@ -652,13 +661,10 @@ function getAllIPs() {
   return list;
 }
 
-// ─── API Routes ──────────────────────────────────────────────────
-app.get('/api/network', async (_req, res) => {
-  const ip = getLocalIP();
-  const joinUrl = process.env.JOIN_URL || `http://${ip}:${PORT}/buzzer/join`;
-  let qr = null;
+// ─── QR Code Generator ───────────────────────────────────────────
+async function generateQrCode(url) {
   try {
-    qr = await QRCode.toDataURL(joinUrl, {
+    return await QRCode.toDataURL(url, {
       margin: 1,
       width: 320,
       color: {
@@ -668,19 +674,109 @@ app.get('/api/network', async (_req, res) => {
     });
   } catch (err) {
     console.warn('[qr] Error generating QR:', err.message);
+    return null;
   }
+}
+
+async function updateActiveJoinUrl(url, isTunnel = false) {
+  activeJoinUrl = url;
+  activeQrDataUrl = await generateQrCode(url);
+  console.log(`[network] Active Join URL: ${activeJoinUrl} (${isTunnel ? 'Public Cloudflare Tunnel' : 'Local Wi-Fi'})`);
+  broadcast('network_update', {
+    joinUrl: activeJoinUrl,
+    qr: activeQrDataUrl,
+    isTunnel,
+    tunnelUrl,
+    localUrl: `http://${getLocalIP()}:${PORT}/buzzer/join`
+  });
+}
+
+// ─── Cloudflare Quick Tunnel Manager ─────────────────────────────
+function startTunnel() {
+  if (process.env.ENABLE_TUNNEL === 'false') {
+    console.log('[tunnel] Public tunnel disabled via ENABLE_TUNNEL=false');
+    const defaultUrl = `http://${getLocalIP()}:${PORT}/buzzer/join`;
+    updateActiveJoinUrl(defaultUrl, false);
+    return;
+  }
+
+  let cloudflaredBin = null;
+  try {
+    const cf = require('cloudflared');
+    cloudflaredBin = cf.bin;
+  } catch (e) {
+    console.warn('[tunnel] cloudflared module not available:', e.message);
+  }
+
+  if (!cloudflaredBin || !fs.existsSync(cloudflaredBin)) {
+    console.warn('[tunnel] cloudflared binary not found, using local Wi-Fi IP');
+    const defaultUrl = `http://${getLocalIP()}:${PORT}/buzzer/join`;
+    updateActiveJoinUrl(defaultUrl, false);
+    return;
+  }
+
+  console.log('[tunnel] Initializing Cloudflare Quick Tunnel on port ' + PORT + '...');
+  const { spawn } = require('child_process');
+  tunnelProcess = spawn(cloudflaredBin, ['tunnel', '--url', `http://localhost:${PORT}`]);
+
+  tunnelProcess.stderr.on('data', async (data) => {
+    const text = data.toString();
+    const match = text.match(/https:\/\/[a-z0-9\-]+\.trycloudflare\.com/);
+    if (match && !tunnelUrl) {
+      tunnelUrl = match[0];
+      const tunnelJoinUrl = `${tunnelUrl}/buzzer/join`;
+      console.log('');
+      console.log('  ╔═════════════════════════════════════════════════════════════╗');
+      console.log('  ║       🌐 PUBLIC CLOUDFLARE TUNNEL LIVE FOR PHONES           ║');
+      console.log('  ╠═════════════════════════════════════════════════════════════╣');
+      console.log(`  ║  Join URL: ${tunnelJoinUrl}`);
+      console.log('  ║  (Works on Any Phone • Mobile 4G/5G Jio/Airtel or Wi-Fi)    ║');
+      console.log('  ╚═════════════════════════════════════════════════════════════╝');
+      console.log('');
+      await updateActiveJoinUrl(tunnelJoinUrl, true);
+    }
+  });
+
+  tunnelProcess.on('error', (err) => {
+    console.warn('[tunnel] Tunnel error:', err.message);
+  });
+
+  tunnelProcess.on('exit', (code) => {
+    console.log('[tunnel] Tunnel process exited (code ' + code + ')');
+    tunnelProcess = null;
+  });
+
+  const cleanup = () => {
+    if (tunnelProcess) {
+      try { tunnelProcess.kill(); } catch (e) {}
+      tunnelProcess = null;
+    }
+  };
+  process.on('SIGINT', () => { cleanup(); process.exit(); });
+  process.on('SIGTERM', () => { cleanup(); process.exit(); });
+  process.on('exit', cleanup);
+}
+
+// ─── API Routes ──────────────────────────────────────────────────
+app.get('/api/network', async (_req, res) => {
+  const ip = getLocalIP();
+  const localUrl = `http://${ip}:${PORT}/buzzer/join`;
+  const joinUrl = activeJoinUrl || (tunnelUrl ? `${tunnelUrl}/buzzer/join` : localUrl);
+  const qr = activeQrDataUrl || await generateQrCode(joinUrl);
   res.json({
     ip,
     allIPs: getAllIPs(),
     port: PORT,
+    localUrl,
+    tunnelUrl,
+    isTunnel: Boolean(tunnelUrl),
     joinUrl,
     qr
   });
 });
 
 app.get('/api/qr', async (req, res) => {
-  const ip = getLocalIP();
-  const target = req.query.url || `http://${ip}:${PORT}/buzzer/join`;
+  const target = req.query.url || activeJoinUrl || `http://${getLocalIP()}:${PORT}/buzzer/join`;
   try {
     const qr = await QRCode.toDataURL(target, {
       margin: 1,
@@ -704,9 +800,12 @@ app.get('/api/questions', (_req, res) => {
 });
 
 // ─── Start server ────────────────────────────────────────────────
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
   const ip = getLocalIP();
   const all = getAllIPs();
+  const defaultLocalUrl = `http://${ip}:${PORT}/buzzer/join`;
+  await updateActiveJoinUrl(defaultLocalUrl, false);
+
   console.log('');
   console.log('  ╔═══════════════════════════════════════════════════╗');
   console.log('  ║         ROAD TO DOOMSDAY — Server Online         ║');
@@ -714,7 +813,7 @@ server.listen(PORT, () => {
   console.log(`  ║  Wi-Fi IP: http://${ip}:${PORT}/                  `);
   console.log(`  ║  Display:  http://${ip}:${PORT}/                  `);
   console.log(`  ║  Console:  http://${ip}:${PORT}/console           `);
-  console.log(`  ║  Buzzer:   http://${ip}:${PORT}/buzzer/<teamId>   `);
+  console.log(`  ║  Buzzer:   http://${ip}:${PORT}/buzzer/join       `);
   console.log('  ╠═══════════════════════════════════════════════════╣');
   all.forEach(item => {
     console.log(`  ║  Adapter: [${item.name}] -> http://${item.address}:${PORT}`);
@@ -724,4 +823,7 @@ server.listen(PORT, () => {
   console.log(`  ║  Teams:    ${Object.keys(state.teams).length} loaded  |  Questions: ${state.questions.length}`);
   console.log('  ╚═══════════════════════════════════════════════════╝');
   console.log('');
+
+  // Auto-launch Cloudflare tunnel for external phone buzzer access
+  startTunnel();
 });

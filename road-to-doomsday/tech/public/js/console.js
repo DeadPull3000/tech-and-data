@@ -154,6 +154,19 @@
       const { type, payload } = msg;
 
       switch (type) {
+        case 'network_update':
+          if (payload) {
+            currentJoinUrl = payload.joinUrl;
+            currentQrData = payload.qr;
+            if (phoneConnectUrl) {
+              phoneConnectUrl.textContent = currentJoinUrl;
+              phoneConnectUrl.title = payload.isTunnel ? 'Cloudflare Public Tunnel' : 'Local Wi-Fi';
+            }
+            if (consoleQrUrl) consoleQrUrl.textContent = currentJoinUrl;
+            if (consoleQrImg && currentQrData) consoleQrImg.src = currentQrData;
+          }
+          break;
+
         case 'state_sync':
           if (payload) {
             Object.assign(state, payload);
@@ -955,9 +968,12 @@
     .then(r => r.json())
     .then(data => {
       if (data) {
-        currentJoinUrl = data.joinUrl || `http://${data.ip || '172.19.212.126'}:${data.port || 3000}/buzzer/join`;
+        currentJoinUrl = data.joinUrl || `http://${data.ip || 'localhost'}:${data.port || 3000}/buzzer/join`;
         currentQrData = data.qr || '';
-        if (phoneConnectUrl) phoneConnectUrl.textContent = currentJoinUrl;
+        if (phoneConnectUrl) {
+          phoneConnectUrl.textContent = currentJoinUrl;
+          phoneConnectUrl.title = data.isTunnel ? 'Cloudflare Public Tunnel' : 'Local Wi-Fi';
+        }
         if (consoleQrUrl) consoleQrUrl.textContent = currentJoinUrl;
         if (consoleQrImg && currentQrData) consoleQrImg.src = currentQrData;
       }
