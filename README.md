@@ -1,3 +1,10 @@
+<picture>
+  <source media="(prefers-reduced-motion: no-preference)" srcset="./project-scan.gif">
+  <img src="./project-static.png" width="1056" alt="Tech &amp; Data ASCII project diagram">
+</picture>
+
+The Road to Doomsday platform connects a mobile buzzer, quizmaster console, and projector display. The live quiz had 41 participating teams.
+
 # Tech & Data | Quizzing Club
 
 Welcome to the **Tech & Data Vertical** collaborative workspace of the **Quizzing Club**!
